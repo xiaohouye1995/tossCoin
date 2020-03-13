@@ -1,13 +1,17 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<view class="content">
+  <view id="euro">
+    <view class="back">
+      <image class="middle-img" :src="../../static/image/coin1.png"></image>
+    </view>
+    <view class="middle" v-for="index in 10" :style="'transform: translateZ(' + index + 'px)'">
+      <image class="middle-img" :src="@/static/image/coin1.png"></image>
+    </view>
+    <view class="front">
+      <image :src="@/static/image/coin2.png" class="middle-img"></image>
+    </view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view>
+    <button type="primary">抛硬币了</button>
   </view>
 </view>
