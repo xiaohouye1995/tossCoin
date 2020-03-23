@@ -1,14 +1,14 @@
 <template>
 	<view class="content">
 		<view class="coin" :class="{'coin-facade': isStatusText === '正面','coin-reverse': isStatusText === '反面'}">
-			<view class="coin-back">
-				<image class="coin-img" :src="coinimg2"></image>
+			<view class="coin-front">
+				<image class="coin-img" :src="coinImgFront"></image>
 			</view>
 			<view class="coin-middle" v-for="index in 16" :key="index" :style="'transform: translateZ(' + index + 'px)'">
-				<image class="coin-img" :src="coinimg2"></image>
+				<image class="coin-img" :src="coinImgBack"></image>
 			</view>
-			<view class="coin-front">
-				<image class="coin-img" :src="coinimg"></image>
+			<view class="coin-back">
+				<image class="coin-img" :src="coinImgBack"></image>
 			</view>
 			<view class="coin-shadow"></view>
 		</view>
@@ -28,15 +28,14 @@
 	export default {
 		data() {
 			return {
-				title: '来抛硬币',
-				coinimg: '/static/coin2_front.png',
-				coinimg2: '/static/coin2_back.png',
+				coinImgFront: '/static/img/coin2_front.png',
+				coinImgBack: '/static/img/coin2_back.png',
 				isStatusText: '',
 				record: {}
 			}
 		},
 		onLoad() {
-			this.getCoinRecord()	
+			this.getCoinRecord()
 		},
 		methods: {
 			// 获取硬币记录
@@ -56,25 +55,38 @@
 			},
 			// 抛硬币
 			tossCoin() {
+				this.loadAudio()
 				this.record.totalCount += 1
 				uni.setStorageSync('recordTotalCount', this.record.totalCount);
-				let flipResult = Math.random();
 				this.isStatusText = '';
-				let self = this
-				setTimeout(function() {
+				let flipResult = Math.random();
+				setTimeout(() => {
 					if (flipResult <= 0.5) {
-						self.isStatusText = '正面';
-						self.record.facadeCount += 1;
-						uni.setStorageSync('recordFacadeCount', self.record.facadeCount);
-						console.log('这是', self.isStatusText);
+						this.isStatusText = '正面';
+						this.record.facadeCount += 1;
+						uni.setStorageSync('recordFacadeCount', this.record.facadeCount);
+						console.log('这是', this.isStatusText);
 					} else {
-						self.isStatusText = '反面';
-						self.record.reverseCount += 1;
-						uni.setStorageSync('recordReverseCount', self.record.reverseCount);
-						console.log('这是', self.isStatusText);
+						this.isStatusText = '反面';
+						this.record.reverseCount += 1;
+						uni.setStorageSync('recordReverseCount', this.record.reverseCount);
+						console.log('这是', this.isStatusText);
 					}
-					self.getCoinRecord()
-				}, 100);
+					this.getCoinRecord();
+				}, 0);
+			},
+			// 加载音频
+			loadAudio () {
+				const innerAudioContext = uni.createInnerAudioContext();
+				innerAudioContext.autoplay = true;
+				innerAudioContext.src = '/static/mp3/filpCoin6.wav';
+				innerAudioContext.onPlay(() => {
+				  console.log('开始播放');
+				});
+				innerAudioContext.onError((res) => {
+				  console.log(res.errMsg);
+				  console.log(res.errCode);
+				});
 			}
 		}
 	}
@@ -103,7 +115,7 @@
 
 	$coin-diameter: 200px; // 直径
 	$coin-thickness: 16px; // 厚度
-	$turn-time: 6s; // 转动时间
+	$turn-time: 3.5s; // 转动时间
 
 	/* 3d旋转 */
 	.coin {
@@ -149,7 +161,10 @@
 	}
 
 	.coin-back {
-		transform: translateZ(0) rotateY(180deg);
+		transform: translateZ(0);
+		.coin-img {
+			transform: rotateY(180deg);
+		}
 	}
 
 	.coin-middle {

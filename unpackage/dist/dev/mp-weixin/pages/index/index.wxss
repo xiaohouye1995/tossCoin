@@ -51,12 +51,12 @@ page {
           transform-style: preserve-3d;
 }
 .coin-facade {
-  -webkit-animation: flipFacade 6s ease-out forwards;
-          animation: flipFacade 6s ease-out forwards;
+  -webkit-animation: flipFacade 3.5s ease-out forwards;
+          animation: flipFacade 3.5s ease-out forwards;
 }
 .coin-reverse {
-  -webkit-animation: flipReverse 6s ease-out forwards;
-          animation: flipReverse 6s ease-out forwards;
+  -webkit-animation: flipReverse 3.5s ease-out forwards;
+          animation: flipReverse 3.5s ease-out forwards;
 }
 .coin-front,
 .coin-back {
@@ -79,16 +79,20 @@ page {
     width: 400px;
     background: #fff;
     opacity: 0.3;
-    -webkit-animation: shine linear 3s infinite;
-            animation: shine linear 3s infinite;
+    -webkit-animation: shine linear 1.75s infinite;
+            animation: shine linear 1.75s infinite;
 }
 .coin-front {
   -webkit-transform: translateZ(16px);
           transform: translateZ(16px);
 }
 .coin-back {
-  -webkit-transform: translateZ(0) rotateY(180deg);
-          transform: translateZ(0) rotateY(180deg);
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+}
+.coin-back .coin-img {
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
 }
 .coin-middle {
   width: 200px;

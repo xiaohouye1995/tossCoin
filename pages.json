@@ -5,8 +5,31 @@
 			"style": {
 				"navigationBarTitleText": "抛硬币了"
 			}
+		},
+		{
+			"path": "pages/setting/setting",
+			"style": {
+				"navigationBarTitleText": "设置"
+			}
 		}
 	],
+	// "tabBar": {
+	//     "color": "#7A7E83",
+	//     "selectedColor": "#3cc51f",
+	//     "borderStyle": "black",
+	//     "backgroundColor": "#ffffff",
+	//     "list": [{
+	//         "pagePath": "pages/index/index",
+	//         // "iconPath": "static/image/icon_component.png",
+	//         // "selectedIconPath": "static/image/icon_component_HL.png",
+	//         "text": "首页"
+	//     }, {
+	//         "pagePath": "pages/setting/setting",
+	//         // "iconPath": "static/image/icon_API.png",
+	//         // "selectedIconPath": "static/image/icon_API_HL.png",
+	//         "text": "设置"
+	//     }]
+	// },
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "抛硬币了",
