@@ -44,25 +44,25 @@ page {
 /* 3d旋转 */
 .coin {
   position: relative;
-  width: 200px;
-  height: 200px;
-  margin: 50px auto;
+  width: 400rpx;
+  height: 400rpx;
+  margin: 100rpx auto;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
 }
 .coin-facade {
-  -webkit-animation: flipFacade 3.5s ease-out forwards;
-          animation: flipFacade 3.5s ease-out forwards;
+  -webkit-animation: flipFacade 1s ease-out forwards;
+          animation: flipFacade 1s ease-out forwards;
 }
 .coin-reverse {
-  -webkit-animation: flipReverse 3.5s ease-out forwards;
-          animation: flipReverse 3.5s ease-out forwards;
+  -webkit-animation: flipReverse 1s ease-out forwards;
+          animation: flipReverse 1s ease-out forwards;
 }
 .coin-front,
 .coin-back {
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 400rpx;
+  height: 400rpx;
   border-radius: 50%;
   overflow: hidden;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
@@ -72,15 +72,15 @@ page {
   .coin-back:after {
     content: "";
     position: absolute;
-    left: -100px;
+    left: -200rpx;
     bottom: 100%;
     display: block;
-    height: 133.33333px;
-    width: 400px;
+    height: 266.66667rpx;
+    width: 800rpx;
     background: #fff;
     opacity: 0.3;
-    -webkit-animation: shine linear 1.75s infinite;
-            animation: shine linear 1.75s infinite;
+    -webkit-animation: shine linear 0.5s infinite;
+            animation: shine linear 0.5s infinite;
 }
 .coin-front {
   -webkit-transform: translateZ(16px);
@@ -95,26 +95,36 @@ page {
             transform: rotateY(180deg);
 }
 .coin-middle {
-  width: 200px;
-  height: 200px;
+  width: 400rpx;
+  height: 400rpx;
   -webkit-transform: translateZ(1px);
           transform: translateZ(1px);
   position: absolute;
 }
 .coin-img {
-  width: 200px;
-  height: 200px;
+  width: 400rpx;
+  height: 400rpx;
 }
 .coin-shadow {
   position: absolute;
-  width: 200px;
+  width: 400rpx;
   height: 16px;
   border-radius: 50%;
   background: #000;
   box-shadow: 0 0 80px 80px #000;
   opacity: 0.125;
-  -webkit-transform: rotateX(90deg) translateZ(-220px) scale(0.5);
-          transform: rotateX(90deg) translateZ(-220px) scale(0.5);
+  -webkit-transform: rotateX(90deg) translateZ(-440rpx) scale(0.5);
+          transform: rotateX(90deg) translateZ(-440rpx) scale(0.5);
+}
+.coin-result {
+  font-size: 20px;
+  margin-bottom: 40rpx;
+}
+.coin-record {
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 18px;
+  margin-bottom: 60rpx;
 }
 @-webkit-keyframes flipFacade {
 from {
@@ -139,33 +149,23 @@ to {
 @-webkit-keyframes shine {
 0%,
   15% {
-    -webkit-transform: translateY(400px) rotate(-40deg);
-            transform: translateY(400px) rotate(-40deg);
+    -webkit-transform: translateY(800rpx) rotate(-40deg);
+            transform: translateY(800rpx) rotate(-40deg);
 }
 50% {
-    -webkit-transform: translateY(-200px) rotate(-40deg);
-            transform: translateY(-200px) rotate(-40deg);
+    -webkit-transform: translateY(-400rpx) rotate(-40deg);
+            transform: translateY(-400rpx) rotate(-40deg);
 }
 }
 @keyframes shine {
 0%,
   15% {
-    -webkit-transform: translateY(400px) rotate(-40deg);
-            transform: translateY(400px) rotate(-40deg);
+    -webkit-transform: translateY(800rpx) rotate(-40deg);
+            transform: translateY(800rpx) rotate(-40deg);
 }
 50% {
-    -webkit-transform: translateY(-200px) rotate(-40deg);
-            transform: translateY(-200px) rotate(-40deg);
+    -webkit-transform: translateY(-400rpx) rotate(-40deg);
+            transform: translateY(-400rpx) rotate(-40deg);
 }
-}
-.coin-record {
-  text-align: center;
-  color: #FFFFFF;
-  font-size: 18px;
-  margin-bottom: 30px;
-}
-.coin-result {
-  font-size: 20px;
-  margin-bottom: 20px;
 }
 

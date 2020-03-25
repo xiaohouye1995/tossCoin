@@ -28,16 +28,32 @@
 	export default {
 		data() {
 			return {
-				coinImgFront: '/static/img/coin2_front.png',
-				coinImgBack: '/static/img/coin2_back.png',
+				coinImgFront: '',
+				coinImgBack: '',
 				isStatusText: '',
 				record: {}
 			}
 		},
 		onLoad() {
+			this.getCoinImg()
 			this.getCoinRecord()
+			this.getAudio()
 		},
 		methods: {
+			// 获取硬币图片
+			getCoinImg () {
+				let name = '2018gou'
+				this.coinImgFront = `http://q74m0xojb.bkt.clouddn.com/img/${name}_front.png`
+				this.coinImgBack = `http://q74m0xojb.bkt.clouddn.com/img/${name}_back.png`
+				// this.coinImgFront = `/static/img/${name}_front.png`
+				// this.coinImgBack = `/static/img/${name}_back.png`
+			},
+			// 获取硬币旋转音频
+			getAudio () {
+				let name = 'filpCoin1';
+				this.audioSrc = `http://q74m0xojb.bkt.clouddn.com/mp3/${name}.wav`;
+				// this.audioSrc = `/static/audio/${name}.wav`;
+			},
 			// 获取硬币记录
 			getCoinRecord () {
 				let totalCount =  uni.getStorageSync('recordTotalCount') || 0;
@@ -79,7 +95,7 @@
 			loadAudio () {
 				const innerAudioContext = uni.createInnerAudioContext();
 				innerAudioContext.autoplay = true;
-				innerAudioContext.src = '/static/mp3/filpCoin6.wav';
+				innerAudioContext.src = this.audioSrc;
 				innerAudioContext.onPlay(() => {
 				  console.log('开始播放');
 				});
@@ -113,16 +129,16 @@
 		}
 	}
 
-	$coin-diameter: 200px; // 直径
+	$coin-diameter: 400rpx; // 直径
 	$coin-thickness: 16px; // 厚度
-	$turn-time: 3.5s; // 转动时间
+	$turn-time: 1s; // 转动时间
 
 	/* 3d旋转 */
 	.coin {
 		position: relative;
 		width: $coin-diameter;
 		height: $coin-diameter;
-		margin: 50px auto;
+		margin: 100rpx auto;
 		transform-style: preserve-3d;
 	}
 
@@ -189,6 +205,18 @@
 		opacity: 0.125;
 		transform: rotateX(90deg) translateZ(-$coin-diameter*1.1) scale(.5);
 	}
+	
+	.coin-result {
+		font-size: 20px;
+		margin-bottom: 40rpx;
+	}
+	
+	.coin-record {
+		text-align: center;
+		color: #FFFFFF;
+		font-size: 18px;
+		margin-bottom: 60rpx;
+	}
 
 	@-webkit-keyframes flipFacade {
 		from {
@@ -220,16 +248,5 @@
 		50% {
 			transform: translateY(-$coin-diameter) rotate(-40deg);
 		}
-	}
-
-	.coin-record {
-		text-align: center;
-		color: #FFFFFF;
-		font-size: 18px;
-		margin-bottom: 30px;
-	}
-	.coin-result {
-		font-size: 20px;
-		margin-bottom: 20px;
 	}
 </style>

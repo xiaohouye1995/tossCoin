@@ -172,16 +172,32 @@ var _default =
 {
   data: function data() {
     return {
-      coinImgFront: '/static/img/coin2_front.png',
-      coinImgBack: '/static/img/coin2_back.png',
+      coinImgFront: '',
+      coinImgBack: '',
       isStatusText: '',
       record: {} };
 
   },
   onLoad: function onLoad() {
+    this.getCoinImg();
     this.getCoinRecord();
+    this.getAudio();
   },
   methods: {
+    // 获取硬币图片
+    getCoinImg: function getCoinImg() {
+      var name = '2018gou';
+      this.coinImgFront = "http://q74m0xojb.bkt.clouddn.com/img/".concat(name, "_front.png");
+      this.coinImgBack = "http://q74m0xojb.bkt.clouddn.com/img/".concat(name, "_back.png");
+      // this.coinImgFront = `/static/img/${name}_front.png`
+      // this.coinImgBack = `/static/img/${name}_back.png`
+    },
+    // 获取硬币旋转音频
+    getAudio: function getAudio() {
+      var name = 'filpCoin1';
+      this.audioSrc = "http://q74m0xojb.bkt.clouddn.com/mp3/".concat(name, ".wav");
+      // this.audioSrc = `/static/audio/${name}.wav`;
+    },
     // 获取硬币记录
     getCoinRecord: function getCoinRecord() {
       var totalCount = uni.getStorageSync('recordTotalCount') || 0;
@@ -223,7 +239,7 @@ var _default =
     loadAudio: function loadAudio() {
       var innerAudioContext = uni.createInnerAudioContext();
       innerAudioContext.autoplay = true;
-      innerAudioContext.src = '/static/mp3/filpCoin6.wav';
+      innerAudioContext.src = this.audioSrc;
       innerAudioContext.onPlay(function () {
         console.log('开始播放');
       });

@@ -14,4 +14,8 @@
 
 <style>
 	/*每个页面公共css */
+	@import "./static/css/iconfont.css";
+	.red {
+		color: #DC143C;
+	}
 </style>
