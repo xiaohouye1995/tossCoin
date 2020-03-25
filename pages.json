@@ -11,6 +11,18 @@
 			"style": {
 				"navigationBarTitleText": "设置"
 			}
+		},
+		{
+			"path": "pages/setting/coinskin",
+			"style": {
+				"navigationBarTitleText": "硬币中心"
+			}
+		},
+		{
+			"path": "pages/setting/coinaudio",
+			"style": {
+				"navigationBarTitleText": "音效中心"
+			}
 		}
 	],
 	"tabBar": {
@@ -33,7 +45,7 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "抛硬币了",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarBackgroundColor": "#fff",
+		"backgroundColor": "#f7f8fa"
 	}
 }

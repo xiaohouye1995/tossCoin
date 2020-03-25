@@ -174,11 +174,30 @@ var _default =
     return {
       coinImgFront: '',
       coinImgBack: '',
-      isStatusText: '',
+      isStatusText: '薛定谔的硬币',
       record: {} };
 
   },
   onLoad: function onLoad() {
+    // this.getCoinImg()
+    // this.getCoinRecord()
+    // this.getAudio()
+    uni.showModal({
+      title: '',
+      content: '抛硬币，并不是因为硬币能帮你决定什么，而是因为在硬币抛出的那一刻，答案便会出现在你心里。',
+      showCancel: false,
+      confirmText: '开始',
+      confirmColor: '#fd746c',
+      success: function success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定');
+        } else if (res.cancel) {
+          console.log('用户点击取消');
+        }
+      } });
+
+  },
+  onShow: function onShow() {
     this.getCoinImg();
     this.getCoinRecord();
     this.getAudio();
@@ -186,7 +205,7 @@ var _default =
   methods: {
     // 获取硬币图片
     getCoinImg: function getCoinImg() {
-      var name = '2018gou';
+      var name = uni.getStorageSync('coinName') || '2020shu';
       this.coinImgFront = "http://q74m0xojb.bkt.clouddn.com/img/".concat(name, "_front.png");
       this.coinImgBack = "http://q74m0xojb.bkt.clouddn.com/img/".concat(name, "_back.png");
       // this.coinImgFront = `/static/img/${name}_front.png`
@@ -194,7 +213,7 @@ var _default =
     },
     // 获取硬币旋转音频
     getAudio: function getAudio() {
-      var name = 'filpCoin1';
+      var name = uni.getStorageSync('coinAuidoID') || 'filpCoin1';
       this.audioSrc = "http://q74m0xojb.bkt.clouddn.com/mp3/".concat(name, ".wav");
       // this.audioSrc = `/static/audio/${name}.wav`;
     },

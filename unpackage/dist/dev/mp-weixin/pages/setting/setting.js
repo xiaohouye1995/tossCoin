@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -173,14 +173,37 @@ var _default =
 
   },
   onLoad: function onLoad() {
-    this.getCoinImg();
   },
   methods: {
-    // 获取硬币图片
-    getCoinImg: function getCoinImg() {
-      var name = '2020shu';
-      this.coinImgFront = name;
+    // 前往硬币皮肤设置
+    toCoinSkin: function toCoinSkin() {
+      uni.navigateTo({
+        url: '/pages/setting/coinskin' });
+
+    },
+    // 前往硬币音效设置
+    toCoinAudio: function toCoinAudio() {
+      uni.navigateTo({
+        url: '/pages/setting/coinaudio' });
+
+    },
+    // 清除记录
+    clearRecord: function clearRecord() {
+      uni.showModal({
+        title: '',
+        content: '是否立即清空记录',
+        confirmColor: '#fd746c',
+        success: function success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定');
+            uni.clearStorage();
+          } else if (res.cancel) {
+            console.log('用户点击取消');
+          }
+        } });
+
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

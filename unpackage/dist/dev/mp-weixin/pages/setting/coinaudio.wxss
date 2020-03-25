@@ -24,12 +24,17 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.bgcolor {
+  background: #fd746c;
+  color: #fff;
+}
 .iconfont {
   font-size: 24px;
 }
-.panel {
-  background: #fff;
-  margin-bottom: 10px;
+.panel-title {
+  width: 100%;
+  padding: 20rpx;
+  font-size: 18px;
 }
 .panel-cell {
   display: -webkit-box;
@@ -39,7 +44,8 @@
   -webkit-align-items: center;
           align-items: center;
   width: 100%;
-  height: 120rpx;
+  height: 80rpx;
+  background: #fff;
 }
 .panel-cell-hd {
   width: 10%;
@@ -60,20 +66,5 @@
           align-items: center;
   padding-right: 12px;
   border-bottom: 1px solid #f7f8fa;
-}
-.panel-cell--center {
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
-}
-.panel-cell-text {
-  margin-right: 10rpx;
 }
 

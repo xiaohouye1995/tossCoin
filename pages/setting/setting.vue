@@ -3,18 +3,18 @@
 		<view class="panel">
 			<view class="panel-cell">
 				<view class="panel-cell-hd">
-					<text class="iconfont icon-nim"></text>
+					<text class="iconfont icon-nim" style="color: #FFD700;"></text>
 				</view>
-				<view class="panel-cell-bd">
+				<view class="panel-cell-bd" @tap="toCoinSkin()">
 					<text>选择硬币</text>
 					<text class="iconfont icon-cc-chevron-right"></text>
 				</view>
 			</view>
 			<view class="panel-cell">
 				<view class="panel-cell-hd">
-					<text class="iconfont icon-audio"></text>
+					<text class="iconfont icon-audio" style="color: #fd746c;"></text>
 				</view>
-				<view class="panel-cell-bd">
+				<view class="panel-cell-bd" @tap="toCoinAudio()">
 					<text>选择音效</text>
 					<text class="iconfont icon-cc-chevron-right"></text>
 				</view>
@@ -22,8 +22,8 @@
 		</view>
 		<view class="panel">
 			<view class="panel-cell">
-				<view class="panel-cell--center">
-					<text>清空记录</text>
+				<view class="panel-cell--center" @tap="clearRecord()">
+					<text class="panel-cell-text">清空记录</text>
 					<text class="iconfont icon-cc-delete red"></text>
 				</view>
 			</view>
@@ -38,26 +38,43 @@
 			}
 		},
 		onLoad() {
-			this.getCoinImg()
 		},
 		methods: {
-			// 获取硬币图片
-			getCoinImg () {
-				let name = '2020shu'
-				this.coinImgFront = name
+			// 前往硬币皮肤设置
+			toCoinSkin () {
+				uni.navigateTo({
+					url: '/pages/setting/coinskin'
+				});
+			},
+			// 前往硬币音效设置
+			toCoinAudio () {
+				uni.navigateTo({
+					url: '/pages/setting/coinaudio'
+				});
+			},
+			// 清除记录
+			clearRecord () {
+				uni.showModal({
+				    title: '',
+				    content: '是否立即清空记录',
+					confirmColor: '#fd746c',
+				    success: function (res) {
+				        if (res.confirm) {
+				            console.log('用户点击确定');
+							uni.clearStorage();
+				        } else if (res.cancel) {
+				            console.log('用户点击取消');
+				        }
+				    }
+				});
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	page {
-		background-color: #f8f8f8;
-		color: #333333;
-	}
 	.iconfont {
 		font-size: 24px;
-		margin: 0 12px;
 	}
 	.panel {
 		background: #fff;
@@ -70,20 +87,26 @@
 		height: 120rpx;
 	}
 	.panel-cell-hd {
-		// margin: 0 12px;
+		width: 10%;
+		padding: 0 12rpx;
+		text-align: center;
 	}
 	.panel-cell-bd {
-		width: 100%;
+		width: 90%;
 		height: 100%;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		border-bottom: 1px solid #f8f8f8;
+		padding-right: 12px;
+		border-bottom: 1px solid #f7f8fa;
 	}
 	.panel-cell--center {
 		width: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+	.panel-cell-text {
+		margin-right: 10rpx;
 	}
 </style>

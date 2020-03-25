@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<view class="coin" :class="{'coin-facade': isStatusText === '正面','coin-reverse': isStatusText === '反面'}">
+		<view class="coin" :class="{'coin-spin':isStatusText === '薛定谔的硬币','coin-facade': isStatusText === '正面','coin-reverse': isStatusText === '反面'}">
 			<view class="coin-front">
 				<image class="coin-img" :src="coinImgFront"></image>
 			</view>
@@ -14,9 +14,9 @@
 		</view>
 		<view class="coin-record">
 			<view class="coin-result red">{{isStatusText}}</view>
-			<view>抛掷总次数：<text>{{record.totalCount}}</text></view>
-			<view>正面次数： <text>{{record.facadeCount}}</text>, 占比：<text>{{record.facadeProportion}}</text></view>
-			<view>反面次数：<text>{{record.reverseCount}}</text>, 占比：<text>{{record.reverseProportion}}</text></view>
+			<view class="coin-record-text">抛掷总次数：{{record.totalCount}}</view>
+			<view class="coin-record-text">正面次数：{{record.facadeCount}}, 占比：{{record.facadeProportion}}</view>
+			<view class="coin-record-text">反面次数：{{record.reverseCount}}, 占比：{{record.reverseProportion}}</view>
 		</view>
 		<view class="footer">
 			<button class="btn" type="primary" @tap="tossCoin()">抛硬币</button>
@@ -30,37 +30,56 @@
 			return {
 				coinImgFront: '',
 				coinImgBack: '',
-				isStatusText: '',
+				isStatusText: '薛定谔的硬币',
 				record: {}
 			}
 		},
 		onLoad() {
+			// this.getCoinImg()
+			// this.getCoinRecord()
+			// this.getAudio()
+			uni.showModal({
+			    title: '',
+			    content: '抛硬币，并不是因为硬币能帮你决定什么，而是因为在硬币抛出的那一刻，答案便会出现在你心里。',
+				showCancel: false,
+				confirmText: '开始',
+				confirmColor: '#fd746c',
+			    success: function (res) {
+			        if (res.confirm) {
+			            console.log('用户点击确定');
+			        } else if (res.cancel) {
+			            console.log('用户点击取消');
+			        }
+			    }
+			});
+		},
+		onShow() {
 			this.getCoinImg()
 			this.getCoinRecord()
 			this.getAudio()
 		},
 		methods: {
 			// 获取硬币图片
-			getCoinImg () {
-				let name = '2018gou'
+			getCoinImg() {
+				let name = uni.getStorageSync('coinName') || '2020shu'
 				this.coinImgFront = `http://q74m0xojb.bkt.clouddn.com/img/${name}_front.png`
 				this.coinImgBack = `http://q74m0xojb.bkt.clouddn.com/img/${name}_back.png`
 				// this.coinImgFront = `/static/img/${name}_front.png`
 				// this.coinImgBack = `/static/img/${name}_back.png`
 			},
 			// 获取硬币旋转音频
-			getAudio () {
-				let name = 'filpCoin1';
+			getAudio() {
+				let name = uni.getStorageSync('coinAuidoID') || 'filpCoin1';
 				this.audioSrc = `http://q74m0xojb.bkt.clouddn.com/mp3/${name}.wav`;
 				// this.audioSrc = `/static/audio/${name}.wav`;
 			},
 			// 获取硬币记录
-			getCoinRecord () {
-				let totalCount =  uni.getStorageSync('recordTotalCount') || 0;
+			getCoinRecord() {
+				let totalCount = uni.getStorageSync('recordTotalCount') || 0;
 				let facadeCount = uni.getStorageSync('recordFacadeCount') || 0;
 				let reverseCount = uni.getStorageSync('recordReverseCount') || 0;
-				let facadeProportion = totalCount <= 0 ? "0%" : (Math.round(facadeCount / totalCount * 10000) / 100.00)+"%";
-				let reverseProportion = totalCount <= 0 ? "0%" : (Math.round(reverseCount / totalCount * 10000) / 100.00)+"%";
+				let facadeProportion = totalCount <= 0 ? "0%" : (Math.round(facadeCount / totalCount * 10000) / 100.00) + "%";
+				let reverseProportion = totalCount <= 0 ? "0%" : (Math.round(reverseCount / totalCount * 10000) / 100.00) + "%";
 				this.record = {
 					totalCount: totalCount,
 					facadeCount: facadeCount,
@@ -92,16 +111,16 @@
 				}, 0);
 			},
 			// 加载音频
-			loadAudio () {
+			loadAudio() {
 				const innerAudioContext = uni.createInnerAudioContext();
 				innerAudioContext.autoplay = true;
 				innerAudioContext.src = this.audioSrc;
 				innerAudioContext.onPlay(() => {
-				  console.log('开始播放');
+					console.log('开始播放');
 				});
 				innerAudioContext.onError((res) => {
-				  console.log(res.errMsg);
-				  console.log(res.errCode);
+					console.log(res.errMsg);
+					console.log(res.errCode);
 				});
 			}
 		}
@@ -112,16 +131,9 @@
 	page {
 		background-color: #E8D0BB;
 	}
-	.red{
-		color: #DC143C;
-	}
-	.green {
-		color: #1E90FF;
-	}
 
 	.footer {
 		text-align: center;
-
 		.btn {
 			width: 50%;
 			background: #fd746c;
@@ -142,6 +154,10 @@
 		transform-style: preserve-3d;
 	}
 
+	.coin-spin {
+		animation: flipSpin 5s linear infinite;
+	}
+
 	.coin-facade {
 		animation: flipFacade $turn-time ease-out forwards;
 	}
@@ -158,6 +174,7 @@
 		border-radius: 50%;
 		overflow: hidden;
 		mask-image: radial-gradient(white, black); // 解决因 animation 导致 border-radius 失效的问题
+
 		&:after {
 			content: "";
 			position: absolute;
@@ -168,7 +185,7 @@
 			width: $coin-diameter*2;
 			background: #fff;
 			opacity: 0.3;
-			animation: shine linear $turn-time/2 infinite;
+			animation: shine linear 3s infinite;
 		}
 	}
 
@@ -178,6 +195,7 @@
 
 	.coin-back {
 		transform: translateZ(0);
+
 		.coin-img {
 			transform: rotateY(180deg);
 		}
@@ -205,19 +223,32 @@
 		opacity: 0.125;
 		transform: rotateX(90deg) translateZ(-$coin-diameter*1.1) scale(.5);
 	}
-	
-	.coin-result {
-		font-size: 20px;
-		margin-bottom: 40rpx;
-	}
-	
+
 	.coin-record {
 		text-align: center;
 		color: #FFFFFF;
 		font-size: 18px;
 		margin-bottom: 60rpx;
 	}
+	.coin-result {
+		font-size: 20px;
+		margin-bottom: 40rpx;
+	}
+	.coin-record-text {
+		margin-bottom: 10rpx;
+	}
+	
 
+	@keyframes flipSpin {
+	  0% {
+	    transform: perspective(1000px) rotateY(0deg);
+	  }
+	
+	  100% {
+	    transform: perspective(1000px) rotateY(360deg);
+	  }
+	}
+	
 	@-webkit-keyframes flipFacade {
 		from {
 			transform: perspective(1000px) rotateY(0);

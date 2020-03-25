@@ -18,4 +18,9 @@
 	.red {
 		color: #DC143C;
 	}
+	page {
+		font-family: PingFang SC, 'Helvetica Neue', Arial, sans-serif;
+		background-color: #f7f8fa;
+		color: #353535;
+	}
 </style>

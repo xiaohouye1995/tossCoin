@@ -1,14 +1,16 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/setting/setting"
+    "pages/setting/setting",
+    "pages/setting/coinskin",
+    "pages/setting/coinaudio"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "抛硬币了",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundColor": "#f7f8fa"
   },
   "tabBar": {
     "color": "#7A7E83",
@@ -31,5 +33,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap97.json"
+  "sitemapLocation": "sitemap15.json"
 }

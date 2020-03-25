@@ -8525,7 +8525,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "抛硬币了" }, "pages/setting/setting": { "navigationBarTitleText": "设置" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "抛硬币了", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "抛硬币了", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/setting/setting": { "navigationBarTitleText": "设置", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/setting/coinskin": { "navigationBarTitleText": "硬币中心", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/setting/coinaudio": { "navigationBarTitleText": "音效中心", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "抛硬币了", "navigationBarBackgroundColor": "#fff", "backgroundColor": "#f7f8fa" } };exports.default = _default;
 
 /***/ }),
 /* 8 */

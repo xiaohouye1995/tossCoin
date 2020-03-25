@@ -27,12 +27,6 @@
 page {
   background-color: #E8D0BB;
 }
-.red {
-  color: #DC143C;
-}
-.green {
-  color: #1E90FF;
-}
 .footer {
   text-align: center;
 }
@@ -49,6 +43,10 @@ page {
   margin: 100rpx auto;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
+}
+.coin-spin {
+  -webkit-animation: flipSpin 5s linear infinite;
+          animation: flipSpin 5s linear infinite;
 }
 .coin-facade {
   -webkit-animation: flipFacade 1s ease-out forwards;
@@ -79,8 +77,8 @@ page {
     width: 800rpx;
     background: #fff;
     opacity: 0.3;
-    -webkit-animation: shine linear 0.5s infinite;
-            animation: shine linear 0.5s infinite;
+    -webkit-animation: shine linear 3s infinite;
+            animation: shine linear 3s infinite;
 }
 .coin-front {
   -webkit-transform: translateZ(16px);
@@ -116,15 +114,38 @@ page {
   -webkit-transform: rotateX(90deg) translateZ(-440rpx) scale(0.5);
           transform: rotateX(90deg) translateZ(-440rpx) scale(0.5);
 }
-.coin-result {
-  font-size: 20px;
-  margin-bottom: 40rpx;
-}
 .coin-record {
   text-align: center;
   color: #FFFFFF;
   font-size: 18px;
   margin-bottom: 60rpx;
+}
+.coin-result {
+  font-size: 20px;
+  margin-bottom: 40rpx;
+}
+.coin-record-text {
+  margin-bottom: 10rpx;
+}
+@-webkit-keyframes flipSpin {
+0% {
+    -webkit-transform: perspective(1000px) rotateY(0deg);
+            transform: perspective(1000px) rotateY(0deg);
+}
+100% {
+    -webkit-transform: perspective(1000px) rotateY(360deg);
+            transform: perspective(1000px) rotateY(360deg);
+}
+}
+@keyframes flipSpin {
+0% {
+    -webkit-transform: perspective(1000px) rotateY(0deg);
+            transform: perspective(1000px) rotateY(0deg);
+}
+100% {
+    -webkit-transform: perspective(1000px) rotateY(360deg);
+            transform: perspective(1000px) rotateY(360deg);
+}
 }
 @-webkit-keyframes flipFacade {
 from {

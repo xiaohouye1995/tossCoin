@@ -24,56 +24,68 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.iconfont {
-  font-size: 24px;
+.bgcolor {
+  background: #fd746c;
+  color: #fff;
 }
-.panel {
-  background: #fff;
+.selectActive {
+  border: 1px solid #fd746c;
+}
+.panel-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+          justify-content: space-around;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
   margin-bottom: 10px;
 }
-.panel-cell {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
+.panel-title {
   width: 100%;
-  height: 120rpx;
+  padding: 20rpx;
+  font-size: 18px;
 }
-.panel-cell-hd {
-  width: 10%;
-  padding: 0 12rpx;
-  text-align: center;
-}
-.panel-cell-bd {
-  width: 90%;
-  height: 100%;
+.coin-box {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
-  padding-right: 12px;
-  border-bottom: 1px solid #f7f8fa;
-}
-.panel-cell--center {
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
           justify-content: center;
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
+  box-sizing: border-box;
+  width: 220rpx;
+  height: 240rpx;
+  margin-bottom: 20rpx;
+  background: #fff;
+  border-radius: 6px;
 }
-.panel-cell-text {
-  margin-right: 10rpx;
+.coin-img {
+  width: 120rpx;
+  height: 120rpx;
+  margin-bottom: 12rpx;
+}
+.coin-spec {
+  color: #ccc;
+  font-size: 14px;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-top: 20rpx;
+  padding-bottom: 60rpx;
+  background: #fff;
+}
+.footer .btn {
+    width: 50%;
+    border-color: #fd746c;
 }
 
