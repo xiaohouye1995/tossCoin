@@ -1,18 +1,17 @@
 <template>
-	<view class="container">
+	<view class="panel">
 		<view class="panel-title">
 			<text>十二生肖系列</text>
 		</view>
-		<view class="panel-content">
-			<view class="coin-box" :class="{selectActive: coinIndex === index}" v-for="(item, index) in coins" :key="index"
-			 @tap="selectCoin(item,index)">
+		<view class="cell">
+			<view class="coin-box" :class="{selectActive: coinIndex === index}" v-for="(item, index) in coins" :key="index" @tap="selectCoin(item,index)">
 				<image class="coin-img" :src="item.src" mode=""></image>
 				<text>{{item.name}}</text>
 				<text class="coin-spec" v-if="item.id === coinName">使用中</text>
 			</view>
 		</view>
 		<view class="footer" v-if="coinIndex !== -1">
-			<button class="btn bgcolor" @tap="setCoin()">立即使用</button>
+			<button class="footer-btn" type="primary" style="background: #fd746c;" @tap="setCoin()">立即使用</button>
 		</view>
 	</view>
 </template>
@@ -69,8 +68,8 @@
 				}
 			},
 			// 获取当前使用硬币
-			getUseCoin () {
-				this.coinName = uni.getStorageSync('coinName') || ''
+			getUseCoin() {
+				this.coinName = uni.getStorageSync('coinName') || '2020shu'
 			},
 			// 选中硬币
 			selectCoin(item, index) {
@@ -78,11 +77,11 @@
 				this.coinid = item.id
 			},
 			// 设置硬币皮肤
-			setCoin () {
+			setCoin() {
 				uni.setStorageSync('coinName', this.coinid);
 				uni.showToast({
-				    title: '设置成功',
-				    duration: 2000
+					title: '设置成功',
+					duration: 2000
 				});
 				this.getUseCoin()
 			}
@@ -91,27 +90,24 @@
 </script>
 
 <style lang="scss">
-		
-	.bgcolor {
-		background: #fd746c;
-		color: #fff;
-	}
 
 	.selectActive {
-		border: 1px solid #fd746c;
+		border: 1px solid $uni-color-primary;
 	}
 
-	.panel-content {
+	.footer {
+		position: fixed;
+		bottom: 0;
+		padding-top: 20rpx;
+		padding-bottom: 60rpx;
+		background: #fff;
+	}
+
+	.cell {
 		display: flex;
 		justify-content: space-around;
 		flex-wrap: wrap;
 		margin-bottom: 10px;
-	}
-	
-	.panel-title {
-		width: 100%;
-		padding: 20rpx;
-		font-size: 18px;
 	}
 
 	.coin-box {
@@ -132,22 +128,9 @@
 		height: 120rpx;
 		margin-bottom: 12rpx;
 	}
-	
+
 	.coin-spec {
 		color: #ccc;
-		font-size: 14px;
-	}
-	
-	.footer {
-		position: fixed;
-		bottom: 0;
-		width: 100%;
-		padding-top: 20rpx;
-		padding-bottom: 60rpx;
-		background: #fff;
-		.btn {
-			width: 50%;
-			border-color: #fd746c;
-		}
+		font-size: 13pt;
 	}
 </style>

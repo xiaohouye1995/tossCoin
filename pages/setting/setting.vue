@@ -73,40 +73,4 @@
 </script>
 
 <style lang="scss">
-	.iconfont {
-		font-size: 24px;
-	}
-	.panel {
-		background: #fff;
-		margin-bottom: 10px;
-	}
-	.panel-cell {
-		display: flex;
-		align-items: center;
-		width: 100%;
-		height: 120rpx;
-	}
-	.panel-cell-hd {
-		width: 10%;
-		padding: 0 12rpx;
-		text-align: center;
-	}
-	.panel-cell-bd {
-		width: 90%;
-		height: 100%;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding-right: 12px;
-		border-bottom: 1px solid #f7f8fa;
-	}
-	.panel-cell--center {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-	.panel-cell-text {
-		margin-right: 10rpx;
-	}
 </style>

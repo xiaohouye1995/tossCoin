@@ -12,15 +12,8 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
 	/*每个页面公共css */
 	@import "./static/css/iconfont.css";
-	.red {
-		color: #DC143C;
-	}
-	page {
-		font-family: PingFang SC, 'Helvetica Neue', Arial, sans-serif;
-		background-color: #f7f8fa;
-		color: #353535;
-	}
+	@import "./static/css/main.css";
 </style>

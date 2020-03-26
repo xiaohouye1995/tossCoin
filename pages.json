@@ -3,7 +3,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "抛硬币了"
+				"navigationBarTitleText": "来抛硬币"
 			}
 		},
 		{
@@ -43,9 +43,9 @@
 	    }]
 	},
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "抛硬币了",
-		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "来抛硬币",
+		"navigationBarBackgroundColor": "#353535",
 		"backgroundColor": "#f7f8fa"
 	}
 }

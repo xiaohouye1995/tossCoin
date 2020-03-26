@@ -7,9 +7,9 @@
   ],
   "subPackages": [],
   "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "抛硬币了",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "来抛硬币",
+    "navigationBarBackgroundColor": "#353535",
     "backgroundColor": "#f7f8fa"
   },
   "tabBar": {
@@ -33,5 +33,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap15.json"
+  "sitemapLocation": "sitemap88.json"
 }

@@ -19,7 +19,7 @@
 			<view class="coin-record-text">反面次数：{{record.reverseCount}}, 占比：{{record.reverseProportion}}</view>
 		</view>
 		<view class="footer">
-			<button class="btn" type="primary" @tap="tossCoin()">抛硬币</button>
+			<button class="footer-btn" type="primary" style="background: #fd746c;" @tap="tossCoin()">抛硬币</button>
 		</view>
 	</view>
 </template>
@@ -35,9 +35,6 @@
 			}
 		},
 		onLoad() {
-			// this.getCoinImg()
-			// this.getCoinRecord()
-			// this.getAudio()
 			uni.showModal({
 			    title: '',
 			    content: '抛硬币，并不是因为硬币能帮你决定什么，而是因为在硬币抛出的那一刻，答案便会出现在你心里。',
@@ -54,9 +51,10 @@
 			});
 		},
 		onShow() {
-			this.getCoinImg()
-			this.getCoinRecord()
-			this.getAudio()
+			this.getCoinImg();
+			this.getCoinRecord();
+			this.getAudio();
+			this.isStatusText = '薛定谔的硬币';
 		},
 		methods: {
 			// 获取硬币图片
@@ -70,8 +68,9 @@
 			// 获取硬币旋转音频
 			getAudio() {
 				let name = uni.getStorageSync('coinAuidoID') || 'filpCoin1';
-				this.audioSrc = `http://q74m0xojb.bkt.clouddn.com/mp3/${name}.wav`;
+				// this.audioSrc = `http://q74m0xojb.bkt.clouddn.com/mp3/${name}.wav`;
 				// this.audioSrc = `/static/audio/${name}.wav`;
+				this.audioSrc = `/static/audio/${name}.mp3`;
 			},
 			// 获取硬币记录
 			getCoinRecord() {
@@ -91,11 +90,29 @@
 			// 抛硬币
 			tossCoin() {
 				this.loadAudio()
-				this.record.totalCount += 1
-				uni.setStorageSync('recordTotalCount', this.record.totalCount);
+			},
+			// 加载音频
+			loadAudio() {
+				const innerAudioContext = uni.createInnerAudioContext();
+				innerAudioContext.autoplay = true;
+				innerAudioContext.src = this.audioSrc;
+				innerAudioContext.onPlay(() => {
+					console.log('开始播放');
+					this.filpCoin();
+				});
+				innerAudioContext.onError((res) => {
+					console.log(res.errMsg);
+					console.log(res.errCode);
+					this.filpCoin();
+				});
+			},
+			// 翻转硬币
+			filpCoin () {
 				this.isStatusText = '';
-				let flipResult = Math.random();
-				setTimeout(() => {
+				this.timer = setTimeout(() => {
+					let flipResult = Math.random();
+					this.record.totalCount += 1
+					uni.setStorageSync('recordTotalCount', this.record.totalCount);
 					if (flipResult <= 0.5) {
 						this.isStatusText = '正面';
 						this.record.facadeCount += 1;
@@ -108,37 +125,23 @@
 						console.log('这是', this.isStatusText);
 					}
 					this.getCoinRecord();
-				}, 0);
+				}, 0);	
 			},
-			// 加载音频
-			loadAudio() {
-				const innerAudioContext = uni.createInnerAudioContext();
-				innerAudioContext.autoplay = true;
-				innerAudioContext.src = this.audioSrc;
-				innerAudioContext.onPlay(() => {
-					console.log('开始播放');
-				});
-				innerAudioContext.onError((res) => {
-					console.log(res.errMsg);
-					console.log(res.errCode);
-				});
+			// 清除定时器
+			clearTimer() {
+				clearTimeout(this.timer);
+				this.timer = null;
 			}
-		}
+		},
+		onUnload:function() {
+			this.timer && this.clearTimer();
+		},
 	}
 </script>
 
 <style lang="scss">
 	page {
 		background-color: #E8D0BB;
-	}
-
-	.footer {
-		text-align: center;
-		.btn {
-			width: 50%;
-			background: #fd746c;
-			border-color: #fd746c;
-		}
 	}
 
 	$coin-diameter: 400rpx; // 直径
@@ -155,7 +158,7 @@
 	}
 
 	.coin-spin {
-		animation: flipSpin 5s linear infinite;
+		animation: flipSpin 6s linear infinite;
 	}
 
 	.coin-facade {
@@ -224,16 +227,17 @@
 		transform: rotateX(90deg) translateZ(-$coin-diameter*1.1) scale(.5);
 	}
 
+	.coin-result {
+		font-size: 18pt;
+		margin-bottom: 40rpx;
+	}
+	
 	.coin-record {
 		text-align: center;
 		color: #FFFFFF;
-		font-size: 18px;
 		margin-bottom: 60rpx;
 	}
-	.coin-result {
-		font-size: 20px;
-		margin-bottom: 40rpx;
-	}
+	
 	.coin-record-text {
 		margin-bottom: 10rpx;
 	}
@@ -249,7 +253,7 @@
 	  }
 	}
 	
-	@-webkit-keyframes flipFacade {
+	@keyframes flipFacade {
 		from {
 			transform: perspective(1000px) rotateY(0);
 		}
@@ -259,7 +263,7 @@
 		}
 	}
 
-	@-webkit-keyframes flipReverse {
+	@keyframes flipReverse {
 		from {
 			transform: perspective(1000px) rotateY(0);
 		}

@@ -179,9 +179,6 @@ var _default =
 
   },
   onLoad: function onLoad() {
-    // this.getCoinImg()
-    // this.getCoinRecord()
-    // this.getAudio()
     uni.showModal({
       title: '',
       content: '抛硬币，并不是因为硬币能帮你决定什么，而是因为在硬币抛出的那一刻，答案便会出现在你心里。',
@@ -201,6 +198,7 @@ var _default =
     this.getCoinImg();
     this.getCoinRecord();
     this.getAudio();
+    this.isStatusText = '薛定谔的硬币';
   },
   methods: {
     // 获取硬币图片
@@ -214,8 +212,9 @@ var _default =
     // 获取硬币旋转音频
     getAudio: function getAudio() {
       var name = uni.getStorageSync('coinAuidoID') || 'filpCoin1';
-      this.audioSrc = "http://q74m0xojb.bkt.clouddn.com/mp3/".concat(name, ".wav");
+      // this.audioSrc = `http://q74m0xojb.bkt.clouddn.com/mp3/${name}.wav`;
       // this.audioSrc = `/static/audio/${name}.wav`;
+      this.audioSrc = "/static/audio/".concat(name, ".mp3");
     },
     // 获取硬币记录
     getCoinRecord: function getCoinRecord() {
@@ -233,40 +232,54 @@ var _default =
 
     },
     // 抛硬币
-    tossCoin: function tossCoin() {var _this = this;
+    tossCoin: function tossCoin() {
       this.loadAudio();
-      this.record.totalCount += 1;
-      uni.setStorageSync('recordTotalCount', this.record.totalCount);
-      this.isStatusText = '';
-      var flipResult = Math.random();
-      setTimeout(function () {
-        if (flipResult <= 0.5) {
-          _this.isStatusText = '正面';
-          _this.record.facadeCount += 1;
-          uni.setStorageSync('recordFacadeCount', _this.record.facadeCount);
-          console.log('这是', _this.isStatusText);
-        } else {
-          _this.isStatusText = '反面';
-          _this.record.reverseCount += 1;
-          uni.setStorageSync('recordReverseCount', _this.record.reverseCount);
-          console.log('这是', _this.isStatusText);
-        }
-        _this.getCoinRecord();
-      }, 0);
     },
     // 加载音频
-    loadAudio: function loadAudio() {
+    loadAudio: function loadAudio() {var _this = this;
       var innerAudioContext = uni.createInnerAudioContext();
       innerAudioContext.autoplay = true;
       innerAudioContext.src = this.audioSrc;
       innerAudioContext.onPlay(function () {
         console.log('开始播放');
+        _this.filpCoin();
       });
       innerAudioContext.onError(function (res) {
         console.log(res.errMsg);
         console.log(res.errCode);
+        _this.filpCoin();
       });
-    } } };exports.default = _default;
+    },
+    // 翻转硬币
+    filpCoin: function filpCoin() {var _this2 = this;
+      this.isStatusText = '';
+      this.timer = setTimeout(function () {
+        var flipResult = Math.random();
+        _this2.record.totalCount += 1;
+        uni.setStorageSync('recordTotalCount', _this2.record.totalCount);
+        if (flipResult <= 0.5) {
+          _this2.isStatusText = '正面';
+          _this2.record.facadeCount += 1;
+          uni.setStorageSync('recordFacadeCount', _this2.record.facadeCount);
+          console.log('这是', _this2.isStatusText);
+        } else {
+          _this2.isStatusText = '反面';
+          _this2.record.reverseCount += 1;
+          uni.setStorageSync('recordReverseCount', _this2.record.reverseCount);
+          console.log('这是', _this2.isStatusText);
+        }
+        _this2.getCoinRecord();
+      }, 0);
+    },
+    // 清除定时器
+    clearTimer: function clearTimer() {
+      clearTimeout(this.timer);
+      this.timer = null;
+    } },
+
+  onUnload: function onUnload() {
+    this.timer && this.clearTimer();
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

@@ -27,14 +27,6 @@
 page {
   background-color: #E8D0BB;
 }
-.footer {
-  text-align: center;
-}
-.footer .btn {
-    width: 50%;
-    background: #fd746c;
-    border-color: #fd746c;
-}
 /* 3d旋转 */
 .coin {
   position: relative;
@@ -45,8 +37,8 @@ page {
           transform-style: preserve-3d;
 }
 .coin-spin {
-  -webkit-animation: flipSpin 5s linear infinite;
-          animation: flipSpin 5s linear infinite;
+  -webkit-animation: flipSpin 6s linear infinite;
+          animation: flipSpin 6s linear infinite;
 }
 .coin-facade {
   -webkit-animation: flipFacade 1s ease-out forwards;
@@ -114,15 +106,14 @@ page {
   -webkit-transform: rotateX(90deg) translateZ(-440rpx) scale(0.5);
           transform: rotateX(90deg) translateZ(-440rpx) scale(0.5);
 }
+.coin-result {
+  font-size: 18pt;
+  margin-bottom: 40rpx;
+}
 .coin-record {
   text-align: center;
   color: #FFFFFF;
-  font-size: 18px;
   margin-bottom: 60rpx;
-}
-.coin-result {
-  font-size: 20px;
-  margin-bottom: 40rpx;
 }
 .coin-record-text {
   margin-bottom: 10rpx;
@@ -157,7 +148,27 @@ to {
             transform: perspective(1000px) rotateY(1800deg);
 }
 }
+@keyframes flipFacade {
+from {
+    -webkit-transform: perspective(1000px) rotateY(0);
+            transform: perspective(1000px) rotateY(0);
+}
+to {
+    -webkit-transform: perspective(1000px) rotateY(1800deg);
+            transform: perspective(1000px) rotateY(1800deg);
+}
+}
 @-webkit-keyframes flipReverse {
+from {
+    -webkit-transform: perspective(1000px) rotateY(0);
+            transform: perspective(1000px) rotateY(0);
+}
+to {
+    -webkit-transform: perspective(1000px) rotateY(1980deg);
+            transform: perspective(1000px) rotateY(1980deg);
+}
+}
+@keyframes flipReverse {
 from {
     -webkit-transform: perspective(1000px) rotateY(0);
             transform: perspective(1000px) rotateY(0);

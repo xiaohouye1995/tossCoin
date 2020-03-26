@@ -24,14 +24,17 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.bgcolor {
-  background: #fd746c;
-  color: #fff;
-}
 .selectActive {
   border: 1px solid #fd746c;
 }
-.panel-content {
+.footer {
+  position: fixed;
+  bottom: 0;
+  padding-top: 20rpx;
+  padding-bottom: 60rpx;
+  background: #fff;
+}
+.cell {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -40,11 +43,6 @@
   -webkit-flex-wrap: wrap;
           flex-wrap: wrap;
   margin-bottom: 10px;
-}
-.panel-title {
-  width: 100%;
-  padding: 20rpx;
-  font-size: 18px;
 }
 .coin-box {
   display: -webkit-box;
@@ -74,18 +72,6 @@
 }
 .coin-spec {
   color: #ccc;
-  font-size: 14px;
-}
-.footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  padding-top: 20rpx;
-  padding-bottom: 60rpx;
-  background: #fff;
-}
-.footer .btn {
-    width: 50%;
-    border-color: #fd746c;
+  font-size: 13pt;
 }
 

@@ -1,5 +1,5 @@
 <template>
-	<view class="container">
+	<view class="panel">
 		<view class="panel-title">
 			<text>旋转音效</text>
 		</view>
@@ -48,14 +48,15 @@
 					let data = {
 						name: item.name,
 						id: item.src,
-						src: `http://q74m0xojb.bkt.clouddn.com/mp3/${item.src}.wav`
+						// src: `http://q74m0xojb.bkt.clouddn.com/mp3/${item.src}.wav`
+						src: `/static/audio/${item.src}.mp3`
 					}
 					this.audios.push(data)
 				}
 			},
 			// 获取当前使用音效
 			getUseAudio () {
-				this.coinAudio = uni.getStorageSync('coinAuidoID') || 'wu'
+				this.coinAudio = uni.getStorageSync('coinAuidoID') || 'filpCoin1'
 			},
 			// 选中硬币音效
 			selectAudio(item, index) {
@@ -86,42 +87,5 @@
 	}
 </script>
 
-<style lang="scss">
-		
-	.bgcolor {
-		background: #fd746c;
-		color: #fff;
-	}
-	
-	.iconfont {
-		font-size: 24px;
-	}
-	
-	.panel-title {
-		width: 100%;
-		padding: 20rpx;
-		font-size: 18px;
-	}
-
-	.panel-cell {
-		display: flex;
-		align-items: center;
-		width: 100%;
-		height: 80rpx;
-		background: #fff;
-	}
-	.panel-cell-hd {
-		width: 10%;
-		padding: 0 12rpx;
-		text-align: center;
-	}
-	.panel-cell-bd {
-		width: 90%;
-		height: 100%;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding-right: 12px;
-		border-bottom: 1px solid #f7f8fa;
-	}
+<style lang="scss">	
 </style>
