@@ -86,7 +86,7 @@
 				let facadeProportion = totalCount <= 0 ? "0%" : (Math.round(facadeCount / totalCount * 10000) / 100.00) + "%";
 				let reverseProportion = totalCount <= 0 ? "0%" : (Math.round(reverseCount / totalCount * 10000) / 100.00) + "%";
 				// 彩蛋1号
-				if (totalCount === 10) {
+				if (totalCount === 520) {
 					let textList = [
 						'闲时与你立黄昏，灶前笑问粥可温',
 						'江湖走马，风也好，雨也罢',
