@@ -27,6 +27,14 @@
 page {
   background-color: #E8D0BB;
 }
+.model-ad {
+  font-size: 14pt;
+  border-radius: 6px;
+  background: -webkit-linear-gradient(right bottom, #FFB95E, #F35C70);
+  background: linear-gradient(to left top, #FFB95E, #F35C70);
+  color: #fff;
+  padding: 40rpx 60rpx;
+}
 /* 3d旋转 */
 .coin {
   position: relative;

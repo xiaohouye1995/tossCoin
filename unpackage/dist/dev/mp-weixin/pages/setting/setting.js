@@ -195,6 +195,10 @@ var _default =
           if (res.confirm) {
             console.log('用户点击确定');
             uni.clearStorage();
+            uni.showToast({
+              title: '已清空',
+              duration: 2000 });
+
           } else if (res.cancel) {
             console.log('用户点击取消');
           }

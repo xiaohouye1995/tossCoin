@@ -21,11 +21,27 @@
 		<view class="footer">
 			<button class="footer-btn" type="primary" style="background: #fd746c;" @tap="tossCoin()">抛硬币</button>
 		</view>
+		<!-- <maskAndContent type="custom" ref="maskAndContent" hideTabBar :closeTipShow="false">
+			<view class="model-ad">
+				<text>抛硬币，\n 并不是因为硬币能帮你决定什么，\n 而是因为在硬币抛出的那一刻，\n 答案便会出现在你心里。</text>
+			</view>
+		</maskAndContent> -->
+		<uni-popup ref="popup" type="center">
+			<view class="model-ad">
+				<text>抛硬币，\n 并不是因为硬币能帮你决定什么，\n 而是因为在硬币抛出的那一刻，\n 答案便会出现在你心里。</text>
+			</view>
+		</uni-popup>
 	</view>
 </template>
 
 <script>
+	import maskAndContent from '@/components/QS-maskAndContent/QS-maskAndContent.vue';
+	import uniPopup from "@/components/uni-popup/uni-popup.vue"
 	export default {
+		components: {
+			maskAndContent,
+			uniPopup
+		},
 		data() {
 			return {
 				coinImgFront: '',
@@ -35,19 +51,21 @@
 			}
 		},
 		onLoad() {
+			// this.$refs.maskAndContent.show();
+			// this.$refs.popup.open();
 			uni.showModal({
-			    title: '',
-			    content: '抛硬币，并不是因为硬币能帮你决定什么，而是因为在硬币抛出的那一刻，答案便会出现在你心里。',
+				title: '',
+				content: '抛硬币，并不是因为硬币能帮你决定什么，而是因为在硬币抛出的那一刻，答案便会出现在你心里。',
 				showCancel: false,
 				confirmText: '开始',
 				confirmColor: '#fd746c',
-			    success: function (res) {
-			        if (res.confirm) {
-			            console.log('用户点击确定');
-			        } else if (res.cancel) {
-			            console.log('用户点击取消');
-			        }
-			    }
+				success: function(res) {
+					if (res.confirm) {
+						console.log('用户点击确定');
+					} else if (res.cancel) {
+						console.log('用户点击取消');
+					}
+				}
 			});
 		},
 		onShow() {
@@ -107,8 +125,8 @@
 				});
 			},
 			// 翻转硬币
-			filpCoin () {
-				this.isStatusText = '';
+			filpCoin() {
+				this.isStatusText = '量子';
 				this.timer = setTimeout(() => {
 					let flipResult = Math.random();
 					this.record.totalCount += 1
@@ -125,7 +143,7 @@
 						console.log('这是', this.isStatusText);
 					}
 					this.getCoinRecord();
-				}, 0);	
+				}, 0);
 			},
 			// 清除定时器
 			clearTimer() {
@@ -133,7 +151,7 @@
 				this.timer = null;
 			}
 		},
-		onUnload:function() {
+		onUnload: function() {
 			this.timer && this.clearTimer();
 		},
 	}
@@ -142,6 +160,14 @@
 <style lang="scss">
 	page {
 		background-color: #E8D0BB;
+	}
+
+	.model-ad {
+		font-size: 14pt;
+		border-radius: 6px;
+		background: linear-gradient(to left top, #FFB95E, #F35C70);
+		color: #fff;
+		padding: 40rpx 60rpx;
 	}
 
 	$coin-diameter: 400rpx; // 直径
@@ -231,28 +257,28 @@
 		font-size: 18pt;
 		margin-bottom: 40rpx;
 	}
-	
+
 	.coin-record {
 		text-align: center;
 		color: #FFFFFF;
 		margin-bottom: 60rpx;
 	}
-	
+
 	.coin-record-text {
 		margin-bottom: 10rpx;
 	}
-	
+
 
 	@keyframes flipSpin {
-	  0% {
-	    transform: perspective(1000px) rotateY(0deg);
-	  }
-	
-	  100% {
-	    transform: perspective(1000px) rotateY(360deg);
-	  }
+		0% {
+			transform: perspective(1000px) rotateY(0deg);
+		}
+
+		100% {
+			transform: perspective(1000px) rotateY(360deg);
+		}
 	}
-	
+
 	@keyframes flipFacade {
 		from {
 			transform: perspective(1000px) rotateY(0);

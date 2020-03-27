@@ -106,7 +106,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components
+var components = {
+  "uni-popup": () =>
+    __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 43))
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -142,34 +145,50 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var maskAndContent = function maskAndContent() {return __webpack_require__.e(/*! import() | components/QS-maskAndContent/QS-maskAndContent */ "components/QS-maskAndContent/QS-maskAndContent").then(__webpack_require__.bind(null, /*! @/components/QS-maskAndContent/QS-maskAndContent.vue */ 50));};var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 43));};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
+  components: {
+    maskAndContent: maskAndContent,
+    uniPopup: uniPopup },
+
   data: function data() {
     return {
       coinImgFront: '',
@@ -179,6 +198,8 @@ var _default =
 
   },
   onLoad: function onLoad() {
+    // this.$refs.maskAndContent.show();
+    // this.$refs.popup.open();
     uni.showModal({
       title: '',
       content: '抛硬币，并不是因为硬币能帮你决定什么，而是因为在硬币抛出的那一刻，答案便会出现在你心里。',
@@ -252,7 +273,7 @@ var _default =
     },
     // 翻转硬币
     filpCoin: function filpCoin() {var _this2 = this;
-      this.isStatusText = '';
+      this.isStatusText = '量子';
       this.timer = setTimeout(function () {
         var flipResult = Math.random();
         _this2.record.totalCount += 1;
