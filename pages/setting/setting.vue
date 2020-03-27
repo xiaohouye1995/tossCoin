@@ -3,7 +3,7 @@
 		<view class="panel">
 			<view class="panel-cell">
 				<view class="panel-cell-hd">
-					<text class="iconfont icon-nim" style="color: #FFD700;"></text>
+					<text class="iconfont icon-nim" style="color: #fdbd6c;"></text>
 				</view>
 				<view class="panel-cell-bd" @tap="toCoinSkin()">
 					<text>选择硬币</text>
@@ -16,6 +16,24 @@
 				</view>
 				<view class="panel-cell-bd" @tap="toCoinAudio()">
 					<text>选择音效</text>
+					<text class="iconfont icon-cc-chevron-right"></text>
+				</view>
+			</view>
+			<view class="panel-cell">
+				<view class="panel-cell-hd">
+					<text class="iconfont icon-gemfile" style="color: #6cacfd;"></text>
+				</view>
+				<view class="panel-cell-bd" @tap="toCoinBg()">
+					<text>选择背景</text>
+					<text class="iconfont icon-cc-chevron-right"></text>
+				</view>
+			</view>
+			<view class="panel-cell">
+				<view class="panel-cell-hd">
+					<text class="iconfont icon-java"></text>
+				</view>
+				<view class="panel-cell-bd">
+					<button open-type='feedback' class="btn-feedback">我要吐槽</button>
 					<text class="iconfont icon-cc-chevron-right"></text>
 				</view>
 			</view>
@@ -52,6 +70,12 @@
 					url: '/pages/setting/coinaudio'
 				});
 			},
+			// 前往背景皮肤设置
+			toCoinBg () {
+				uni.navigateTo({
+					url: '/pages/setting/bgCover'
+				});
+			},
 			// 清除记录
 			clearRecord () {
 				uni.showModal({
@@ -77,4 +101,14 @@
 </script>
 
 <style lang="scss">
+	.btn-feedback {
+		margin: 0;
+		padding: 0;
+		background: none;
+		width: 100%;
+		text-align: left;
+	}
+	.btn-feedback:after {  
+	    border: none;	
+	}
 </style>

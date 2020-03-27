@@ -23,6 +23,18 @@
 			"style": {
 				"navigationBarTitleText": "音效中心"
 			}
+		},
+		{
+			"path": "pages/setting/bgCover",
+			"style": {
+				"navigationBarTitleText": "背景皮肤"
+			}
+		},
+		{
+			"path": "pages/easteregg/easteregg",
+			"style": {
+				"navigationBarTitleText": "彩蛋1号520"
+			}
 		}
 	],
 	"tabBar": {
@@ -43,9 +55,9 @@
 	    }]
 	},
 	"globalStyle": {
-		"navigationBarTextStyle": "white",
+		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "来抛硬币",
-		"navigationBarBackgroundColor": "#353535",
+		"navigationBarBackgroundColor": "#f7f8fa",
 		"backgroundColor": "#f7f8fa"
 	}
 }

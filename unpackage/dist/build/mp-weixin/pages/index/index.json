@@ -1,7 +1,4 @@
 {
   "navigationBarTitleText": "来抛硬币",
-  "usingComponents": {
-    "uni-popup": "/components/uni-popup/uni-popup",
-    "mask-and-content": "/components/QS-maskAndContent/QS-maskAndContent"
-  }
+  "usingComponents": {}
 }

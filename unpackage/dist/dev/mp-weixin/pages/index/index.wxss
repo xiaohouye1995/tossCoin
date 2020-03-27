@@ -25,22 +25,24 @@
 /* 透明度 */
 /* 文章场景相关 */
 page {
-  background-color: #E8D0BB;
+  height: 100%;
 }
-.model-ad {
-  font-size: 14pt;
-  border-radius: 6px;
-  background: -webkit-linear-gradient(right bottom, #FFB95E, #F35C70);
-  background: linear-gradient(to left top, #FFB95E, #F35C70);
-  color: #fff;
-  padding: 40rpx 60rpx;
+.content {
+  width: 100%;
+  height: 100%;
+  padding-top: 100rpx;
+  box-sizing: border-box;
+  background-color: #E8D0BB;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 /* 3d旋转 */
 .coin {
   position: relative;
   width: 400rpx;
   height: 400rpx;
-  margin: 100rpx auto;
+  margin: 0 auto;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
 }
@@ -116,6 +118,7 @@ page {
 }
 .coin-result {
   font-size: 18pt;
+  margin-top: 100rpx;
   margin-bottom: 40rpx;
 }
 .coin-record {

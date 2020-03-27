@@ -8525,7 +8525,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "来抛硬币" }, "pages/setting/setting": { "navigationBarTitleText": "设置" }, "pages/setting/coinskin": { "navigationBarTitleText": "硬币中心" }, "pages/setting/coinaudio": { "navigationBarTitleText": "音效中心" } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "来抛硬币", "navigationBarBackgroundColor": "#353535", "backgroundColor": "#f7f8fa" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "来抛硬币", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/setting/setting": { "navigationBarTitleText": "设置", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/setting/coinskin": { "navigationBarTitleText": "硬币中心", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/setting/coinaudio": { "navigationBarTitleText": "音效中心", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/setting/bgCover": { "navigationBarTitleText": "背景皮肤", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/easteregg/easteregg": { "navigationBarTitleText": "彩蛋1号520", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "来抛硬币", "navigationBarBackgroundColor": "#f7f8fa", "backgroundColor": "#f7f8fa" } };exports.default = _default;
 
 /***/ }),
 /* 8 */

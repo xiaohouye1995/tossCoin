@@ -3,13 +3,15 @@
     "pages/index/index",
     "pages/setting/setting",
     "pages/setting/coinskin",
-    "pages/setting/coinaudio"
+    "pages/setting/coinaudio",
+    "pages/setting/bgCover",
+    "pages/easteregg/easteregg"
   ],
   "subPackages": [],
   "window": {
-    "navigationBarTextStyle": "white",
+    "navigationBarTextStyle": "black",
     "navigationBarTitleText": "来抛硬币",
-    "navigationBarBackgroundColor": "#353535",
+    "navigationBarBackgroundColor": "#f7f8fa",
     "backgroundColor": "#f7f8fa"
   },
   "tabBar": {
@@ -33,5 +35,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap38.json"
+  "sitemapLocation": "sitemap86.json"
 }

@@ -1,5 +1,5 @@
 <template>
-	<view class="content">
+	<view v-if="bgCoverImg" class="content" :style="{'background-image': `url(http://q74m0xojb.bkt.clouddn.com/img/${bgCoverImg}.jpg)`}">
 		<view class="coin" :class="{'coin-spin':isStatusText === '薛定谔的硬币','coin-facade': isStatusText === '正面','coin-reverse': isStatusText === '反面'}">
 			<view class="coin-front">
 				<image class="coin-img" :src="coinImgFront"></image>
@@ -21,38 +21,21 @@
 		<view class="footer">
 			<button class="footer-btn" type="primary" style="background: #fd746c;" @tap="tossCoin()">抛硬币</button>
 		</view>
-		<!-- <maskAndContent type="custom" ref="maskAndContent" hideTabBar :closeTipShow="false">
-			<view class="model-ad">
-				<text>抛硬币，\n 并不是因为硬币能帮你决定什么，\n 而是因为在硬币抛出的那一刻，\n 答案便会出现在你心里。</text>
-			</view>
-		</maskAndContent> -->
-		<uni-popup ref="popup" type="center">
-			<view class="model-ad">
-				<text>抛硬币，\n 并不是因为硬币能帮你决定什么，\n 而是因为在硬币抛出的那一刻，\n 答案便会出现在你心里。</text>
-			</view>
-		</uni-popup>
 	</view>
 </template>
 
 <script>
-	import maskAndContent from '@/components/QS-maskAndContent/QS-maskAndContent.vue';
-	import uniPopup from "@/components/uni-popup/uni-popup.vue"
 	export default {
-		components: {
-			maskAndContent,
-			uniPopup
-		},
 		data() {
 			return {
 				coinImgFront: '',
 				coinImgBack: '',
 				isStatusText: '薛定谔的硬币',
+				bgCoverImg: '',
 				record: {}
 			}
 		},
 		onLoad() {
-			// this.$refs.maskAndContent.show();
-			// this.$refs.popup.open();
 			uni.showModal({
 				title: '',
 				content: '抛硬币，并不是因为硬币能帮你决定什么，而是因为在硬币抛出的那一刻，答案便会出现在你心里。',
@@ -69,12 +52,17 @@
 			});
 		},
 		onShow() {
+			this.getBgImg();
 			this.getCoinImg();
 			this.getCoinRecord();
 			this.getAudio();
 			this.isStatusText = '薛定谔的硬币';
 		},
 		methods: {
+			// 获取背景图
+			getBgImg () {
+				this.bgCoverImg = uni.getStorageSync('bgCoverImg') || 'bg_4';
+			},
 			// 获取硬币图片
 			getCoinImg() {
 				let name = uni.getStorageSync('coinName') || '2020shu'
@@ -97,6 +85,35 @@
 				let reverseCount = uni.getStorageSync('recordReverseCount') || 0;
 				let facadeProportion = totalCount <= 0 ? "0%" : (Math.round(facadeCount / totalCount * 10000) / 100.00) + "%";
 				let reverseProportion = totalCount <= 0 ? "0%" : (Math.round(reverseCount / totalCount * 10000) / 100.00) + "%";
+				// 彩蛋1号
+				if (totalCount === 10) {
+					let textList = [
+						'闲时与你立黄昏，灶前笑问粥可温',
+						'江湖走马，风也好，雨也罢',
+						'情不知所起一往而深',
+						'江湖风波险恶，多多保重',
+						'早知如此绊人心，何如当初莫相识',
+						'最好的都是即将发生的'
+					]
+					uni.showModal({
+						title: '',
+						content: '闲时与你立黄昏，灶前笑问粥可温',
+						showCancel: false,
+						confirmText: '喜欢你',
+						confirmColor: '#fd746c',
+						success: function(res) {
+							if (res.confirm) {
+								console.log('用户点击确定');
+								uni.navigateTo({
+									url: '/pages/easteregg/easteregg'
+								});
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+							}
+						}
+					});
+				}
+
 				this.record = {
 					totalCount: totalCount,
 					facadeCount: facadeCount,
@@ -159,16 +176,39 @@
 
 <style lang="scss">
 	page {
+		// background-color: #E8D0BB;
+		// background-image: url('http://q74m0xojb.bkt.clouddn.com/img/bg_4.jpg');
+		height: 100%;
+	}
+	.content {
+		width: 100%;
+		height: 100%;
+		padding-top: 100rpx;
+		box-sizing: border-box;
 		background-color: #E8D0BB;
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
 	}
 
-	.model-ad {
-		font-size: 14pt;
-		border-radius: 6px;
-		background: linear-gradient(to left top, #FFB95E, #F35C70);
-		color: #fff;
-		padding: 40rpx 60rpx;
-	}
+	// .model-ad {
+	// 	font-size: 14pt;
+	// 	border-radius: 6px;
+	// 	background: linear-gradient(to left top, #FFB95E, #F35C70);
+	// 	color: #fff;
+	// 	padding: 40rpx 60rpx;
+	// 	z-index: 99999;
+	// }
+
+	// .model-del {
+	// 	margin: 30rpx auto;
+	// 	width: 60rpx;
+	// 	height: 60rpx;
+	// 	text-align: center;
+	// 	// margin-top: 30rpx;
+	// 	border: 1px solid #FFECEC;
+	// 	border-radius: 50%;
+	// }
 
 	$coin-diameter: 400rpx; // 直径
 	$coin-thickness: 16px; // 厚度
@@ -179,7 +219,7 @@
 		position: relative;
 		width: $coin-diameter;
 		height: $coin-diameter;
-		margin: 100rpx auto;
+		margin: 0 auto;
 		transform-style: preserve-3d;
 	}
 
@@ -255,6 +295,7 @@
 
 	.coin-result {
 		font-size: 18pt;
+		margin-top: 100rpx;
 		margin-bottom: 40rpx;
 	}
 

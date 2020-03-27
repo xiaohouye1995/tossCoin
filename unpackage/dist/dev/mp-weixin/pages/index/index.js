@@ -106,10 +106,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components = {
-  "uni-popup": () =>
-    __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 43))
-}
+var components
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -145,61 +142,44 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var maskAndContent = function maskAndContent() {return __webpack_require__.e(/*! import() | components/QS-maskAndContent/QS-maskAndContent */ "components/QS-maskAndContent/QS-maskAndContent").then(__webpack_require__.bind(null, /*! @/components/QS-maskAndContent/QS-maskAndContent.vue */ 50));};var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 43));};var _default =
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default =
 {
-  components: {
-    maskAndContent: maskAndContent,
-    uniPopup: uniPopup },
-
   data: function data() {
     return {
       coinImgFront: '',
       coinImgBack: '',
       isStatusText: '薛定谔的硬币',
+      bgCoverImg: '',
       record: {} };
 
   },
   onLoad: function onLoad() {
-    // this.$refs.maskAndContent.show();
-    // this.$refs.popup.open();
     uni.showModal({
       title: '',
       content: '抛硬币，并不是因为硬币能帮你决定什么，而是因为在硬币抛出的那一刻，答案便会出现在你心里。',
@@ -216,12 +196,17 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   onShow: function onShow() {
+    this.getBgImg();
     this.getCoinImg();
     this.getCoinRecord();
     this.getAudio();
     this.isStatusText = '薛定谔的硬币';
   },
   methods: {
+    // 获取背景图
+    getBgImg: function getBgImg() {
+      this.bgCoverImg = uni.getStorageSync('bgCoverImg') || 'bg_4';
+    },
     // 获取硬币图片
     getCoinImg: function getCoinImg() {
       var name = uni.getStorageSync('coinName') || '2020shu';
@@ -244,6 +229,35 @@ __webpack_require__.r(__webpack_exports__);
       var reverseCount = uni.getStorageSync('recordReverseCount') || 0;
       var facadeProportion = totalCount <= 0 ? "0%" : Math.round(facadeCount / totalCount * 10000) / 100.00 + "%";
       var reverseProportion = totalCount <= 0 ? "0%" : Math.round(reverseCount / totalCount * 10000) / 100.00 + "%";
+      // 彩蛋1号
+      if (totalCount === 10) {
+        var textList = [
+        '闲时与你立黄昏，灶前笑问粥可温',
+        '江湖走马，风也好，雨也罢',
+        '情不知所起一往而深',
+        '江湖风波险恶，多多保重',
+        '早知如此绊人心，何如当初莫相识',
+        '最好的都是即将发生的'];
+
+        uni.showModal({
+          title: '',
+          content: '闲时与你立黄昏，灶前笑问粥可温',
+          showCancel: false,
+          confirmText: '喜欢你',
+          confirmColor: '#fd746c',
+          success: function success(res) {
+            if (res.confirm) {
+              console.log('用户点击确定');
+              uni.navigateTo({
+                url: '/pages/easteregg/easteregg' });
+
+            } else if (res.cancel) {
+              console.log('用户点击取消');
+            }
+          } });
+
+      }
+
       this.record = {
         totalCount: totalCount,
         facadeCount: facadeCount,
