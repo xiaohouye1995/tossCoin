@@ -2,6 +2,9 @@
 
 抛硬币，并不是因为硬币能帮你决定什么，而是因为在硬币抛出的那一刻，答案便会出现在你心里。
 
+## DEMO
+![demo](https://github.com/zhouxiaoyu1994/tossCoin/blob/master/readme_img/1.gif)
+
 ## 运行平台
 微信小程序、支付宝小程序、H5、ios、安卓
 
