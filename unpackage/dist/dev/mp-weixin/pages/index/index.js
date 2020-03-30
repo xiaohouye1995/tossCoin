@@ -180,6 +180,9 @@ var _default =
 
   },
   onLoad: function onLoad() {
+    uni.showShareMenu({
+      withShareTicket: true });
+
     uni.showModal({
       title: '',
       content: '抛硬币，并不是因为硬币能帮你决定什么，而是因为在硬币抛出的那一刻，答案便会出现在你心里。',
@@ -230,7 +233,7 @@ var _default =
       var facadeProportion = totalCount <= 0 ? "0%" : Math.round(facadeCount / totalCount * 10000) / 100.00 + "%";
       var reverseProportion = totalCount <= 0 ? "0%" : Math.round(reverseCount / totalCount * 10000) / 100.00 + "%";
       // 彩蛋1号
-      if (totalCount === 10) {
+      if (totalCount === 520) {
         var textList = [
         '闲时与你立黄昏，灶前笑问粥可温',
         '江湖走马，风也好，雨也罢',
