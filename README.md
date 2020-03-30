@@ -4,6 +4,7 @@
 
 ## DEMO
 ![demo](https://github.com/zhouxiaoyu1994/tossCoin/blob/master/readme_img/1.gif)
+![小程序码](https://github.com/zhouxiaoyu1994/tossCoin/blob/master/readme_img/2.jpg)
 
 ## 运行平台
 微信小程序、支付宝小程序、H5、ios、安卓
