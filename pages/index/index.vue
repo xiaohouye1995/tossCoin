@@ -5,10 +5,10 @@
 				<image class="coin-img" :src="coinImgFront"></image>
 			</view>
 			<view class="coin-middle" v-for="index in 16" :key="index" :style="'transform: translateZ(' + index + 'px)'">
-				<image class="coin-img" :src="coinImgBack"></image>
+				<image class="coin-img coin-img-filp" :src="coinImgBack"></image>
 			</view>
 			<view class="coin-back">
-				<image class="coin-img" :src="coinImgBack"></image>
+				<image class="coin-img coin-img-filp" :src="coinImgBack"></image>
 			</view>
 			<view class="coin-shadow"></view>
 		</view>
@@ -163,7 +163,7 @@
 						console.log('这是', this.isStatusText);
 					}
 					this.getCoinRecord();
-				}, 0);
+				}, 1000);
 			},
 			// 清除定时器
 			clearTimer() {
@@ -179,8 +179,6 @@
 
 <style lang="scss">
 	page {
-		// background-color: #E8D0BB;
-		// background-image: url('http://q74m0xojb.bkt.clouddn.com/img/bg_4.jpg');
 		height: 100%;
 	}
 	.content {
@@ -193,25 +191,6 @@
 		background-repeat: no-repeat;
 		background-attachment: fixed;
 	}
-
-	// .model-ad {
-	// 	font-size: 14pt;
-	// 	border-radius: 6px;
-	// 	background: linear-gradient(to left top, #FFB95E, #F35C70);
-	// 	color: #fff;
-	// 	padding: 40rpx 60rpx;
-	// 	z-index: 99999;
-	// }
-
-	// .model-del {
-	// 	margin: 30rpx auto;
-	// 	width: 60rpx;
-	// 	height: 60rpx;
-	// 	text-align: center;
-	// 	// margin-top: 30rpx;
-	// 	border: 1px solid #FFECEC;
-	// 	border-radius: 50%;
-	// }
 
 	$coin-diameter: 400rpx; // 直径
 	$coin-thickness: 16px; // 厚度
@@ -267,10 +246,9 @@
 
 	.coin-back {
 		transform: translateZ(0);
-
-		.coin-img {
-			transform: rotateY(180deg);
-		}
+	}
+	.coin-img-filp {
+		transform: rotateY(180deg);
 	}
 
 	.coin-middle {

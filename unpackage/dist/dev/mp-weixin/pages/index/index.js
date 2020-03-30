@@ -307,7 +307,7 @@ var _default =
           console.log('这是', _this2.isStatusText);
         }
         _this2.getCoinRecord();
-      }, 0);
+      }, 1000);
     },
     // 清除定时器
     clearTimer: function clearTimer() {

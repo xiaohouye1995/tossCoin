@@ -90,9 +90,9 @@ page {
   -webkit-transform: translateZ(0);
           transform: translateZ(0);
 }
-.coin-back .coin-img {
-    -webkit-transform: rotateY(180deg);
-            transform: rotateY(180deg);
+.coin-img-filp {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
 }
 .coin-middle {
   width: 400rpx;
