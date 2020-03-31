@@ -34,6 +34,9 @@
       }
     ]
   },
+  "uniStatistics": {
+    "enable": false
+  },
   "usingComponents": {},
-  "sitemapLocation": "sitemap76.json"
+  "sitemapLocation": "sitemap69.json"
 }

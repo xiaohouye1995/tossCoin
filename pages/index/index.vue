@@ -13,7 +13,7 @@
 			<view class="coin-shadow"></view>
 		</view>
 		<view class="coin-record">
-			<view class="coin-result red">{{isStatusText}}</view>
+			<view class="coin-result red">{{record.result}}</view>
 			<view class="coin-record-text">抛掷总次数：{{record.totalCount}}</view>
 			<view class="coin-record-text">正面次数：{{record.facadeCount}}, 占比：{{record.facadeProportion}}</view>
 			<view class="coin-record-text">反面次数：{{record.reverseCount}}, 占比：{{record.reverseProportion}}</view>
@@ -59,6 +59,7 @@
 			this.getCoinImg();
 			this.getCoinRecord();
 			this.getAudio();
+			this.record.result = '薛定谔的硬币';
 			this.isStatusText = '薛定谔的硬币';
 		},
 		methods: {
@@ -83,6 +84,7 @@
 			},
 			// 获取硬币记录
 			getCoinRecord() {
+				let result = this.isStatusText;
 				let totalCount = uni.getStorageSync('recordTotalCount') || 0;
 				let facadeCount = uni.getStorageSync('recordFacadeCount') || 0;
 				let reverseCount = uni.getStorageSync('recordReverseCount') || 0;
@@ -116,8 +118,8 @@
 						}
 					});
 				}
-
 				this.record = {
+					result: result,
 					totalCount: totalCount,
 					facadeCount: facadeCount,
 					reverseCount: reverseCount,
@@ -146,34 +148,48 @@
 			},
 			// 翻转硬币
 			filpCoin() {
+				this.record.result = '量子力学中...';
 				this.isStatusText = '量子';
-				this.timer = setTimeout(() => {
+				this.timerCoinFilp = setTimeout(() => {
 					let flipResult = Math.random();
-					this.record.totalCount += 1
-					uni.setStorageSync('recordTotalCount', this.record.totalCount);
+					let totalCount = this.record.totalCount + 1
+					uni.setStorageSync('recordTotalCount', totalCount);
 					if (flipResult <= 0.5) {
 						this.isStatusText = '正面';
-						this.record.facadeCount += 1;
-						uni.setStorageSync('recordFacadeCount', this.record.facadeCount);
+						let count = this.record.facadeCount + 1
+						uni.setStorageSync('recordFacadeCount', count);
 						console.log('这是', this.isStatusText);
 					} else {
 						this.isStatusText = '反面';
-						this.record.reverseCount += 1;
-						uni.setStorageSync('recordReverseCount', this.record.reverseCount);
+						let count = this.record.reverseCount + 1
+						uni.setStorageSync('recordReverseCount', count);
 						console.log('这是', this.isStatusText);
 					}
-					this.getCoinRecord();
-				}, 1000);
+					this.timerCoinRecord = setTimeout(() => {
+						this.getCoinRecord();
+					}, 1000);
+				}, 0);
 			},
-			// 清除定时器
-			clearTimer() {
-				clearTimeout(this.timer);
-				this.timer = null;
+			// 清除定时器 
+			clearTimerCoinFilp() {
+				clearTimeout(this.timerCoinFilp);
+				this.timerCoinFilp = null;
+				console.log('timerCoinFilp', this.timerCoinFilp)
+			},
+			clearTimerCoinRecord() {
+				clearTimeout(this.timerCoinRecord);
+				this.timerCoinRecord = null;
+				console.log('timerCoinRecord', this.timerCoinRecord)
 			}
 		},
-		onUnload: function() {
-			this.timer && this.clearTimer();
-		},
+		// onUnload: function() {
+		// 	this.timerCoinFilp && this.clearTimerCoinFilp();
+		// 	this.timerCoinRecord && this.clearTimerCoinRecord();
+		// },
+		onHide: function() {
+			this.timerCoinFilp && this.clearTimerCoinFilp();
+			this.timerCoinRecord && this.clearTimerCoinRecord();
+		}
 	}
 </script>
 

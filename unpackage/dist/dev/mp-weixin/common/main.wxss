@@ -36,43 +36,43 @@
   -moz-osx-font-smoothing: grayscale;
 }
 .icon-gemfile:before {
-  content: "\E658";
+  content: "\e658";
 }
 .icon-java:before {
-  content: "\E66A";
+  content: "\e66a";
 }
 .icon-cc-yes:before {
-  content: "\E6B4";
+  content: "\e6b4";
 }
 .icon-cc-delete:before {
-  content: "\E6C9";
+  content: "\e6c9";
 }
 .icon-cc-chevron-down:before {
-  content: "\E622";
+  content: "\e622";
 }
 .icon-cc-chevron-left:before {
-  content: "\E624";
+  content: "\e624";
 }
 .icon-cc-chevron-right:before {
-  content: "\E625";
+  content: "\e625";
 }
 .icon-cc-chevron-up:before {
-  content: "\E626";
+  content: "\e626";
 }
 .icon-audio:before {
-  content: "\E623";
+  content: "\e623";
 }
 .icon-database:before {
-  content: "\E63B";
+  content: "\e63b";
 }
 .icon-nim:before {
-  content: "\E67C";
+  content: "\e67c";
 }
 .icon-chess-piece:before {
-  content: "\E619";
+  content: "\e619";
 }
 .icon-coin:before {
-  content: "\E618";
+  content: "\e618";
 }
 page {
 	font-family: PingFang SC, 'Helvetica Neue', Arial, sans-serif;
