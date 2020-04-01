@@ -40,9 +40,14 @@
 - [x] 转发分享
 - [ ] 图片使用WebP格式
 - [ ] 适配小程序pc（ipad）端
+- [ ] 触摸震动
+- [x] 支付宝版小程序
 
 
 ## 更新日志
+### 1.2.0
+- 【新增】适配支付宝小程序
+
 ### 1.1.2
 - 【修复】统计记录显示在硬币结果之前
 - 【修复】触发清除定时器
@@ -135,3 +140,27 @@ url('iconfont.svg?t=1562306471309#iconfont') format('svg'); / iOS 4.1- /
 原因：uni-app 自带的border
 
 解决：用 button::after{ border: none;} 可以去掉
+
+### 问题8
+现象："navigationBarTextStyle": "black" 属性在支付宝小程序中无效
+
+原因：支付宝小程序文字颜色和标题前景色共用一个属性
+
+解决：navigationBarBackgroundColor属性不在支付宝小程序中使用
+```
+"globalStyle": {
+	"navigationBarTextStyle": "black",
+	"navigationBarTitleText": "来抛硬币",
+	// #ifdef MP-WEIXIN
+	"navigationBarBackgroundColor": "#f8f8f8",
+	// #endif
+	"backgroundColor": "#f7f8fa"
+}
+```
+
+### 问题9
+现象：支付宝小程序页面不能自适应高度
+
+原因：支付宝小程序 没有 page 根元素标签
+
+解决：最外层加一个view标签，style=“height:100vh”

@@ -10,6 +10,7 @@
 					<text class="iconfont icon-cc-chevron-right"></text>
 				</view>
 			</view>
+			<!-- #ifndef MP-ALIPAY -->
 			<view class="panel-cell">
 				<view class="panel-cell-hd">
 					<text class="iconfont icon-audio" style="color: #fd746c;"></text>
@@ -19,6 +20,7 @@
 					<text class="iconfont icon-cc-chevron-right"></text>
 				</view>
 			</view>
+			<!-- #endif -->
 			<view class="panel-cell">
 				<view class="panel-cell-hd">
 					<text class="iconfont icon-gemfile" style="color: #6cacfd;"></text>
@@ -28,6 +30,7 @@
 					<text class="iconfont icon-cc-chevron-right"></text>
 				</view>
 			</view>
+			<!-- #ifndef MP-ALIPAY -->
 			<view class="panel-cell">
 				<view class="panel-cell-hd">
 					<text class="iconfont icon-java"></text>
@@ -37,6 +40,7 @@
 					<text class="iconfont icon-cc-chevron-right"></text>
 				</view>
 			</view>
+			<!-- #endif -->
 		</view>
 		<view class="panel">
 			<view class="panel-cell">
@@ -107,6 +111,7 @@
 		background: none;
 		width: 100%;
 		text-align: left;
+		border: none;
 	}
 	.btn-feedback:after {  
 	    border: none;	

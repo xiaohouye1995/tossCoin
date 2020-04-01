@@ -58,7 +58,9 @@
 			this.getBgImg();
 			this.getCoinImg();
 			this.getCoinRecord();
+			// #ifndef MP-ALIPAY
 			this.getAudio();
+			// #endif
 			this.record.result = '薛定谔的硬币';
 			this.isStatusText = '薛定谔的硬币';
 		},
@@ -129,7 +131,12 @@
 			},
 			// 抛硬币
 			tossCoin() {
+				// #ifdef MP-WEIXIN
 				this.loadAudio()
+				// #endif
+				// #ifdef MP-ALIPAY
+				this.filpCoin();
+				// #endif 
 			},
 			// 加载音频
 			loadAudio() {
@@ -182,10 +189,6 @@
 				console.log('timerCoinRecord', this.timerCoinRecord)
 			}
 		},
-		// onUnload: function() {
-		// 	this.timerCoinFilp && this.clearTimerCoinFilp();
-		// 	this.timerCoinRecord && this.clearTimerCoinRecord();
-		// },
 		onHide: function() {
 			this.timerCoinFilp && this.clearTimerCoinFilp();
 			this.timerCoinRecord && this.clearTimerCoinRecord();
@@ -199,7 +202,8 @@
 	}
 	.content {
 		width: 100%;
-		height: 100%;
+		// height: 100%;
+		height: 100vh;
 		padding-top: 100rpx;
 		box-sizing: border-box;
 		background-color: #E8D0BB;
@@ -257,7 +261,7 @@
 	}
 
 	.coin-front {
-		transform: translateZ(16px);
+		transform: translateZ(17px);
 	}
 
 	.coin-back {

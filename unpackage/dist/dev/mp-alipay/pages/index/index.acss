@@ -1,0 +1,214 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+page {
+  height: 100%;
+}
+.content {
+  width: 100%;
+  height: 100vh;
+  padding-top: 100rpx;
+  box-sizing: border-box;
+  background-color: #E8D0BB;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+/* 3d旋转 */
+.coin {
+  position: relative;
+  width: 400rpx;
+  height: 400rpx;
+  margin: 0 auto;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+.coin-spin {
+  -webkit-animation: flipSpin 6s linear infinite;
+          animation: flipSpin 6s linear infinite;
+}
+.coin-facade {
+  -webkit-animation: flipFacade 1s ease-out forwards;
+          animation: flipFacade 1s ease-out forwards;
+}
+.coin-reverse {
+  -webkit-animation: flipReverse 1s ease-out forwards;
+          animation: flipReverse 1s ease-out forwards;
+}
+.coin-front,
+.coin-back {
+  position: absolute;
+  width: 400rpx;
+  height: 400rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+          mask-image: radial-gradient(white, black);
+}
+.coin-front:after,
+  .coin-back:after {
+    content: "";
+    position: absolute;
+    left: -200rpx;
+    bottom: 100%;
+    display: block;
+    height: 266.66667rpx;
+    width: 800rpx;
+    background: #fff;
+    opacity: 0.3;
+    -webkit-animation: shine linear 3s infinite;
+            animation: shine linear 3s infinite;
+}
+.coin-front {
+  -webkit-transform: translateZ(17px);
+          transform: translateZ(17px);
+}
+.coin-back {
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+}
+.coin-img-filp {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+.coin-middle {
+  width: 400rpx;
+  height: 400rpx;
+  -webkit-transform: translateZ(1px);
+          transform: translateZ(1px);
+  position: absolute;
+}
+.coin-img {
+  width: 400rpx;
+  height: 400rpx;
+}
+.coin-shadow {
+  position: absolute;
+  width: 400rpx;
+  height: 16px;
+  border-radius: 50%;
+  background: #000;
+  box-shadow: 0 0 80px 80px #000;
+  opacity: 0.125;
+  -webkit-transform: rotateX(90deg) translateZ(-440rpx) scale(0.5);
+          transform: rotateX(90deg) translateZ(-440rpx) scale(0.5);
+}
+.coin-result {
+  font-size: 18pt;
+  margin-top: 100rpx;
+  margin-bottom: 40rpx;
+}
+.coin-record {
+  text-align: center;
+  color: #FFFFFF;
+  margin-bottom: 60rpx;
+}
+.coin-record-text {
+  margin-bottom: 10rpx;
+}
+@-webkit-keyframes flipSpin {
+0% {
+    -webkit-transform: perspective(1000px) rotateY(0deg);
+            transform: perspective(1000px) rotateY(0deg);
+}
+100% {
+    -webkit-transform: perspective(1000px) rotateY(360deg);
+            transform: perspective(1000px) rotateY(360deg);
+}
+}
+@keyframes flipSpin {
+0% {
+    -webkit-transform: perspective(1000px) rotateY(0deg);
+            transform: perspective(1000px) rotateY(0deg);
+}
+100% {
+    -webkit-transform: perspective(1000px) rotateY(360deg);
+            transform: perspective(1000px) rotateY(360deg);
+}
+}
+@-webkit-keyframes flipFacade {
+from {
+    -webkit-transform: perspective(1000px) rotateY(0);
+            transform: perspective(1000px) rotateY(0);
+}
+to {
+    -webkit-transform: perspective(1000px) rotateY(1800deg);
+            transform: perspective(1000px) rotateY(1800deg);
+}
+}
+@keyframes flipFacade {
+from {
+    -webkit-transform: perspective(1000px) rotateY(0);
+            transform: perspective(1000px) rotateY(0);
+}
+to {
+    -webkit-transform: perspective(1000px) rotateY(1800deg);
+            transform: perspective(1000px) rotateY(1800deg);
+}
+}
+@-webkit-keyframes flipReverse {
+from {
+    -webkit-transform: perspective(1000px) rotateY(0);
+            transform: perspective(1000px) rotateY(0);
+}
+to {
+    -webkit-transform: perspective(1000px) rotateY(1980deg);
+            transform: perspective(1000px) rotateY(1980deg);
+}
+}
+@keyframes flipReverse {
+from {
+    -webkit-transform: perspective(1000px) rotateY(0);
+            transform: perspective(1000px) rotateY(0);
+}
+to {
+    -webkit-transform: perspective(1000px) rotateY(1980deg);
+            transform: perspective(1000px) rotateY(1980deg);
+}
+}
+@-webkit-keyframes shine {
+0%,
+  15% {
+    -webkit-transform: translateY(800rpx) rotate(-40deg);
+            transform: translateY(800rpx) rotate(-40deg);
+}
+50% {
+    -webkit-transform: translateY(-400rpx) rotate(-40deg);
+            transform: translateY(-400rpx) rotate(-40deg);
+}
+}
+@keyframes shine {
+0%,
+  15% {
+    -webkit-transform: translateY(800rpx) rotate(-40deg);
+            transform: translateY(800rpx) rotate(-40deg);
+}
+50% {
+    -webkit-transform: translateY(-400rpx) rotate(-40deg);
+            transform: translateY(-400rpx) rotate(-40deg);
+}
+}
+

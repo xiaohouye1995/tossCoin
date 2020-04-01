@@ -1,17 +1,19 @@
 <template>
-	<view class="panel">
-		<view class="panel-title">
-			<text>默认皮肤</text>
-		</view>
-		<view class="cell">
-			<view class="coin-box" :class="{selectActive: bgCoverIndex === index}" v-for="(item, index) in bgCoverlist" :key="index" @tap="selectbgCover(item,index)">
-				<image class="bg-img" :src="item.src" mode="aspectFill"></image>
-				<text>{{item.name}}</text>
-				<text class="coin-spec" v-if="item.id === bgCovername">使用中</text>
+	<view class="container">
+		<view class="panel">
+			<view class="panel-title">
+				<text>默认皮肤</text>
 			</view>
-		</view>
-		<view class="footer" v-if="bgCoverIndex !== -1">
-			<button class="footer-btn" type="primary" style="background: #fd746c;" @tap="setbgCover()">立即使用</button>
+			<view class="cell">
+				<view class="coin-box" :class="{selectActive: bgCoverIndex === index}" v-for="(item, index) in bgCoverlist" :key="index" @tap="selectbgCover(item,index)">
+					<image class="bg-img" :src="item.src" mode="aspectFill"></image>
+					<text>{{item.name}}</text>
+					<text class="coin-spec" v-if="item.id === bgCovername">使用中</text>
+				</view>
+			</view>
+			<view class="footer" v-if="bgCoverIndex !== -1">
+				<button class="footer-btn" type="primary" style="background: #fd746c;" @tap="setbgCover()">立即使用</button>
+			</view>
 		</view>
 	</view>
 </template>

@@ -28,15 +28,17 @@
 </script>
 
 <style lang="scss">
-	page {
+	// page {
+	// 	background-image: url('http://q74m0xojb.bkt.clouddn.com/img/bg_3.jpg');
+	// 	background-size: 100% 100%;
+	// 	background-repeat: no-repeat;
+	// 	background-attachment: fixed;
+	// }
+	.container {
 		background-image: url('http://q74m0xojb.bkt.clouddn.com/img/bg_3.jpg');
 		background-size: 100% 100%;
 		background-repeat: no-repeat;
 		background-attachment: fixed;
-	}
-	.container {
-		width: 100%;
-		height: 100%;
 	}
 	.talk {
 		text-align: center;

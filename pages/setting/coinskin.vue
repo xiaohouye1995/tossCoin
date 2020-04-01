@@ -1,17 +1,19 @@
 <template>
-	<view class="panel">
-		<view class="panel-title">
-			<text>十二生肖系列</text>
-		</view>
-		<view class="cell">
-			<view class="coin-box" :class="{selectActive: coinIndex === index}" v-for="(item, index) in coins" :key="index" @tap="selectCoin(item,index)">
-				<image class="coin-img" :src="item.src" mode=""></image>
-				<text>{{item.name}}</text>
-				<text class="coin-spec" v-if="item.id === coinName">使用中</text>
+	<view class="container">
+		<view class="panel">
+			<view class="panel-title">
+				<text>十二生肖系列</text>
 			</view>
-		</view>
-		<view class="footer" v-if="coinIndex !== -1">
-			<button class="footer-btn" type="primary" style="background: #fd746c;" @tap="setCoin()">立即使用</button>
+			<view class="cell">
+				<view class="coin-box" :class="{selectActive: coinIndex === index}" v-for="(item, index) in coins" :key="index" @tap="selectCoin(item,index)">
+					<image class="coin-img" :src="item.src" mode="aspectFit"></image>
+					<text>{{item.name}}</text>
+					<text class="coin-spec" v-if="item.id === coinName">使用中</text>
+				</view>
+			</view>
+			<view class="footer" v-if="coinIndex !== -1">
+				<button class="footer-btn" type="primary" style="background: #fd746c;" @tap="setCoin()">立即使用</button>
+			</view>
 		</view>
 	</view>
 </template>
@@ -126,6 +128,8 @@
 	.coin-img {
 		width: 120rpx;
 		height: 120rpx;
+		// width: 80rpx;
+		// height: 80rpx;
 		margin-bottom: 12rpx;
 	}
 

@@ -1,14 +1,16 @@
 <template>
-	<view class="panel">
-		<view class="panel-title">
-			<text>旋转音效</text>
-		</view>
-		<view class="panel-cell" v-for="(item, index) in audios" :key="index">
-			<view class="panel-cell-hd">
-				<text class="iconfont icon-cc-yes" style="color: #fd746c;" v-if="coinAudio === item.id"></text>
+	<view class="container">
+		<view class="panel">
+			<view class="panel-title">
+				<text>旋转音效</text>
 			</view>
-			<view class="panel-cell-bd" @tap="selectAudio(item,index)">
-				<text>{{item.name}}</text>
+			<view class="panel-cell" v-for="(item, index) in audios" :key="index">
+				<view class="panel-cell-hd">
+					<text class="iconfont icon-cc-yes" style="color: #fd746c;" v-if="coinAudio === item.id"></text>
+				</view>
+				<view class="panel-cell-bd" @tap="selectAudio(item,index)">
+					<text>{{item.name}}</text>
+				</view>
 			</view>
 		</view>
 	</view>
