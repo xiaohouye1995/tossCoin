@@ -3,13 +3,19 @@
 抛硬币，并不是因为硬币能帮你决定什么，而是因为在硬币抛出的那一刻，答案便会出现在你心里。
 
 ## DEMO
+### 演示
 ![demo](https://github.com/zhouxiaoyu1994/tossCoin/blob/master/readme_img/1.gif)
-![小程序码](https://github.com/zhouxiaoyu1994/tossCoin/blob/master/readme_img/2.jpg)
+
+### 微信小程序码
+![微信小程序码](https://github.com/zhouxiaoyu1994/tossCoin/blob/master/readme_img/wxQRcode.jpg)
+
+### 支付宝小程序码
+![支付宝小程序码](https://github.com/zhouxiaoyu1994/tossCoin/blob/master/readme_img/zfbQRcode.jpg)
 
 ## 运行平台
 微信小程序、支付宝小程序、H5、ios、安卓
 
-使用 uni-app 开发，除微信小程序外，其他端未测试
+使用 uni-app 开发，除微信小程序、支付宝小程序外，其他端未测试
 
 ## 框架/工具
 - uni-app
