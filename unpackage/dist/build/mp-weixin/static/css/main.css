@@ -82,3 +82,16 @@ page {
 	margin-right: 10rpx;
 	vertical-align: text-top;
 }
+
+.cell {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	margin-bottom: 10px;
+	padding: 0 20rpx;
+}
+
+.cell:after {
+	content: "";
+	width: 220rpx;
+}

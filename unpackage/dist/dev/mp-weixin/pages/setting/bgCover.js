@@ -149,6 +149,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 var _default =
 {
   data: function data() {
@@ -175,7 +177,11 @@ var _default =
 
       {
         name: '璀璨星空',
-        src: 'bg_12' }];
+        src: 'bg_12' },
+
+      {
+        name: '竹林幽径',
+        src: 'bg_9' }];
 
 
       this.bgCoverlist = [];
@@ -183,7 +189,8 @@ var _default =
         var data = {
           name: item.name,
           id: item.src,
-          src: "http://q74m0xojb.bkt.clouddn.com/img/".concat(item.src, ".jpg") };
+          // src: `http://q74m0xojb.bkt.clouddn.com/img/${item.src}.jpg`,
+          src: "https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/".concat(item.src, ".jpg") };
 
         this.bgCoverlist.push(data);
       }

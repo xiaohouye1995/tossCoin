@@ -196,7 +196,9 @@ var _default =
     this.getBgImg();
     this.getCoinImg();
     this.getCoinRecord();
+
     this.getAudio();
+
     this.record.result = '薛定谔的硬币';
     this.isStatusText = '薛定谔的硬币';
   },
@@ -208,8 +210,10 @@ var _default =
     // 获取硬币图片
     getCoinImg: function getCoinImg() {
       var name = uni.getStorageSync('coinName') || '2020shu';
-      this.coinImgFront = "http://q74m0xojb.bkt.clouddn.com/img/".concat(name, "_front.png");
-      this.coinImgBack = "http://q74m0xojb.bkt.clouddn.com/img/".concat(name, "_back.png");
+      this.coinImgFront = "https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/".concat(name, "_front.png");
+      this.coinImgBack = "https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/".concat(name, "_back.png");
+      // this.coinImgFront = `http://q74m0xojb.bkt.clouddn.com/img/${name}_front.png`
+      // this.coinImgBack = `http://q74m0xojb.bkt.clouddn.com/img/${name}_back.png`
       // this.coinImgFront = `/static/img/${name}_front.png`
       // this.coinImgBack = `/static/img/${name}_back.png`
     },
@@ -264,12 +268,15 @@ var _default =
         facadeProportion: facadeProportion,
         reverseProportion: reverseProportion };
 
-      this.clearTimerCoinFilp();
-      this.clearTimerCoinRecord();
     },
     // 抛硬币
     tossCoin: function tossCoin() {
+
       this.loadAudio();
+
+
+
+
     },
     // 加载音频
     loadAudio: function loadAudio() {var _this = this;
@@ -320,17 +327,12 @@ var _default =
       clearTimeout(this.timerCoinRecord);
       this.timerCoinRecord = null;
       console.log('timerCoinRecord', this.timerCoinRecord);
-    } }
+    } },
 
-  // onUnload: function() {
-  // 	this.timerCoinFilp && this.clearTimerCoinFilp();
-  // 	this.timerCoinRecord && this.clearTimerCoinRecord();
-  // },
-  // onHide: function() {
-  // 	this.timerCoinFilp && this.clearTimerCoinFilp();
-  // 	this.timerCoinRecord && this.clearTimerCoinRecord();
-  // }
-};exports.default = _default;
+  onHide: function onHide() {
+    this.timerCoinFilp && this.clearTimerCoinFilp();
+    this.timerCoinRecord && this.clearTimerCoinRecord();
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

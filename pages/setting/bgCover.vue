@@ -6,7 +6,7 @@
 			</view>
 			<view class="cell">
 				<view class="coin-box" :class="{selectActive: bgCoverIndex === index}" v-for="(item, index) in bgCoverlist" :key="index" @tap="selectbgCover(item,index)">
-					<image class="bg-img" :src="item.src" mode="aspectFill"></image>
+					<image class="bg-img" webp :src="item.src" mode="aspectFill"></image>
 					<text>{{item.name}}</text>
 					<text class="coin-spec" v-if="item.id === bgCovername">使用中</text>
 				</view>
@@ -45,6 +45,10 @@
 					{
 						name: '璀璨星空',
 						src: 'bg_12'
+					},
+					{
+						name: '竹林幽径',
+						src: 'bg_9'
 					}
 				]
 				this.bgCoverlist = []
@@ -52,7 +56,8 @@
 					let data = {
 						name: item.name,
 						id: item.src,
-						src: `http://q74m0xojb.bkt.clouddn.com/img/${item.src}.jpg`
+						// src: `http://q74m0xojb.bkt.clouddn.com/img/${item.src}.jpg`,
+						src: `https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/${item.src}.jpg`
 					}
 					this.bgCoverlist.push(data)
 				}
@@ -92,18 +97,10 @@
 		padding-bottom: 60rpx;
 		background: #fff;
 	}
-
-	.cell {
-		display: flex;
-		justify-content: space-around;
-		flex-wrap: wrap;
-		margin-bottom: 10px;
-	}
-
+	
 	.coin-box {
 		display: flex;
 		flex-direction: column;
-		// justify-content: center;
 		align-items: center;
 		box-sizing: border-box;
 		width: 220rpx;

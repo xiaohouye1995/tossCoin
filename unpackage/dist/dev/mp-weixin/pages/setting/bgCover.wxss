@@ -34,16 +34,6 @@
   padding-bottom: 60rpx;
   background: #fff;
 }
-.cell {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-justify-content: space-around;
-          justify-content: space-around;
-  -webkit-flex-wrap: wrap;
-          flex-wrap: wrap;
-  margin-bottom: 10px;
-}
 .coin-box {
   display: -webkit-box;
   display: -webkit-flex;

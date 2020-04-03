@@ -1,5 +1,5 @@
 <template>
-	<view v-if="bgCoverImg" class="content" :style="{'background-image': `url(http://q74m0xojb.bkt.clouddn.com/img/${bgCoverImg}.jpg)`}">
+	<view v-if="bgCoverImg" class="content" :style="{'background-image': `url(https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/${bgCoverImg}.jpg)`}">
 		<view class="coin" :class="{'coin-spin':isStatusText === '薛定谔的硬币','coin-facade': isStatusText === '正面','coin-reverse': isStatusText === '反面'}">
 			<view class="coin-front">
 				<image class="coin-img" :src="coinImgFront"></image>
@@ -72,8 +72,10 @@
 			// 获取硬币图片
 			getCoinImg() {
 				let name = uni.getStorageSync('coinName') || '2020shu'
-				this.coinImgFront = `http://q74m0xojb.bkt.clouddn.com/img/${name}_front.png`
-				this.coinImgBack = `http://q74m0xojb.bkt.clouddn.com/img/${name}_back.png`
+				this.coinImgFront = `https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/${name}_front.png`
+				this.coinImgBack = `https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/${name}_back.png`
+				// this.coinImgFront = `http://q74m0xojb.bkt.clouddn.com/img/${name}_front.png`
+				// this.coinImgBack = `http://q74m0xojb.bkt.clouddn.com/img/${name}_back.png`
 				// this.coinImgFront = `/static/img/${name}_front.png`
 				// this.coinImgBack = `/static/img/${name}_back.png`
 			},
@@ -197,12 +199,8 @@
 </script>
 
 <style lang="scss">
-	page {
-		height: 100%;
-	}
 	.content {
 		width: 100%;
-		// height: 100%;
 		height: 100vh;
 		padding-top: 100rpx;
 		box-sizing: border-box;

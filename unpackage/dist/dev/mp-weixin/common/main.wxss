@@ -80,6 +80,14 @@ page {
 	color: #353535;
 	font-size: 14pt;
 }
+.container {
+	width: 100%;
+	height: 100vh;
+	font-family: PingFang SC, 'Helvetica Neue', Arial, sans-serif;
+	background-color: #f7f8fa;
+	color: #353535;
+	font-size: 14pt;
+}
 .red {
 	color: #e64340;
 }
@@ -87,13 +95,14 @@ page {
 	font-size: 20pt;
 }
 .footer {
-	text-align: center;
 	width: 100%;
 }
 .footer-btn {
 	width: 50%;
+	margin: 0 auto;
 	color: #fff;
 	background: #fd746c;
+	border-color: #fd746c;
 }
 .panel {
 	margin-bottom: 10px;
@@ -151,5 +160,21 @@ page {
 .panel-cell-text {
 	margin-right: 10rpx;
 	vertical-align: text-top;
+}
+.cell {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	margin-bottom: 10px;
+	padding: 0 20rpx;
+}
+.cell:after {
+	content: "";
+	width: 220rpx;
 }
 

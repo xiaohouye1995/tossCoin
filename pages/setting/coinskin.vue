@@ -57,6 +57,18 @@
 					{
 						name: '2015羊',
 						src: '2015yang'
+					},
+					{
+						name: '2014马',
+						src: '2014ma'
+					},
+					{
+						name: '2013蛇',
+						src: '2013she'
+					},
+					{
+						name: '2012龙',
+						src: '2012long'
 					}
 				]
 				this.coins = []
@@ -64,7 +76,8 @@
 					let data = {
 						name: item.name,
 						id: item.src,
-						src: `http://q74m0xojb.bkt.clouddn.com/img/${item.src}_back.png`
+						// src: `http://q74m0xojb.bkt.clouddn.com/img/${item.src}_back.png`,
+						src: `https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/${item.src}_back.png`
 					}
 					this.coins.push(data)
 				}
@@ -103,13 +116,6 @@
 		padding-top: 20rpx;
 		padding-bottom: 60rpx;
 		background: #fff;
-	}
-
-	.cell {
-		display: flex;
-		justify-content: space-around;
-		flex-wrap: wrap;
-		margin-bottom: 10px;
 	}
 
 	.coin-box {

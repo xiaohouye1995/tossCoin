@@ -24,12 +24,9 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-page {
-  height: 100%;
-}
 .content {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   padding-top: 100rpx;
   box-sizing: border-box;
   background-color: #E8D0BB;
@@ -83,8 +80,8 @@ page {
             animation: shine linear 3s infinite;
 }
 .coin-front {
-  -webkit-transform: translateZ(16px);
-          transform: translateZ(16px);
+  -webkit-transform: translateZ(17px);
+          transform: translateZ(17px);
 }
 .coin-back {
   -webkit-transform: translateZ(0);
