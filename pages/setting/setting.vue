@@ -36,7 +36,7 @@
 					<text class="iconfont icon-java"></text>
 				</view>
 				<view class="panel-cell-bd">
-					<button open-type='feedback' class="btn-feedback">我要吐槽</button>
+					<button open-type='contact' class="btn-feedback">我要吐槽</button>
 					<text class="iconfont icon-cc-chevron-right"></text>
 				</view>
 			</view>
