@@ -84,7 +84,7 @@
 				let name = uni.getStorageSync('coinAuidoID') || 'filpCoin1';
 				// this.audioSrc = `http://q74m0xojb.bkt.clouddn.com/mp3/${name}.wav`;
 				// this.audioSrc = `/static/audio/${name}.wav`;
-				this.audioSrc = `/static/audio/${name}.mp3`;
+				this.audioSrc = name === 'wu' ? null :`/static/audio/${name}.mp3`;
 			},
 			// 获取硬币记录
 			getCoinRecord() {
@@ -134,7 +134,11 @@
 			// 抛硬币
 			tossCoin() {
 				// #ifdef MP-WEIXIN
-				this.loadAudio()
+				if (this.audioSrc) {
+					this.loadAudio()
+				} else {
+					this.filpCoin();
+				}
 				// #endif
 				// #ifdef MP-ALIPAY
 				this.filpCoin();
@@ -202,15 +206,19 @@
 	.content {
 		width: 100%;
 		height: 100vh;
-		padding-top: 100rpx;
 		box-sizing: border-box;
 		background-color: #E8D0BB;
 		background-size: 100% 100%;
 		background-repeat: no-repeat;
 		background-attachment: fixed;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 	}
 
-	$coin-diameter: 400rpx; // 直径
+	// $coin-diameter: 400rpx; // 直径
+	$coin-diameter: 200px; //直径
 	$coin-thickness: 16px; // 厚度
 	$turn-time: 1s; // 转动时间
 
@@ -294,8 +302,8 @@
 
 	.coin-result {
 		font-size: 18pt;
-		margin-top: 100rpx;
-		margin-bottom: 40rpx;
+		margin-top: 80rpx;
+		margin-bottom: 20rpx;
 	}
 
 	.coin-record {

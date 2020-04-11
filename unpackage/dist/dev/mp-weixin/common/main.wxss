@@ -88,6 +88,9 @@ page {
 	color: #353535;
 	font-size: 14pt;
 }
+.selectActive {
+	box-shadow: 0 2px 5px #fd746c;
+}
 .red {
 	color: #e64340;
 }
@@ -115,7 +118,8 @@ page {
 	-webkit-align-items: center;
 	        align-items: center;
 	width: 100%;
-	height: 120rpx;
+	/* height: 120rpx; */
+	height: 60px;
 	background: #fff;
 }
 .panel-title {

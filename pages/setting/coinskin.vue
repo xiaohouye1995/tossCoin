@@ -11,9 +11,9 @@
 					<text class="coin-spec" v-if="item.id === coinName">使用中</text>
 				</view>
 			</view>
-			<view class="footer" v-if="coinIndex !== -1">
-				<button class="footer-btn" type="primary" style="background: #fd746c;" @tap="setCoin()">立即使用</button>
-			</view>
+		</view>
+		<view class="footer" v-if="coinIndex !== -1">
+			<button class="footer-btn" type="primary" style="background: #fd746c;" @tap="setCoin()">立即使用</button>
 		</view>
 	</view>
 </template>
@@ -106,15 +106,17 @@
 
 <style lang="scss">
 
-	.selectActive {
-		border: 1px solid $uni-color-primary;
-	}
+	// .container {
+	// 	padding-bottom: 120px;
+	// 	overflow: auto;
+	// }
 
 	.footer {
 		position: fixed;
 		bottom: 0;
-		padding-top: 20rpx;
-		padding-bottom: 60rpx;
+		padding-top: 12px;
+		box-sizing: border-box;
+		height: 80px;
 		background: #fff;
 	}
 

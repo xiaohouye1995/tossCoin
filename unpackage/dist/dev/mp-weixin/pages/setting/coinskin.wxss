@@ -24,14 +24,12 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.selectActive {
-  border: 1px solid #fd746c;
-}
 .footer {
   position: fixed;
   bottom: 0;
-  padding-top: 20rpx;
-  padding-bottom: 60rpx;
+  padding-top: 12px;
+  box-sizing: border-box;
+  height: 80px;
   background: #fff;
 }
 .coin-box {

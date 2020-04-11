@@ -27,18 +27,30 @@
 .content {
   width: 100%;
   height: 100vh;
-  padding-top: 100rpx;
   box-sizing: border-box;
   background-color: #E8D0BB;
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
 }
 /* 3d旋转 */
 .coin {
   position: relative;
-  width: 400rpx;
-  height: 400rpx;
+  width: 200px;
+  height: 200px;
   margin: 0 auto;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
@@ -58,8 +70,8 @@
 .coin-front,
 .coin-back {
   position: absolute;
-  width: 400rpx;
-  height: 400rpx;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   overflow: hidden;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
@@ -69,11 +81,11 @@
   .coin-back:after {
     content: "";
     position: absolute;
-    left: -200rpx;
+    left: -100px;
     bottom: 100%;
     display: block;
-    height: 266.66667rpx;
-    width: 800rpx;
+    height: 133.33333px;
+    width: 400px;
     background: #fff;
     opacity: 0.3;
     -webkit-animation: shine linear 3s infinite;
@@ -92,31 +104,31 @@
           transform: rotateY(180deg);
 }
 .coin-middle {
-  width: 400rpx;
-  height: 400rpx;
+  width: 200px;
+  height: 200px;
   -webkit-transform: translateZ(1px);
           transform: translateZ(1px);
   position: absolute;
 }
 .coin-img {
-  width: 400rpx;
-  height: 400rpx;
+  width: 200px;
+  height: 200px;
 }
 .coin-shadow {
   position: absolute;
-  width: 400rpx;
+  width: 200px;
   height: 16px;
   border-radius: 50%;
   background: #000;
   box-shadow: 0 0 80px 80px #000;
   opacity: 0.125;
-  -webkit-transform: rotateX(90deg) translateZ(-440rpx) scale(0.5);
-          transform: rotateX(90deg) translateZ(-440rpx) scale(0.5);
+  -webkit-transform: rotateX(90deg) translateZ(-220px) scale(0.5);
+          transform: rotateX(90deg) translateZ(-220px) scale(0.5);
 }
 .coin-result {
   font-size: 18pt;
-  margin-top: 100rpx;
-  margin-bottom: 40rpx;
+  margin-top: 80rpx;
+  margin-bottom: 20rpx;
 }
 .coin-record {
   text-align: center;
@@ -189,23 +201,23 @@ to {
 @-webkit-keyframes shine {
 0%,
   15% {
-    -webkit-transform: translateY(800rpx) rotate(-40deg);
-            transform: translateY(800rpx) rotate(-40deg);
+    -webkit-transform: translateY(400px) rotate(-40deg);
+            transform: translateY(400px) rotate(-40deg);
 }
 50% {
-    -webkit-transform: translateY(-400rpx) rotate(-40deg);
-            transform: translateY(-400rpx) rotate(-40deg);
+    -webkit-transform: translateY(-200px) rotate(-40deg);
+            transform: translateY(-200px) rotate(-40deg);
 }
 }
 @keyframes shine {
 0%,
   15% {
-    -webkit-transform: translateY(800rpx) rotate(-40deg);
-            transform: translateY(800rpx) rotate(-40deg);
+    -webkit-transform: translateY(400px) rotate(-40deg);
+            transform: translateY(400px) rotate(-40deg);
 }
 50% {
-    -webkit-transform: translateY(-400rpx) rotate(-40deg);
-            transform: translateY(-400rpx) rotate(-40deg);
+    -webkit-transform: translateY(-200px) rotate(-40deg);
+            transform: translateY(-200px) rotate(-40deg);
 }
 }
 
