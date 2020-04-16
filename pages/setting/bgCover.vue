@@ -6,14 +6,16 @@
 			</view>
 			<view class="cell">
 				<view class="coin-box" :class="{selectActive: bgCoverIndex === index}" v-for="(item, index) in bgCoverlist" :key="index" @tap="selectbgCover(item,index)">
-					<image class="bg-img" webp :src="item.src" mode="aspectFill"></image>
-					<text>{{item.name}}</text>
-					<text class="coin-spec" v-if="item.id === bgCovername">使用中</text>
+					<image class="bg-img" :src="item.src" mode="aspectFill"></image>
+					<view class="bg-text">
+						<view>{{item.name}}</view>
+						<view class="coin-spec" v-if="item.id === bgCovername">使用中</view>
+					</view>
 				</view>
 			</view>
-			<view class="footer" v-if="bgCoverIndex !== -1">
-				<button class="footer-btn" type="primary" style="background: #fd746c;" @tap="setbgCover()">立即使用</button>
-			</view>
+		</view>
+		<view class="footer" v-if="bgCoverIndex !== -1">
+			<button class="footer-btn" type="primary" style="background: #fd746c;" @tap="setbgCover()">立即使用</button>
 		</view>
 	</view>
 </template>
@@ -86,35 +88,43 @@
 
 <style lang="scss">
 
-	.selectActive {
-		border: 1px solid $uni-color-primary;
-	}
-
+	// .container {
+	// 	padding-bottom: 80px;
+	// 	overflow: auto;
+	// }
+	
 	.footer {
 		position: fixed;
 		bottom: 0;
-		padding-top: 20rpx;
-		padding-bottom: 60rpx;
+		padding-top: 12px;
+		box-sizing: border-box;
+		height: 80px;
 		background: #fff;
 	}
-	
+	$size: 220rpx;
 	.coin-box {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
 		box-sizing: border-box;
-		width: 220rpx;
-		height: 400rpx;
-		margin-bottom: 20rpx;
-		background: #fff;
+		width: $size;
+		margin-bottom: 30px;
 		border-radius: 6px;
 	}
-
+	
 	.bg-img {
 		width: 100%;
-		height: 300rpx;
-		margin-bottom: 12rpx;
+		height: $size * 1.1;
 		border-radius: 6px 6px 0 0;
+	}
+	
+	.bg-text {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		height: 60px;
+		text-align: center;
+		background: #fff;
+		border-radius:  0 0 6px 6px;
 	}
 
 	.coin-spec {
