@@ -38,28 +38,28 @@
 		}
 	],
 	"tabBar": {
-	    "color": "#7A7E83",
-	    "selectedColor": "#fd746c",
-	    "borderStyle": "black",
-	    "backgroundColor": "#ffffff",
-	    "list": [{
-	        "pagePath": "pages/index/index",
-	        "iconPath": "static/img/home.png",
-	        "selectedIconPath": "static/img/home_select.png",
-	        "text": "首页"
-	    }, {
-	        "pagePath": "pages/setting/setting",
-	        "iconPath": "static/img/passive.png",
-	        "selectedIconPath": "static/img/passive_select.png",
-	        "text": "设置"
-	    }]
+		"color": "#7A7E83",
+		"selectedColor": "#fd746c",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"iconPath": "static/img/home.png",
+			"selectedIconPath": "static/img/home_select.png",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/setting/setting",
+			"iconPath": "static/img/passive.png",
+			"selectedIconPath": "static/img/passive_select.png",
+			"text": "设置"
+		}]
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "来抛硬币",
 		// #ifdef MP-WEIXIN
-		"navigationBarBackgroundColor": "#f8f8f8",
+		"navigationBarBackgroundColor": "#fff",
 		// #endif
-		"backgroundColor": "#f7f8fa"
+		"backgroundColor": "#fff"
 	}
 }

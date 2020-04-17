@@ -11,8 +11,8 @@
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "来抛硬币",
-    "navigationBarBackgroundColor": "#f8f8f8",
-    "backgroundColor": "#f7f8fa"
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundColor": "#fff"
   },
   "tabBar": {
     "color": "#7A7E83",
@@ -37,6 +37,5 @@
   "uniStatistics": {
     "enable": false
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap11.json"
+  "usingComponents": {}
 }

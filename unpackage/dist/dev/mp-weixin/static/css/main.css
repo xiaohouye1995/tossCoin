@@ -1,25 +1,7 @@
-page {
-	font-family: PingFang SC, 'Helvetica Neue', Arial, sans-serif;
-	background-color: #f7f8fa;
-	color: #353535;
-	font-size: 14pt;
-}
-
 .container {
-	width: 100%;
-	height: 100vh;
 	font-family: PingFang SC, 'Helvetica Neue', Arial, sans-serif;
-	background-color: #f7f8fa;
 	color: #353535;
 	font-size: 14pt;
-}
-
-.selectActive {
-	box-shadow: 0 2px 5px #fd746c;
-}
-
-.red {
-	color: #e64340;
 }
 
 .iconfont {
@@ -28,28 +10,28 @@ page {
 
 .footer {
 	width: 100%;
+	height: 80px;
+	position: fixed;
+	bottom: 0;
+	padding-top: 12px;
+	box-sizing: border-box;
+	border-top: 1px solid #F2F2F2;
 }
 
 .footer-btn {
-	width: 50%;
+	width: 200px;
 	margin: 0 auto;
 	color: #fff;
 	background: #fd746c;
-	border-color: #fd746c;
+}
+
+.footer-btn:after {
+	border: none;
 }
 
 
 .panel {
 	margin-bottom: 10px;
-}
-
-.panel-cell {
-	display: flex;
-	align-items: center;
-	width: 100%;
-	/* height: 120rpx; */
-	height: 60px;
-	background: #fff;
 }
 
 .panel-title {
@@ -59,21 +41,27 @@ page {
 	font-size: 16pt;
 }
 
+.panel-cell {
+	display: flex;
+	align-items: center;
+	height: 60px;
+	padding: 0 20px;
+}
+
 .panel-cell-hd {
 	width: 10%;
-	padding: 0 12rpx;
+	margin-right: 20rpx;
 	text-align: center;
 }
 
 .panel-cell-bd {
-	width: 90%;
-	height: 100%;
+	/* width: 90%; */
+	/* height: 100%; */
+	flex-grow: 1;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	box-sizing: border-box;
-	padding-right: 12px;
-	border-bottom: 1px solid #f7f8fa;
 }
 
 .panel-cell--center {

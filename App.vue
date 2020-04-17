@@ -2,6 +2,11 @@
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
+			// #ifdef MP-ALIPAY
+			uni.setBackgroundColor({
+			    backgroundColor: '#fff',
+			});
+			// #endif
 		},
 		onShow: function() {
 			console.log('App Show')

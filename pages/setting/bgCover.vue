@@ -87,20 +87,7 @@
 </script>
 
 <style lang="scss">
-
-	// .container {
-	// 	padding-bottom: 80px;
-	// 	overflow: auto;
-	// }
 	
-	.footer {
-		position: fixed;
-		bottom: 0;
-		padding-top: 12px;
-		box-sizing: border-box;
-		height: 80px;
-		background: #fff;
-	}
 	$size: 220rpx;
 	.coin-box {
 		display: flex;
@@ -109,12 +96,18 @@
 		width: $size;
 		margin-bottom: 30px;
 		border-radius: 6px;
+		box-shadow: 0 4px 9px 0 rgba(109, 107, 107, 0.5);
+	}
+	
+	.selectActive {
+		box-shadow: 0 0 8px #fd746c;
 	}
 	
 	.bg-img {
 		width: 100%;
 		height: $size * 1.1;
 		border-radius: 6px 6px 0 0;
+		margin-bottom: 12rpx;
 	}
 	
 	.bg-text {
@@ -128,6 +121,7 @@
 	}
 
 	.coin-spec {
+		margin-top: 12rpx;
 		color: #ccc;
 		font-size: 13pt;
 	}

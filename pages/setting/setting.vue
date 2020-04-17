@@ -7,7 +7,7 @@
 				</view>
 				<view class="panel-cell-bd" @tap="toCoinSkin()">
 					<text>选择硬币</text>
-					<text class="iconfont icon-cc-chevron-right"></text>
+					<text class="iconfont icon-right1"></text>
 				</view>
 			</view>
 			<!-- #ifndef MP-ALIPAY -->
@@ -17,7 +17,7 @@
 				</view>
 				<view class="panel-cell-bd" @tap="toCoinAudio()">
 					<text>选择音效</text>
-					<text class="iconfont icon-cc-chevron-right"></text>
+					<text class="iconfont icon-right1"></text>
 				</view>
 			</view>
 			<!-- #endif -->
@@ -27,7 +27,7 @@
 				</view>
 				<view class="panel-cell-bd" @tap="toCoinBg()">
 					<text>选择背景</text>
-					<text class="iconfont icon-cc-chevron-right"></text>
+					<text class="iconfont icon-right1"></text>
 				</view>
 			</view>
 			<!-- #ifndef MP-ALIPAY -->
@@ -37,16 +37,17 @@
 				</view>
 				<view class="panel-cell-bd">
 					<button open-type='contact' class="btn-feedback">我要吐槽</button>
-					<text class="iconfont icon-cc-chevron-right"></text>
+					<text class="iconfont icon-right1"></text>
 				</view>
 			</view>
 			<!-- #endif -->
-		</view>
-		<view class="panel">
 			<view class="panel-cell">
-				<view class="panel-cell--center" @tap="clearRecord()">
-					<text class="panel-cell-text">清空记录</text>
-					<text class="iconfont icon-cc-delete red"></text>
+				<view class="panel-cell-hd">
+					<text class="iconfont icon-cc-delete" style="color: #e64340;"></text>
+				</view>
+				<view class="panel-cell-bd" @tap="clearRecord()">
+					<text>清空记录</text>
+					<text class="iconfont icon-right1"></text>
 				</view>
 			</view>
 		</view>
@@ -112,8 +113,16 @@
 		width: 100%;
 		text-align: left;
 		border: none;
+		color: #353535;
+		font-size: 14pt;
 	}
+	
 	.btn-feedback:after {  
 	    border: none;	
 	}
+	
+	.icon-right1 {
+		font-size: 17pt;
+	}
+
 </style>

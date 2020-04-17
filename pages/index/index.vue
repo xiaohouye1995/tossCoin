@@ -13,14 +13,12 @@
 			<view class="coin-shadow"></view>
 		</view>
 		<view class="coin-record">
-			<view class="coin-result red">{{record.result}}</view>
+			<view class="coin-result">{{record.result}}</view>
 			<view class="coin-record-text">抛掷总次数：{{record.totalCount}}</view>
 			<view class="coin-record-text">正面次数：{{record.facadeCount}}, 占比：{{record.facadeProportion}}</view>
 			<view class="coin-record-text">反面次数：{{record.reverseCount}}, 占比：{{record.reverseProportion}}</view>
 		</view>
-		<view class="footer">
-			<button class="footer-btn" type="primary" style="background: #fd746c;" @tap="tossCoin()">抛硬币</button>
-		</view>
+		<button class="footer-btn" type="primary" style="background: #fd746c;" @tap="tossCoin()">抛硬币</button>
 	</view>
 </template>
 
@@ -207,7 +205,7 @@
 		width: 100%;
 		height: 100vh;
 		box-sizing: border-box;
-		background-color: #E8D0BB;
+		background-color: #f8f8f8;
 		background-size: 100% 100%;
 		background-repeat: no-repeat;
 		background-attachment: fixed;
@@ -304,12 +302,14 @@
 		font-size: 18pt;
 		margin-top: 80rpx;
 		margin-bottom: 20rpx;
+		color: #e64340;
 	}
 
 	.coin-record {
 		text-align: center;
 		color: #FFFFFF;
 		margin-bottom: 60rpx;
+		font-size: 14pt;
 	}
 
 	.coin-record-text {
