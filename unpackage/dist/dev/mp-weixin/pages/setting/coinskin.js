@@ -131,108 +131,128 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _coin = _interopRequireDefault(__webpack_require__(/*! ../../static/json/coin.json */ 63));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _createForOfIteratorHelper(o) {if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) {var i = 0;var F = function F() {};return { s: F, n: function n() {if (i >= o.length) return { done: true };return { done: false, value: o[i++] };}, e: function e(_e) {throw _e;}, f: F };}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}var it,normalCompletion = true,didErr = false,err;return { s: function s() {it = o[Symbol.iterator]();}, n: function n() {var step = it.next();normalCompletion = step.done;return step;}, e: function e(_e2) {didErr = true;err = _e2;}, f: function f() {try {if (!normalCompletion && it.return != null) it.return();} finally {if (didErr) throw err;}} };}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}var _default =
 {
   data: function data() {
     return {
       coins: [],
       coinName: '',
-      coinIndex: -1 };
+      coinIndex: -1,
+      easteregg: false,
+      showTop: false };
 
   },
   onLoad: function onLoad() {
     this.getCoinList();
     this.getUseCoin();
+    this.getEasteregg();
   },
   methods: {
     // 获取硬币列表
     getCoinList: function getCoinList() {
-      var list = [{
-        name: '2020鼠',
-        src: '2020shu' },
+      var list = _coin.default.data;
+      this.coins = [];var _iterator = _createForOfIteratorHelper(
+      list),_step;try {for (_iterator.s(); !(_step = _iterator.n()).done;) {var item = _step.value;
+          var data = {
+            name: item.name,
+            id: item.src,
+            src: "https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/".concat(item.src, "_back.png") };
 
-      {
-        name: '2019猪',
-        src: '2019zhu' },
-
-      {
-        name: '2018狗',
-        src: '2018gou' },
-
-      {
-        name: '2017鸡',
-        src: '2017ji' },
-
-      {
-        name: '2016猴',
-        src: '2016hou' },
-
-      {
-        name: '2015羊',
-        src: '2015yang' },
-
-      {
-        name: '2014马',
-        src: '2014ma' },
-
-      {
-        name: '2013蛇',
-        src: '2013she' },
-
-      {
-        name: '2012龙',
-        src: '2012long' }];
-
-
-      this.coins = [];
-      for (var _i = 0, _list = list; _i < _list.length; _i++) {var item = _list[_i];
-        var data = {
-          name: item.name,
-          id: item.src,
-          // src: `http://q74m0xojb.bkt.clouddn.com/img/${item.src}_back.png`,
-          src: "https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/".concat(item.src, "_back.png") };
-
-        this.coins.push(data);
-      }
+          this.coins.push(data);
+        }} catch (err) {_iterator.e(err);} finally {_iterator.f();}
     },
     // 获取当前使用硬币
     getUseCoin: function getUseCoin() {
       this.coinName = uni.getStorageSync('coinName') || '2020shu';
     },
+    // 获取彩蛋
+    getEasteregg: function getEasteregg() {
+      this.easteregg = uni.getStorageSync('easteregg') || false;
+    },
     // 选中硬币
-    selectCoin: function selectCoin(item, index) {
+    selectCoin: function selectCoin(id, index) {
       this.coinIndex = index;
-      this.coinid = item.id;
+      this.coinid = id;
     },
     // 设置硬币皮肤
     setCoin: function setCoin() {
       uni.setStorageSync('coinName', this.coinid);
-      uni.showToast({
-        title: '设置成功',
-        duration: 2000 });
-
       this.getUseCoin();
-    } } };exports.default = _default;
+    },
+    // 输入彩蛋码
+    checkCode: function checkCode(e) {
+      var code = e.detail.value;
+      if (code === 'cd52078x8') {
+        uni.showToast({
+          title: '恭喜获得520彩蛋硬币',
+          icon: 'none',
+          duration: 2000 });
+
+        uni.setStorageSync('easteregg', true);
+        this.getEasteregg();
+      } else {
+        uni.showToast({
+          title: '彩蛋码错误',
+          icon: 'none',
+          duration: 2000 });
+
+      }
+      this.showTop = false;
+    },
+    // 停止下拉刷新
+    onPullDownRefresh: function onPullDownRefresh() {var _this = this;
+      this.showTime = setTimeout(function () {
+        uni.stopPullDownRefresh();
+        _this.showTop = true;
+      }, 500);
+    },
+    // 清除定时器
+    clearShowTime: function clearShowTime() {
+      clearTimeout(this.showTime);
+      this.showTime = null;
+      console.log('showTime', this.showTime);
+    } },
+
+  onHide: function onHide() {
+    this.showTime && this.clearShowTime();
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

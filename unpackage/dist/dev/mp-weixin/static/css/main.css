@@ -16,6 +16,7 @@
 	padding-top: 12px;
 	box-sizing: border-box;
 	border-top: 1px solid #F2F2F2;
+	background-color: #fff;
 }
 
 .footer-btn {
@@ -23,10 +24,13 @@
 	margin: 0 auto;
 	color: #fff;
 	background: #fd746c;
+	border-radius: 6px;
+	border-color: #fd746c;
 }
 
 .footer-btn:after {
-	border: none;
+	border-radius: 12px;
+	border-color: #fd746c;
 }
 
 

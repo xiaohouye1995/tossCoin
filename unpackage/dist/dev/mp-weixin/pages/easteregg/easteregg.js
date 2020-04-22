@@ -155,8 +155,37 @@ var _default =
     var facadeCount = uni.getStorageSync('recordFacadeCount') + 1;
     uni.setStorageSync('recordTotalCount', totalCount);
     uni.setStorageSync('recordFacadeCount', facadeCount);
+    console.log(111);
+    this.getEastereggCode();
   },
-  methods: {} };exports.default = _default;
+  methods: {
+    // 获取彩蛋码
+    getEastereggCode: function getEastereggCode() {
+      console.log(222);
+      uni.showModal({
+        title: '彩蛋码',
+        content: 'cd52078x8，前往硬币中心下拉刷新，输入彩蛋码即可获得彩蛋硬币',
+        showCancel: false,
+        confirmColor: '#fd746c',
+        confirmText: '复制',
+        success: function success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定');
+            uni.setClipboardData({
+              data: 'cd52078x8',
+              success: function success() {
+                uni.showToast({
+                  title: '复制成功',
+                  duration: 2000 });
+
+              } });
+
+          } else if (res.cancel) {
+            console.log('用户点击取消');
+          }
+        } });
+
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

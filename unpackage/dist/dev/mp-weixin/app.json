@@ -37,5 +37,6 @@
   "uniStatistics": {
     "enable": false
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap91.json"
 }

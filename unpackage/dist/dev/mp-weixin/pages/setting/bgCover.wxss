@@ -24,6 +24,9 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.container {
+  padding-bottom: 80px;
+}
 .coin-box {
   display: -webkit-box;
   display: -webkit-flex;
@@ -45,6 +48,7 @@
   width: 100%;
   height: 242rpx;
   border-radius: 6px 6px 0 0;
+  margin-bottom: 12rpx;
 }
 .bg-text {
   display: -webkit-box;

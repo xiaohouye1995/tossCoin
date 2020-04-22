@@ -90,4 +90,7 @@
 </script>
 
 <style lang="scss">	
+	.panel-cell {
+		padding: 0;
+	}
 </style>

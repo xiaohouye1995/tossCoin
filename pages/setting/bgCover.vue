@@ -49,8 +49,12 @@
 						src: 'bg_12'
 					},
 					{
-						name: '竹林幽径',
-						src: 'bg_9'
+						name: '浪漫樱花',
+						src: 'bg_14'
+					},
+					{
+						name: '漫步云海',
+						src: 'bg_15'
 					}
 				]
 				this.bgCoverlist = []
@@ -89,6 +93,11 @@
 <style lang="scss">
 	
 	$size: 220rpx;
+	
+	.container {
+		padding-bottom: 80px;
+	}
+	
 	.coin-box {
 		display: flex;
 		flex-direction: column;
@@ -121,7 +130,6 @@
 	}
 
 	.coin-spec {
-		margin-top: 12rpx;
 		color: #ccc;
 		font-size: 13pt;
 	}

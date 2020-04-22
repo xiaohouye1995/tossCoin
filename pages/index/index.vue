@@ -72,16 +72,13 @@
 				let name = uni.getStorageSync('coinName') || '2020shu'
 				this.coinImgFront = `https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/${name}_front.png`
 				this.coinImgBack = `https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/${name}_back.png`
-				// this.coinImgFront = `http://q74m0xojb.bkt.clouddn.com/img/${name}_front.png`
-				// this.coinImgBack = `http://q74m0xojb.bkt.clouddn.com/img/${name}_back.png`
+				// let name = "love2"
 				// this.coinImgFront = `/static/img/${name}_front.png`
 				// this.coinImgBack = `/static/img/${name}_back.png`
 			},
 			// 获取硬币旋转音频
 			getAudio() {
 				let name = uni.getStorageSync('coinAuidoID') || 'filpCoin1';
-				// this.audioSrc = `http://q74m0xojb.bkt.clouddn.com/mp3/${name}.wav`;
-				// this.audioSrc = `/static/audio/${name}.wav`;
 				this.audioSrc = name === 'wu' ? null :`/static/audio/${name}.mp3`;
 			},
 			// 获取硬币记录
@@ -311,6 +308,7 @@
 		margin-bottom: 60rpx;
 		font-size: 14pt;
 	}
+	
 
 	.coin-record-text {
 		margin-bottom: 10rpx;

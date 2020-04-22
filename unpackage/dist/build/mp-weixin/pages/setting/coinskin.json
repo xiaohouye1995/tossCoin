@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "硬币中心",
+  "enablePullDownRefresh": true,
   "usingComponents": {}
 }

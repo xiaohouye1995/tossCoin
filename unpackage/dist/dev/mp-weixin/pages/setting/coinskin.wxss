@@ -24,13 +24,27 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.footer {
-  position: fixed;
-  bottom: 0;
-  padding-top: 12px;
-  box-sizing: border-box;
-  height: 80px;
-  border-top: 1px solid #F2F2F2;
+.container {
+  padding-bottom: 80px;
+}
+.panel-top {
+  height: 60px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.panel-top-input {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 11pt;
+  width: 80%;
 }
 .coin-box {
   display: -webkit-box;
@@ -48,7 +62,7 @@
           align-items: center;
   box-sizing: border-box;
   width: 220rpx;
-  height: 240rpx;
+  height: 260rpx;
   margin-bottom: 20rpx;
   border-radius: 6px;
   box-shadow: 0 4px 9px 0 rgba(109, 107, 107, 0.5);
@@ -59,7 +73,6 @@
 .coin-img {
   width: 120rpx;
   height: 120rpx;
-  margin-bottom: 12rpx;
 }
 .coin-spec {
   color: #ccc;

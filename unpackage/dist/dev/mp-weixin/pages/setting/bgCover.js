@@ -182,8 +182,12 @@ var _default =
         src: 'bg_12' },
 
       {
-        name: '竹林幽径',
-        src: 'bg_9' }];
+        name: '浪漫樱花',
+        src: 'bg_14' },
+
+      {
+        name: '漫步云海',
+        src: 'bg_15' }];
 
 
       this.bgCoverlist = [];

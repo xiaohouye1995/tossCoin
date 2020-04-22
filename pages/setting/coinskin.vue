@@ -1,11 +1,27 @@
 <template>
 	<view class="container">
+		<view class="panel-top" v-if="showTop">
+			<input class="panel-top-input" type="text" value="" placeholder="输入彩蛋码" confirm-type="done" @confirm="checkCode" />
+		</view>
+		<view class="panel" v-if="easteregg">
+			<view class="panel-title">
+				<text>彩蛋系列</text>
+			</view>
+			<view class="cell">
+				<view class="coin-box" :class="{selectActive: coinIndex === 520}" @tap="selectCoin('love',520)">
+					<image class="coin-img" src="https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/love_back.png" mode="aspectFit"></image>
+					<text>520</text>
+					<text class="coin-spec" v-if="coinName === 'love'">使用中</text>
+				</view>
+			</view>
+		</view>
 		<view class="panel">
 			<view class="panel-title">
 				<text>十二生肖系列</text>
 			</view>
 			<view class="cell">
-				<view class="coin-box" :class="{selectActive: coinIndex === index}" v-for="(item, index) in coins" :key="index" @tap="selectCoin(item,index)">
+				<view class="coin-box" :class="{selectActive: coinIndex === index}" v-for="(item, index) in coins" :key="index"
+				 @tap="selectCoin(item.id,index)">
 					<image class="coin-img" :src="item.src" mode="aspectFit"></image>
 					<text>{{item.name}}</text>
 					<text class="coin-spec" v-if="item.id === coinName">使用中</text>
@@ -19,64 +35,31 @@
 </template>
 
 <script>
+	import coinJson from '../../static/json/coin.json'
 	export default {
 		data() {
 			return {
 				coins: [],
 				coinName: '',
-				coinIndex: -1
+				coinIndex: -1,
+				easteregg: false,
+				showTop: false
 			}
 		},
 		onLoad() {
 			this.getCoinList()
 			this.getUseCoin()
+			this.getEasteregg()
 		},
 		methods: {
 			// 获取硬币列表
 			getCoinList() {
-				let list = [{
-						name: '2020鼠',
-						src: '2020shu'
-					},
-					{
-						name: '2019猪',
-						src: '2019zhu'
-					},
-					{
-						name: '2018狗',
-						src: '2018gou'
-					},
-					{
-						name: '2017鸡',
-						src: '2017ji'
-					},
-					{
-						name: '2016猴',
-						src: '2016hou'
-					},
-					{
-						name: '2015羊',
-						src: '2015yang'
-					},
-					{
-						name: '2014马',
-						src: '2014ma'
-					},
-					{
-						name: '2013蛇',
-						src: '2013she'
-					},
-					{
-						name: '2012龙',
-						src: '2012long'
-					}
-				]
+				let list = coinJson.data
 				this.coins = []
 				for (let item of list) {
 					let data = {
 						name: item.name,
 						id: item.src,
-						// src: `http://q74m0xojb.bkt.clouddn.com/img/${item.src}_back.png`,
 						src: `https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/${item.src}_back.png`
 					}
 					this.coins.push(data)
@@ -86,33 +69,78 @@
 			getUseCoin() {
 				this.coinName = uni.getStorageSync('coinName') || '2020shu'
 			},
+			// 获取彩蛋
+			getEasteregg() {
+				this.easteregg = uni.getStorageSync('easteregg') || false;
+			},
 			// 选中硬币
-			selectCoin(item, index) {
+			selectCoin(id, index) {
 				this.coinIndex = index
-				this.coinid = item.id
+				this.coinid = id
 			},
 			// 设置硬币皮肤
 			setCoin() {
 				uni.setStorageSync('coinName', this.coinid);
-				uni.showToast({
-					title: '设置成功',
-					duration: 2000
-				});
-				this.getUseCoin()
-			}
+				this.getUseCoin();
+			},
+			// 输入彩蛋码
+			checkCode(e) {
+				let code = e.detail.value
+				if (code === 'cd52078x8') {
+					uni.showToast({
+						title: '恭喜获得520彩蛋硬币',
+						icon: 'none',
+						duration: 2000
+					});
+					uni.setStorageSync('easteregg', true);
+					this.getEasteregg()
+				} else {
+					uni.showToast({
+						title: '彩蛋码错误',
+						icon: 'none',
+						duration: 2000
+					});
+				}
+				this.showTop = false;
+			},
+			// 停止下拉刷新
+			onPullDownRefresh() {
+				this.showTime =  setTimeout(() => {
+					uni.stopPullDownRefresh();
+					this.showTop = true;
+				}, 500);
+			},
+			// 清除定时器
+			clearShowTime() {
+				clearTimeout(this.showTime);
+				this.showTime = null;
+				console.log('showTime', this.showTime)
+			},
+		},
+		onHide: function() {
+			this.showTime && this.clearShowTime();
 		}
 	}
 </script>
 
 <style lang="scss">
+	.container {
+		padding-bottom: 80px;
+	}
 
-	.footer {
-		position: fixed;
-		bottom: 0;
-		padding-top: 12px;
-		box-sizing: border-box;
-		height: 80px;
-		border-top: 1px solid #F2F2F2;
+	.panel-top {
+		height: 60px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.panel-top-input {
+		padding: 10px 20px;
+		border: 1px solid #ccc;
+		border-radius: 12px;
+		font-size: 11pt;
+		width: 80%;
 	}
 
 	.coin-box {
@@ -122,12 +150,12 @@
 		align-items: center;
 		box-sizing: border-box;
 		width: 220rpx;
-		height: 240rpx;
+		height: 260rpx;
 		margin-bottom: 20rpx;
 		border-radius: 6px;
 		box-shadow: 0 4px 9px 0 rgba(109, 107, 107, 0.5);
 	}
-	
+
 	.selectActive {
 		box-shadow: 0 0 8px #fd746c;
 	}
@@ -135,11 +163,9 @@
 	.coin-img {
 		width: 120rpx;
 		height: 120rpx;
-		margin-bottom: 12rpx;
 	}
 
 	.coin-spec {
-		margin-top: 12rpx;
 		color: #ccc;
 		font-size: 13pt;
 	}
