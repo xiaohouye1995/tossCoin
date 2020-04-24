@@ -85,12 +85,17 @@
 			clearRecord () {
 				uni.showModal({
 				    title: '',
-				    content: '是否立即清空记录',
+				    content: '清空我的统计记录，重新开始',
+					confirmText: '清空',
+					cancelText: '不清空',
 					confirmColor: '#fd746c',
 				    success: function (res) {
 				        if (res.confirm) {
 				            console.log('用户点击确定');
-							uni.clearStorage();
+							// uni.clearStorage();
+							uni.setStorageSync('recordTotalCount', 0);
+							uni.setStorageSync('recordFacadeCount', 0);
+							uni.setStorageSync('recordReverseCount', 0);
 							uni.showToast({
 								title: '已清空',
 								duration: 2000
