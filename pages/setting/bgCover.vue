@@ -62,8 +62,7 @@
 					let data = {
 						name: item.name,
 						id: item.src,
-						// src: `http://q74m0xojb.bkt.clouddn.com/img/${item.src}.jpg`,
-						src: `https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/${item.src}.jpg`
+						src: `https://tosscoin-1256354221.file.myqcloud.com/img/${item.src}.jpg`
 					}
 					this.bgCoverlist.push(data)
 				}

@@ -9,7 +9,7 @@
 			</view>
 			<view class="cell">
 				<view class="coin-box" :class="{selectActive: coinIndex === 520}" @tap="selectCoin('love',520)">
-					<image class="coin-img" src="https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/love_back.png" mode="aspectFit"></image>
+					<image class="coin-img" src="https://tosscoin-1256354221.file.myqcloud.com/img/love_back.png" mode="aspectFit"></image>
 					<text>520</text>
 					<text class="coin-spec" v-if="coinName === 'love'">使用中</text>
 				</view>
@@ -60,7 +60,7 @@
 					let data = {
 						name: item.name,
 						id: item.src,
-						src: `https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/${item.src}_back.png`
+						src: `https://tosscoin-1256354221.file.myqcloud.com/img/${item.src}_back.png`
 					}
 					this.coins.push(data)
 				}

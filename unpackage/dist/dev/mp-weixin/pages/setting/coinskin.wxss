@@ -60,15 +60,18 @@
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   width: 220rpx;
   height: 260rpx;
   margin-bottom: 20rpx;
   border-radius: 6px;
-  box-shadow: 0 4px 9px 0 rgba(109, 107, 107, 0.5);
+  -webkit-box-shadow: 0 4px 9px 0 rgba(109, 107, 107, 0.5);
+          box-shadow: 0 4px 9px 0 rgba(109, 107, 107, 0.5);
 }
 .selectActive {
-  box-shadow: 0 0 8px #fd746c;
+  -webkit-box-shadow: 0 0 8px #fd746c;
+          box-shadow: 0 0 8px #fd746c;
 }
 .coin-img {
   width: 120rpx;

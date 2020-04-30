@@ -1,5 +1,5 @@
 <template>
-	<view v-if="bgCoverImg" class="content" :style="{'background-image': `url(https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/${bgCoverImg}.jpg)`}">
+	<view v-if="bgCoverImg" class="content" :style="{'background-image': `url(${bgCoverImg})`}">
 		<view class="coin" :class="{'coin-spin':isStatusText === '薛定谔的硬币','coin-facade': isStatusText === '正面','coin-reverse': isStatusText === '反面'}">
 			<view class="coin-front">
 				<image class="coin-img" :src="coinImgFront"></image>
@@ -7,7 +7,7 @@
 			<view class="coin-middle" v-for="index in 16" :key="index" :style="'transform: translateZ(' + index + 'px)'">
 				<image class="coin-img coin-img-filp" :src="coinImgBack"></image>
 			</view>
-			<view class="coin-back">
+			<view class="coin-back">                
 				<image class="coin-img coin-img-filp" :src="coinImgBack"></image>
 			</view>
 			<view class="coin-shadow"></view>
@@ -65,13 +65,16 @@
 		methods: {
 			// 获取背景图
 			getBgImg () {
-				this.bgCoverImg = uni.getStorageSync('bgCoverImg') || 'bg_4';
+				let bgSrc = uni.getStorageSync('bgCoverImg') || 'bg_4';
+				// this.bgCoverImg = `https://746f-tosscoin-whstu-1259588940.tcb.qcloud.la/img/${bgSrc}.jpg`;
+				// this.bgCoverImg3 = `https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/${bgSrc}.jpg`;
+				this.bgCoverImg = `https://tosscoin-1256354221.file.myqcloud.com/img/${bgSrc}.jpg`;	
 			},
 			// 获取硬币图片
 			getCoinImg() {
 				let name = uni.getStorageSync('coinName') || '2020shu'
-				this.coinImgFront = `https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/${name}_front.png`
-				this.coinImgBack = `https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/${name}_back.png`
+				this.coinImgFront = `https://tosscoin-1256354221.file.myqcloud.com/img/${name}_front.png`
+				this.coinImgBack = `https://tosscoin-1256354221.file.myqcloud.com/img/${name}_back.png`
 				// let name = "love2"
 				// this.coinImgFront = `/static/img/${name}_front.png`
 				// this.coinImgBack = `/static/img/${name}_back.png`

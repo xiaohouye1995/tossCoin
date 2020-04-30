@@ -27,7 +27,8 @@
 .content {
   width: 100%;
   height: 100vh;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   background-color: #f8f8f8;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -78,18 +79,18 @@
           mask-image: radial-gradient(white, black);
 }
 .coin-front:after,
-  .coin-back:after {
-    content: "";
-    position: absolute;
-    left: -100px;
-    bottom: 100%;
-    display: block;
-    height: 133.33333px;
-    width: 400px;
-    background: #fff;
-    opacity: 0.3;
-    -webkit-animation: shine linear 3s infinite;
-            animation: shine linear 3s infinite;
+.coin-back:after {
+  content: "";
+  position: absolute;
+  left: -100px;
+  bottom: 100%;
+  display: block;
+  height: 133.33333px;
+  width: 400px;
+  background: #fff;
+  opacity: 0.3;
+  -webkit-animation: shine linear 3s infinite;
+          animation: shine linear 3s infinite;
 }
 .coin-front {
   -webkit-transform: translateZ(17px);
@@ -120,7 +121,8 @@
   height: 16px;
   border-radius: 50%;
   background: #000;
-  box-shadow: 0 0 80px 80px #000;
+  -webkit-box-shadow: 0 0 80px 80px #000;
+          box-shadow: 0 0 80px 80px #000;
   opacity: 0.125;
   -webkit-transform: rotateX(90deg) translateZ(-220px) scale(0.5);
           transform: rotateX(90deg) translateZ(-220px) scale(0.5);

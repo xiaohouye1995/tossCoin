@@ -79,7 +79,8 @@
 	position: fixed;
 	bottom: 0;
 	padding-top: 12px;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	border-top: 1px solid #F2F2F2;
 	background-color: #fff;
 }
@@ -100,7 +101,8 @@
 }
 .panel-title {
 	width: 100%;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	padding: 20rpx;
 	font-size: 16pt;
 }
@@ -134,7 +136,8 @@
 	-webkit-box-align: center;
 	-webkit-align-items: center;
 	        align-items: center;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 .panel-cell--center {
 	width: 100%;
