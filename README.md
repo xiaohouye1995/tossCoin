@@ -135,3 +135,10 @@ url('iconfont.svg?t=1562306471309#iconfont') format('svg'); / iOS 4.1- /
 原因：支付宝小程序 没有 page 根元素标签
 
 解决：最外层加一个view标签，style=“height:100vh”
+
+### 腾讯云对象存储使用CDN后，CDN监控后台无访问日志
+现象：CDN访问域名无访问日志
+
+原因：直接访问COS的域名，是不会经过CDN
+
+解决：修改cos域名地址为CDN地址

@@ -67,7 +67,6 @@
 			getBgImg () {
 				let bgSrc = uni.getStorageSync('bgCoverImg') || 'bg_4';
 				// this.bgCoverImg = `https://746f-tosscoin-whstu-1259588940.tcb.qcloud.la/img/${bgSrc}.jpg`;
-				// this.bgCoverImg3 = `https://tosscoin-1256354221.cos.ap-shanghai.myqcloud.com/img/${bgSrc}.jpg`;
 				this.bgCoverImg = `https://tosscoin-1256354221.file.myqcloud.com/img/${bgSrc}.jpg`;	
 			},
 			// 获取硬币图片
