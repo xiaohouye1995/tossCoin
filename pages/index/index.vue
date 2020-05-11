@@ -66,7 +66,7 @@
 			// 获取背景图
 			getBgImg () {
 				let bgSrc = uni.getStorageSync('bgCoverImg') || 'bg_4';
-				// this.bgCoverImg = `https://746f-tosscoin-whstu-1259588940.tcb.qcloud.la/img/${bgSrc}.jpg`;
+				this.bgCoverImg = `https://746f-tosscoin-whstu-1259588940.tcb.qcloud.la/img/${bgSrc}.jpg`;
 				this.bgCoverImg = `https://tosscoin-1256354221.file.myqcloud.com/img/${bgSrc}.jpg`;	
 			},
 			// 获取硬币图片
@@ -74,7 +74,7 @@
 				let name = uni.getStorageSync('coinName') || '2020shu'
 				this.coinImgFront = `https://tosscoin-1256354221.file.myqcloud.com/img/${name}_front.png`
 				this.coinImgBack = `https://tosscoin-1256354221.file.myqcloud.com/img/${name}_back.png`
-				// let name = "love2"
+				// let name = "baiyang"
 				// this.coinImgFront = `/static/img/${name}_front.png`
 				// this.coinImgBack = `/static/img/${name}_back.png`
 			},

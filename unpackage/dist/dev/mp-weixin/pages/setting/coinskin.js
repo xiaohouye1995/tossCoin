@@ -167,15 +167,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _coin = _interopRequireDefault(__webpack_require__(/*! ../../static/json/coin.json */ 33));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _createForOfIteratorHelper(o) {if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) {var i = 0;var F = function F() {};return { s: F, n: function n() {if (i >= o.length) return { done: true };return { done: false, value: o[i++] };}, e: function e(_e) {throw _e;}, f: F };}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}var it,normalCompletion = true,didErr = false,err;return { s: function s() {it = o[Symbol.iterator]();}, n: function n() {var step = it.next();normalCompletion = step.done;return step;}, e: function e(_e2) {didErr = true;err = _e2;}, f: function f() {try {if (!normalCompletion && it.return != null) it.return();} finally {if (didErr) throw err;}} };}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}var _default =
+
+
+
+
+var _coin = _interopRequireDefault(__webpack_require__(/*! ../../static/json/coin.json */ 33));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _createForOfIteratorHelper(o) {if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) {var i = 0;var F = function F() {};return { s: F, n: function n() {if (i >= o.length) return { done: true };return { done: false, value: o[i++] };}, e: function e(_e) {throw _e;}, f: F };}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}var it,normalCompletion = true,didErr = false,err;return { s: function s() {it = o[Symbol.iterator]();}, n: function n() {var step = it.next();normalCompletion = step.done;return step;}, e: function e(_e2) {didErr = true;err = _e2;}, f: function f() {try {if (!normalCompletion && it.return != null) it.return();} finally {if (didErr) throw err;}} };}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}
+var rewardedVideoAd = null;var _default =
 {
   data: function data() {
     return {
       coins: [],
+      // xingzuoList: [],
+      caidan: {},
       coinName: '',
       coinIndex: -1,
       easteregg: false,
-      showTop: false };
+      showTop: false,
+      lockStatus: false };
 
   },
   onLoad: function onLoad() {
@@ -183,18 +191,60 @@ var _coin = _interopRequireDefault(__webpack_require__(/*! ../../static/json/coi
     this.getUseCoin();
     this.getEasteregg();
   },
+  onReady: function onReady() {var _this = this;
+    if (wx.createRewardedVideoAd) {
+      rewardedVideoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-b2c2a41e06c50390' });
+
+      rewardedVideoAd.onLoad(function () {
+        console.log('onLoad event emit');
+      });
+      rewardedVideoAd.onError(function (err) {
+        console.log('onError event emit', err);
+      });
+      rewardedVideoAd.onClose(function (res) {
+        // 用户点击了【关闭广告】按钮
+        if (res && res.isEnded) {
+          // 正常播放结束，可以下发游戏奖励
+          var unlockList = uni.getStorageSync('unlockList') || [];
+          unlockList.push(_this.coinid);
+          uni.setStorageSync('unlockList', unlockList);
+          uni.showToast({
+            title: '恭喜解锁成功',
+            icon: 'none',
+            duration: 2000 });
+
+          uni.setStorageSync('coinName', _this.coinid);
+          _this.getCoinList();
+          _this.getUseCoin();
+        } else {
+          // 播放中途退出，不下发游戏奖励
+          uni.showToast({
+            title: '抱歉，还没看完视频',
+            icon: 'none',
+            duration: 2000 });
+
+        }
+      });
+    }
+  },
   methods: {
     // 获取硬币列表
     getCoinList: function getCoinList() {
-      var list = _coin.default.data;
-      this.coins = [];var _iterator = _createForOfIteratorHelper(
-      list),_step;try {for (_iterator.s(); !(_step = _iterator.n()).done;) {var item = _step.value;
-          var data = {
-            name: item.name,
-            id: item.src,
-            src: "https://tosscoin-1256354221.file.myqcloud.com/img/".concat(item.src, "_back.png") };
+      this.coins = _coin.default.data;
+      this.caidan = {
+        "id": 520,
+        "name": "520",
+        "value": "love",
+        "src": "https://tosscoin-1256354221.file.myqcloud.com/img/love_back.png" };
 
-          this.coins.push(data);
+      var unlockList = uni.getStorageSync('unlockList') || [];var _iterator = _createForOfIteratorHelper(
+      this.coins[1].list),_step;try {for (_iterator.s(); !(_step = _iterator.n()).done;) {var item = _step.value;var _iterator2 = _createForOfIteratorHelper(
+          unlockList),_step2;try {for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {var item2 = _step2.value;
+              if (item.value === item2) {
+                item.status = true;
+              }
+            }} catch (err) {_iterator2.e(err);} finally {_iterator2.f();}
         }} catch (err) {_iterator.e(err);} finally {_iterator.f();}
     },
     // 获取当前使用硬币
@@ -206,14 +256,39 @@ var _coin = _interopRequireDefault(__webpack_require__(/*! ../../static/json/coi
       this.easteregg = uni.getStorageSync('easteregg') || false;
     },
     // 选中硬币
-    selectCoin: function selectCoin(id, index) {
-      this.coinIndex = index;
-      this.coinid = id;
+    selectCoin: function selectCoin(value) {
+      this.coinIndex = value.id;
+      this.coinid = value.value;
+      this.lockStatus = value.status;
     },
     // 设置硬币皮肤
     setCoin: function setCoin() {
       uni.setStorageSync('coinName', this.coinid);
       this.getUseCoin();
+    },
+    // 解锁硬币皮肤
+    unlockCoin: function unlockCoin() {
+      uni.showModal({
+        title: '',
+        content: '观看广告后即可解锁',
+        confirmText: '支持一下',
+        cancelText: '再想想',
+        confirmColor: '#fd746c',
+        success: function success(res) {
+          if (res.confirm) {
+            rewardedVideoAd.show().
+            catch(function () {
+              rewardedVideoAd.load().
+              then(function () {return rewardedVideoAd.show();}).
+              catch(function (err) {
+                console.log('激励视频 广告显示失败');
+              });
+            });
+          } else if (res.cancel) {
+            console.log('用户点击取消');
+          }
+        } });
+
     },
     // 输入彩蛋码
     checkCode: function checkCode(e) {
@@ -236,10 +311,10 @@ var _coin = _interopRequireDefault(__webpack_require__(/*! ../../static/json/coi
       this.showTop = false;
     },
     // 停止下拉刷新
-    onPullDownRefresh: function onPullDownRefresh() {var _this = this;
+    onPullDownRefresh: function onPullDownRefresh() {var _this2 = this;
       this.showTime = setTimeout(function () {
         uni.stopPullDownRefresh();
-        _this.showTop = true;
+        _this2.showTop = true;
       }, 500);
     },
     // 清除定时器
