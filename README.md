@@ -21,6 +21,7 @@
 - uni-app
 - 耳聆网（音效） https://www.ear0.com/search/word-%E7%A1%AC%E5%B8%81
 - 中国金币网（硬币图片）http://www.chngc.net/
+- 加拿大金币网（十二星座）https://www.mint.ca/store/search/searchResults.jsp?_requestid=510053
 
 ## 功能需求
 - [ ] 抛掷方式选择（二期）
@@ -44,12 +45,14 @@
 - [x] 彩蛋 （等待你的发现~~）
 - [ ] 弹出框美化（二期）
 - [x] 转发分享
-- [ ] 适配小程序pc（ipad）端
+- [x] 适配小程序pc（ipad）端
 - [ ] 触摸震动
 - [x] 支付宝版小程序
-- [ ] 十二星座系列硬币
+- [x] 十二星座系列硬币
 - [ ] 转uniCloud
 - [x] 彩蛋硬币皮肤，在彩蛋页下放置彩蛋码，在硬币皮肤页输入彩蛋码，获得皮肤；
+- [x] 广告激励
+- [ ] 背景选择界面优化，参考起点阅读背景
 
 
 ## 填坑
@@ -142,3 +145,27 @@ url('iconfont.svg?t=1562306471309#iconfont') format('svg'); / iOS 4.1- /
 原因：直接访问COS的域名，是不会经过CDN
 
 解决：修改cos域名地址为CDN地址
+
+### 本地修改json数据
+暂时未找到方法，改为使用 setStorageSync 将json中需要修改的数据id存入本地缓存，再进入页面读取json数据时，通过双重循环来修改数据
+```
+import coinJson from '../../static/json/coin.json'
+// 获取硬币列表
+getCoinList() {
+	this.coins = coinJson.data
+	let unlockList = uni.getStorageSync('unlockList') || [];
+	for (let item of this.coins[1].list) {
+		for (let item2 of unlockList) {
+			if (item.value === item2) {
+				item.status = true
+			}
+		}
+	}
+},
+// 解锁硬币皮肤
+unlockCoin() {
+	let unlockList = uni.getStorageSync('unlockList') || [];
+    unlockList.push(this.coinid)
+    uni.setStorageSync('unlockList', unlockList);
+},
+```
