@@ -15,8 +15,7 @@
 		{
 			"path": "pages/setting/coinskin",
 			"style": {
-				"navigationBarTitleText": "硬币中心",
-				"enablePullDownRefresh": true
+				"navigationBarTitleText": "硬币中心"
 			}
 		},
 		{

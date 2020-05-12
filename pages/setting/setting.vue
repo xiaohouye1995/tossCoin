@@ -55,12 +55,30 @@
 </template>
 
 <script>
+	let interstitialAd = null
 	export default {
 		data() {
 			return {
 			}
 		},
 		onLoad() {
+			// 在页面onLoad回调事件中创建插屏广告实例
+			if (wx.createInterstitialAd) {
+			  interstitialAd = wx.createInterstitialAd({
+			    adUnitId: 'adunit-3d758662f2d260e2'
+			  })
+			  interstitialAd.onLoad(() => {})
+			  interstitialAd.onError((err) => {})
+			  interstitialAd.onClose(() => {})
+			}
+		},
+		onTabItemTap() {
+			// 在适合的场景显示插屏广告
+			if (interstitialAd) {
+			  interstitialAd.show().catch((err) => {
+			    console.error(err)
+			  })
+			}
 		},
 		methods: {
 			// 前往硬币皮肤设置

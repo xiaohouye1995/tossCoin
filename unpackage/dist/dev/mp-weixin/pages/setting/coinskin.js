@@ -92,7 +92,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components
+var components = {
+  "uni-popup": function() {
+    return Promise.all(/*! import() | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 67))
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -162,34 +166,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-var _coin = _interopRequireDefault(__webpack_require__(/*! ../../static/json/coin.json */ 33));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _createForOfIteratorHelper(o) {if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) {var i = 0;var F = function F() {};return { s: F, n: function n() {if (i >= o.length) return { done: true };return { done: false, value: o[i++] };}, e: function e(_e) {throw _e;}, f: F };}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}var it,normalCompletion = true,didErr = false,err;return { s: function s() {it = o[Symbol.iterator]();}, n: function n() {var step = it.next();normalCompletion = step.done;return step;}, e: function e(_e2) {didErr = true;err = _e2;}, f: function f() {try {if (!normalCompletion && it.return != null) it.return();} finally {if (didErr) throw err;}} };}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}
+var _coin = _interopRequireDefault(__webpack_require__(/*! ../../static/json/coin.json */ 33));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _createForOfIteratorHelper(o) {if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) {var i = 0;var F = function F() {};return { s: F, n: function n() {if (i >= o.length) return { done: true };return { done: false, value: o[i++] };}, e: function e(_e) {throw _e;}, f: F };}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}var it,normalCompletion = true,didErr = false,err;return { s: function s() {it = o[Symbol.iterator]();}, n: function n() {var step = it.next();normalCompletion = step.done;return step;}, e: function e(_e2) {didErr = true;err = _e2;}, f: function f() {try {if (!normalCompletion && it.return != null) it.return();} finally {if (didErr) throw err;}} };}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}var uniPopup = function uniPopup() {Promise.all(/*! require.ensure | components/uni-popup/uni-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-popup/uni-popup")]).then((function () {return resolve(__webpack_require__(/*! @/components/uni-popup/uni-popup.vue */ 67));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniPopupDialog = function uniPopupDialog() {__webpack_require__.e(/*! require.ensure | components/uni-popup/uni-popup-dialog */ "components/uni-popup/uni-popup-dialog").then((function () {return resolve(__webpack_require__(/*! @/components/uni-popup/uni-popup-dialog.vue */ 85));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 var rewardedVideoAd = null;var _default =
 {
+  components: { uniPopup: uniPopup, uniPopupDialog: uniPopupDialog },
   data: function data() {
     return {
       coins: [],
-      // xingzuoList: [],
-      caidan: {},
       coinName: '',
       coinIndex: -1,
-      easteregg: false,
-      showTop: false,
       lockStatus: false };
 
   },
   onLoad: function onLoad() {
     this.getCoinList();
     this.getUseCoin();
-    this.getEasteregg();
   },
   onReady: function onReady() {var _this = this;
     if (wx.createRewardedVideoAd) {
@@ -206,17 +197,7 @@ var rewardedVideoAd = null;var _default =
         // 用户点击了【关闭广告】按钮
         if (res && res.isEnded) {
           // 正常播放结束，可以下发游戏奖励
-          var unlockList = uni.getStorageSync('unlockList') || [];
-          unlockList.push(_this.coinid);
-          uni.setStorageSync('unlockList', unlockList);
-          uni.showToast({
-            title: '恭喜解锁成功',
-            icon: 'none',
-            duration: 2000 });
-
-          uni.setStorageSync('coinName', _this.coinid);
-          _this.getCoinList();
-          _this.getUseCoin();
+          _this.unlockCoinSucceeded();
         } else {
           // 播放中途退出，不下发游戏奖励
           uni.showToast({
@@ -232,28 +213,20 @@ var rewardedVideoAd = null;var _default =
     // 获取硬币列表
     getCoinList: function getCoinList() {
       this.coins = _coin.default.data;
-      this.caidan = {
-        "id": 520,
-        "name": "520",
-        "value": "love",
-        "src": "https://tosscoin-1256354221.file.myqcloud.com/img/love_back.png" };
-
       var unlockList = uni.getStorageSync('unlockList') || [];var _iterator = _createForOfIteratorHelper(
-      this.coins[1].list),_step;try {for (_iterator.s(); !(_step = _iterator.n()).done;) {var item = _step.value;var _iterator2 = _createForOfIteratorHelper(
-          unlockList),_step2;try {for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {var item2 = _step2.value;
-              if (item.value === item2) {
-                item.status = true;
-              }
+      this.coins),_step;try {for (_iterator.s(); !(_step = _iterator.n()).done;) {var item = _step.value;var _iterator2 = _createForOfIteratorHelper(
+          item.list),_step2;try {for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {var item2 = _step2.value;var _iterator3 = _createForOfIteratorHelper(
+              unlockList),_step3;try {for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {var item3 = _step3.value;
+                  if (item2.value === item3) {
+                    item2.status = true;
+                  }
+                }} catch (err) {_iterator3.e(err);} finally {_iterator3.f();}
             }} catch (err) {_iterator2.e(err);} finally {_iterator2.f();}
         }} catch (err) {_iterator.e(err);} finally {_iterator.f();}
     },
     // 获取当前使用硬币
     getUseCoin: function getUseCoin() {
       this.coinName = uni.getStorageSync('coinName') || '2020shu';
-    },
-    // 获取彩蛋
-    getEasteregg: function getEasteregg() {
-      this.easteregg = uni.getStorageSync('easteregg') || false;
     },
     // 选中硬币
     selectCoin: function selectCoin(value) {
@@ -268,11 +241,15 @@ var rewardedVideoAd = null;var _default =
     },
     // 解锁硬币皮肤
     unlockCoin: function unlockCoin() {
+      if (this.coinIndex === 520) {
+        this.$refs.popup.open();
+        return;
+      }
       uni.showModal({
         title: '',
-        content: '观看广告后即可解锁',
+        content: '观看广告后即可解锁 \n 江湖走马，且行且恰饭',
         confirmText: '支持一下',
-        cancelText: '再想想',
+        cancelText: '不为所动',
         confirmColor: '#fd746c',
         success: function success(res) {
           if (res.confirm) {
@@ -282,6 +259,11 @@ var rewardedVideoAd = null;var _default =
               then(function () {return rewardedVideoAd.show();}).
               catch(function (err) {
                 console.log('激励视频 广告显示失败');
+                uni.showToast({
+                  title: '恰饭失败，请稍后再试',
+                  icon: 'none',
+                  duration: 2000 });
+
               });
             });
           } else if (res.cancel) {
@@ -290,17 +272,28 @@ var rewardedVideoAd = null;var _default =
         } });
 
     },
-    // 输入彩蛋码
-    checkCode: function checkCode(e) {
-      var code = e.detail.value;
-      if (code === 'cd52078x8') {
-        uni.showToast({
-          title: '恭喜获得520彩蛋硬币',
-          icon: 'none',
-          duration: 2000 });
+    // 硬币解锁成功
+    unlockCoinSucceeded: function unlockCoinSucceeded() {
+      var unlockList = uni.getStorageSync('unlockList') || [];
+      unlockList.push(this.coinid);
+      uni.setStorageSync('unlockList', unlockList);
+      uni.showToast({
+        title: '恭喜解锁成功',
+        icon: 'none',
+        duration: 2000 });
 
-        uni.setStorageSync('easteregg', true);
-        this.getEasteregg();
+      uni.setStorageSync('coinName', this.coinid);
+      this.getCoinList();
+      this.getUseCoin();
+      this.coinIndex = -1;
+    },
+    closeDialog: function closeDialog(done) {
+      done();
+    },
+    confirmDialog: function confirmDialog(done, value) {
+      if (value === 'cd52078x8') {
+        this.unlockCoinSucceeded();
+        done();
       } else {
         uni.showToast({
           title: '彩蛋码错误',
@@ -308,25 +301,7 @@ var rewardedVideoAd = null;var _default =
           duration: 2000 });
 
       }
-      this.showTop = false;
-    },
-    // 停止下拉刷新
-    onPullDownRefresh: function onPullDownRefresh() {var _this2 = this;
-      this.showTime = setTimeout(function () {
-        uni.stopPullDownRefresh();
-        _this2.showTop = true;
-      }, 500);
-    },
-    // 清除定时器
-    clearShowTime: function clearShowTime() {
-      clearTimeout(this.showTime);
-      this.showTime = null;
-      console.log('showTime', this.showTime);
-    } },
-
-  onHide: function onHide() {
-    this.showTime && this.clearShowTime();
-  } };exports.default = _default;
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

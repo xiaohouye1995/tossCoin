@@ -1,20 +1,5 @@
 <template>
 	<view class="container">
-		<view class="panel-top" v-if="showTop">
-			<input class="panel-top-input" type="text" value="" placeholder="输入彩蛋码" confirm-type="done" @confirm="checkCode" />
-		</view>
-		<view class="panel" v-if="easteregg">
-			<view class="panel-title">
-				<text>彩蛋系列</text>
-			</view>
-			<view class="cell">
-				<view class="coin-box" :class="{selectActive: coinIndex === 520}" @tap="selectCoin(caidan)">
-					<image class="coin-img" :src="caidan.src" mode="aspectFit"></image>
-					<text>{{caidan.name}}</text>
-					<text class="coin-spec" v-if="caidan.value === coinName">使用中</text>
-				</view>
-			</view>
-		</view>
 		<view class="panel" v-for="item in coins" :key="item.guid">
 			<view class="panel-title">
 				<text>{{item.name}}</text>
@@ -35,29 +20,31 @@
 			<button v-if="lockStatus" class="footer-btn" type="primary" style="background: #fd746c;" @tap="setCoin()">立即使用</button>
 			<button v-if="!lockStatus" class="footer-btn" type="primary" style="background: #fd746c;" @tap="unlockCoin()">解锁并使用</button>
 		</view>
+		<!-- 彩蛋输入框 -->
+		<uni-popup ref="popup" type="dialog">
+		    <uni-popup-dialog type="info" mode="input" placeholder="输入彩蛋码" @close="closeDialog" @confirm="confirmDialog"></uni-popup-dialog>
+		</uni-popup>
 	</view>
 </template>
 
 <script>
+	import uniPopup from '@/components/uni-popup/uni-popup.vue'
+	import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue'
 	import coinJson from '../../static/json/coin.json'
 	let rewardedVideoAd = null;
 	export default {
+		components: {uniPopup, uniPopupDialog},
 		data() {
 			return {
 				coins: [],
-				// xingzuoList: [],
-				caidan: {},
 				coinName: '',
 				coinIndex: -1,
-				easteregg: false,
-				showTop: false,
 				lockStatus: false
 			}
 		},
 		onLoad() {
 			this.getCoinList()
 			this.getUseCoin()
-			this.getEasteregg()
 		},
 		onReady() {
 			if (wx.createRewardedVideoAd) {
@@ -74,17 +61,7 @@
 				    // 用户点击了【关闭广告】按钮
 				    if (res && res.isEnded) {
 				      // 正常播放结束，可以下发游戏奖励
-					  let unlockList = uni.getStorageSync('unlockList') || [];
-					  unlockList.push(this.coinid)
-					  uni.setStorageSync('unlockList', unlockList);
-					  uni.showToast({
-					  	title: '恭喜解锁成功',
-					  	icon: 'none',
-					  	duration: 2000
-					  });
-					  uni.setStorageSync('coinName', this.coinid);
-					  this.getCoinList();
-					  this.getUseCoin();
+					  this.unlockCoinSucceeded()
 				    } else {
 				      // 播放中途退出，不下发游戏奖励
 					  uni.showToast({
@@ -100,17 +77,13 @@
 			// 获取硬币列表
 			getCoinList() {
 				this.coins = coinJson.data
-				this.caidan = {
-					"id": 520,
-					"name": "520",
-					"value": "love",
-					"src": "https://tosscoin-1256354221.file.myqcloud.com/img/love_back.png"
-				}
 				let unlockList = uni.getStorageSync('unlockList') || [];
-				for (let item of this.coins[1].list) {
-					for (let item2 of unlockList) {
-						if (item.value === item2) {
-							item.status = true
+				for (let item of this.coins) {
+					for (let item2 of item.list) {
+						for (let item3 of unlockList) {
+							if (item2.value === item3) {
+								item2.status = true
+							}
 						}
 					}
 				}
@@ -118,10 +91,6 @@
 			// 获取当前使用硬币
 			getUseCoin() {
 				this.coinName = uni.getStorageSync('coinName') || '2020shu'
-			},
-			// 获取彩蛋
-			getEasteregg() {
-				this.easteregg = uni.getStorageSync('easteregg') || false;
 			},
 			// 选中硬币
 			selectCoin(value) {
@@ -136,11 +105,15 @@
 			},
 			// 解锁硬币皮肤
 			unlockCoin() {
+				if (this.coinIndex === 520) {
+					this.$refs.popup.open()
+					return
+				}
 				uni.showModal({
 				    title: '',
-				    content: '观看广告后即可解锁',
+				    content: '观看广告后即可解锁 \n 江湖走马，且行且恰饭',
 					confirmText: '支持一下',
-					cancelText: '再想想',
+					cancelText: '不为所动',
 					confirmColor: '#fd746c',
 				    success: function (res) {
 				        if (res.confirm) {
@@ -150,6 +123,11 @@
 				                .then(() => rewardedVideoAd.show())
 				                .catch(err => {
 				                  console.log('激励视频 广告显示失败')
+								  uni.showToast({
+								  	title: '恰饭失败，请稍后再试',
+								  	icon: 'none',
+								  	duration: 2000
+								  });
 				                })
 				            })
 				        } else if (res.cancel) {
@@ -158,17 +136,28 @@
 				    }
 				});
 			},
-			// 输入彩蛋码
-			checkCode(e) {
-				let code = e.detail.value
-				if (code === 'cd52078x8') {
-					uni.showToast({
-						title: '恭喜获得520彩蛋硬币',
-						icon: 'none',
-						duration: 2000
-					});
-					uni.setStorageSync('easteregg', true);
-					this.getEasteregg()
+			// 硬币解锁成功
+			unlockCoinSucceeded () {
+				let unlockList = uni.getStorageSync('unlockList') || [];
+				unlockList.push(this.coinid)
+				uni.setStorageSync('unlockList', unlockList);
+				uni.showToast({
+					title: '恭喜解锁成功',
+					icon: 'none',
+					duration: 2000
+				});
+				uni.setStorageSync('coinName', this.coinid);
+				this.getCoinList();
+				this.getUseCoin();
+				this.coinIndex = -1
+			},
+			closeDialog (done) {
+				done()
+			},
+			confirmDialog (done,value) {
+				if (value === 'cd52078x8') {
+					this.unlockCoinSucceeded()
+					done()
 				} else {
 					uni.showToast({
 						title: '彩蛋码错误',
@@ -176,25 +165,8 @@
 						duration: 2000
 					});
 				}
-				this.showTop = false;
-			},
-			// 停止下拉刷新
-			onPullDownRefresh() {
-				this.showTime = setTimeout(() => {
-					uni.stopPullDownRefresh();
-					this.showTop = true;
-				}, 500);
-			},
-			// 清除定时器
-			clearShowTime() {
-				clearTimeout(this.showTime);
-				this.showTime = null;
-				console.log('showTime', this.showTime)
-			},
+			}
 		},
-		onHide: function() {
-			this.showTime && this.clearShowTime();
-		}
 	}
 </script>
 
@@ -202,21 +174,6 @@
 	.container {
 		padding: 0 10rpx;
 		padding-bottom: 80px;
-	}
-
-	.panel-top {
-		height: 60px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.panel-top-input {
-		padding: 10px 20px;
-		border: 1px solid #ccc;
-		border-radius: 12px;
-		font-size: 11pt;
-		width: 80%;
 	}
 
 	.coin-box {

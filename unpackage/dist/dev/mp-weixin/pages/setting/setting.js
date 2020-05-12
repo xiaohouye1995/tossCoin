@@ -186,13 +186,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-var _default =
+
+var interstitialAd = null;var _default =
 {
   data: function data() {
     return {};
 
   },
   onLoad: function onLoad() {
+    // 在页面onLoad回调事件中创建插屏广告实例
+    if (wx.createInterstitialAd) {
+      interstitialAd = wx.createInterstitialAd({
+        adUnitId: 'adunit-3d758662f2d260e2' });
+
+      interstitialAd.onLoad(function () {});
+      interstitialAd.onError(function (err) {});
+      interstitialAd.onClose(function () {});
+    }
+  },
+  onTabItemTap: function onTabItemTap() {
+    // 在适合的场景显示插屏广告
+    if (interstitialAd) {
+      interstitialAd.show().catch(function (err) {
+        console.error(err);
+      });
+    }
   },
   methods: {
     // 前往硬币皮肤设置

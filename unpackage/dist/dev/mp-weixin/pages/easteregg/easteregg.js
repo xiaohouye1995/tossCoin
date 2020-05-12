@@ -154,16 +154,14 @@ var _default =
     var facadeCount = uni.getStorageSync('recordFacadeCount') + 1;
     uni.setStorageSync('recordTotalCount', totalCount);
     uni.setStorageSync('recordFacadeCount', facadeCount);
-    console.log(111);
     this.getEastereggCode();
   },
   methods: {
     // 获取彩蛋码
     getEastereggCode: function getEastereggCode() {
-      console.log(222);
       uni.showModal({
         title: '彩蛋码',
-        content: 'cd52078x8，前往硬币中心下拉刷新，输入彩蛋码即可获得彩蛋硬币',
+        content: 'cd52078x8，前往硬币中心输入彩蛋码兑换彩蛋硬币',
         showCancel: false,
         confirmColor: '#fd746c',
         confirmText: '复制',
