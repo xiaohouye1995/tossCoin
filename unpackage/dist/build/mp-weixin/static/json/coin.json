@@ -147,6 +147,7 @@
 				{
 					"id": 207,
 					"name": "天秤座",
+					"value": "tianping",
 					"status": false,
 					"src": "https://tosscoin-1256354221.file.myqcloud.com/img/tianping_back.png"
 				},
@@ -167,6 +168,7 @@
 				{
 					"id": 210,
 					"name": "摩羯座",
+					"value": "mojie",
 					"status": false,
 					"src": "https://tosscoin-1256354221.file.myqcloud.com/img/mojie_back.png"
 				},
