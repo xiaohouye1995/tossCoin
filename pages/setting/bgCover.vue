@@ -15,7 +15,7 @@
 			</view>
 		</view>
 		<view class="footer" v-if="bgCoverIndex !== -1">
-			<button class="footer-btn" type="primary" style="background: #fd746c;" @tap="setbgCover()">立即使用</button>
+			<button class="footer-btn" @tap="setbgCover()">立即使用</button>
 		</view>
 	</view>
 </template>

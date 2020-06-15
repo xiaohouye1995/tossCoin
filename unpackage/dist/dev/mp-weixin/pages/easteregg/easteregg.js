@@ -150,9 +150,7 @@ var _default =
     return {};
   },
   onLoad: function onLoad() {
-    var totalCount = uni.getStorageSync('recordTotalCount') + 1;
     var facadeCount = uni.getStorageSync('recordFacadeCount') + 1;
-    uni.setStorageSync('recordTotalCount', totalCount);
     uni.setStorageSync('recordFacadeCount', facadeCount);
     this.getEastereggCode();
   },
@@ -160,23 +158,29 @@ var _default =
     // 获取彩蛋码
     getEastereggCode: function getEastereggCode() {
       uni.showModal({
-        title: '彩蛋码',
-        content: 'cd52078x8，前往硬币中心输入彩蛋码兑换彩蛋硬币',
+        title: '恭喜您！',
+        content: '520彩蛋硬币获取成功，请前往硬币中心查看',
         showCancel: false,
         confirmColor: '#fd746c',
-        confirmText: '复制',
+        confirmText: '知道了',
         success: function success(res) {
           if (res.confirm) {
             console.log('用户点击确定');
-            uni.setClipboardData({
-              data: 'cd52078x8',
-              success: function success() {
-                uni.showToast({
-                  title: '复制成功',
-                  duration: 2000 });
+            var unlockList = uni.getStorageSync('unlockList') || [];
+            if (unlockList.findIndex(function (item) {return item === 'love';}) === -1) {
+              unlockList.push('love');
+              uni.setStorageSync('unlockList', unlockList);
+            }
 
-              } });
-
+            // uni.setClipboardData({
+            // 	data: 'cd52078x8',
+            // 	success: function() {
+            // 		uni.showToast({
+            // 			title: '复制成功',
+            // 			duration: 2000
+            // 		});
+            // 	}
+            // });
           } else if (res.cancel) {
             console.log('用户点击取消');
           }

@@ -223,24 +223,24 @@ var _default =
     // 获取硬币记录
     getCoinRecord: function getCoinRecord() {
       var result = this.isStatusText;
-      var totalCount = uni.getStorageSync('recordTotalCount') || 0;
       var facadeCount = uni.getStorageSync('recordFacadeCount') || 0;
       var reverseCount = uni.getStorageSync('recordReverseCount') || 0;
+      var totalCount = facadeCount + reverseCount;
       var facadeProportion = totalCount <= 0 ? "0%" : Math.round(facadeCount / totalCount * 10000) / 100.00 + "%";
       var reverseProportion = totalCount <= 0 ? "0%" : Math.round(reverseCount / totalCount * 10000) / 100.00 + "%";
+      this.record = {
+        result: result,
+        totalCount: totalCount,
+        facadeCount: facadeCount,
+        reverseCount: reverseCount,
+        facadeProportion: facadeProportion,
+        reverseProportion: reverseProportion };
+
       // 彩蛋1号
       if (totalCount === 520) {
-        var textList = [
-        '闲时与你立黄昏，灶前笑问粥可温',
-        '江湖走马，风也好，雨也罢',
-        '情不知所起一往而深',
-        '江湖风波险恶，多多保重',
-        '早知如此绊人心，何如当初莫相识',
-        '最好的都是即将发生的'];
-
         uni.showModal({
           title: '',
-          content: '闲时与你立黄昏，灶前笑问粥可温',
+          content: '最好的都是即将发生的',
           showCancel: false,
           confirmText: '喜欢你',
           confirmColor: '#fd746c',
@@ -256,14 +256,6 @@ var _default =
           } });
 
       }
-      this.record = {
-        result: result,
-        totalCount: totalCount,
-        facadeCount: facadeCount,
-        reverseCount: reverseCount,
-        facadeProportion: facadeProportion,
-        reverseProportion: reverseProportion };
-
     },
     // 抛硬币
     tossCoin: function tossCoin() {
@@ -299,18 +291,14 @@ var _default =
       this.isStatusText = '量子';
       this.timerCoinFilp = setTimeout(function () {
         var flipResult = Math.random();
-        var totalCount = _this2.record.totalCount + 1;
-        uni.setStorageSync('recordTotalCount', totalCount);
         if (flipResult <= 0.5) {
           _this2.isStatusText = '正面';
-          var count = _this2.record.facadeCount + 1;
-          uni.setStorageSync('recordFacadeCount', count);
-          console.log('这是', _this2.isStatusText);
+          var facadeCount = _this2.record.facadeCount + 1;
+          uni.setStorageSync('recordFacadeCount', facadeCount);
         } else {
           _this2.isStatusText = '反面';
-          var _count = _this2.record.reverseCount + 1;
-          uni.setStorageSync('recordReverseCount', _count);
-          console.log('这是', _this2.isStatusText);
+          var reverseCount = _this2.record.reverseCount + 1;
+          uni.setStorageSync('recordReverseCount', reverseCount);
         }
         _this2.timerCoinRecord = setTimeout(function () {
           _this2.getCoinRecord();

@@ -7,7 +7,7 @@
 			<view class="coin-middle" v-for="index in 16" :key="index" :style="'transform: translateZ(' + index + 'px)'">
 				<image class="coin-img coin-img-filp" :src="coinImgBack"></image>
 			</view>
-			<view class="coin-back">                
+			<view class="coin-back">
 				<image class="coin-img coin-img-filp" :src="coinImgBack"></image>
 			</view>
 			<view class="coin-shadow"></view>
@@ -18,7 +18,7 @@
 			<view class="coin-record-text">正面次数：{{record.facadeCount}}, 占比：{{record.facadeProportion}}</view>
 			<view class="coin-record-text">反面次数：{{record.reverseCount}}, 占比：{{record.reverseProportion}}</view>
 		</view>
-		<button class="footer-btn" type="primary" style="background: #fd746c;" @tap="tossCoin()">抛硬币</button>
+		<button class="footer-btn" @tap="tossCoin()">抛硬币</button>
 	</view>
 </template>
 
@@ -35,7 +35,7 @@
 		},
 		onLoad() {
 			uni.showShareMenu({
-			  withShareTicket: true
+				withShareTicket: true
 			})
 			uni.showModal({
 				title: '',
@@ -64,10 +64,10 @@
 		},
 		methods: {
 			// 获取背景图
-			getBgImg () {
+			getBgImg() {
 				let bgSrc = uni.getStorageSync('bgCoverImg') || 'bg_4';
 				this.bgCoverImg = `https://746f-tosscoin-whstu-1259588940.tcb.qcloud.la/img/${bgSrc}.jpg`;
-				this.bgCoverImg = `https://tosscoin-1256354221.file.myqcloud.com/img/${bgSrc}.jpg`;	
+				this.bgCoverImg = `https://tosscoin-1256354221.file.myqcloud.com/img/${bgSrc}.jpg`;
 			},
 			// 获取硬币图片
 			getCoinImg() {
@@ -81,29 +81,29 @@
 			// 获取硬币旋转音频
 			getAudio() {
 				let name = uni.getStorageSync('coinAuidoID') || 'filpCoin1';
-				this.audioSrc = name === 'wu' ? null :`/static/audio/${name}.mp3`;
+				this.audioSrc = name === 'wu' ? null : `/static/audio/${name}.mp3`;
 			},
 			// 获取硬币记录
 			getCoinRecord() {
 				let result = this.isStatusText;
-				let totalCount = uni.getStorageSync('recordTotalCount') || 0;
 				let facadeCount = uni.getStorageSync('recordFacadeCount') || 0;
 				let reverseCount = uni.getStorageSync('recordReverseCount') || 0;
+				let totalCount = facadeCount + reverseCount;
 				let facadeProportion = totalCount <= 0 ? "0%" : (Math.round(facadeCount / totalCount * 10000) / 100.00) + "%";
 				let reverseProportion = totalCount <= 0 ? "0%" : (Math.round(reverseCount / totalCount * 10000) / 100.00) + "%";
+				this.record = {
+					result: result,
+					totalCount: totalCount,
+					facadeCount: facadeCount,
+					reverseCount: reverseCount,
+					facadeProportion: facadeProportion,
+					reverseProportion: reverseProportion
+				}
 				// 彩蛋1号
 				if (totalCount === 520) {
-					let textList = [
-						'闲时与你立黄昏，灶前笑问粥可温',
-						'江湖走马，风也好，雨也罢',
-						'情不知所起一往而深',
-						'江湖风波险恶，多多保重',
-						'早知如此绊人心，何如当初莫相识',
-						'最好的都是即将发生的'
-					]
 					uni.showModal({
 						title: '',
-						content: '闲时与你立黄昏，灶前笑问粥可温',
+						content: '最好的都是即将发生的',
 						showCancel: false,
 						confirmText: '喜欢你',
 						confirmColor: '#fd746c',
@@ -118,14 +118,6 @@
 							}
 						}
 					});
-				}
-				this.record = {
-					result: result,
-					totalCount: totalCount,
-					facadeCount: facadeCount,
-					reverseCount: reverseCount,
-					facadeProportion: facadeProportion,
-					reverseProportion: reverseProportion
 				}
 			},
 			// 抛硬币
@@ -162,18 +154,14 @@
 				this.isStatusText = '量子';
 				this.timerCoinFilp = setTimeout(() => {
 					let flipResult = Math.random();
-					let totalCount = this.record.totalCount + 1
-					uni.setStorageSync('recordTotalCount', totalCount);
 					if (flipResult <= 0.5) {
 						this.isStatusText = '正面';
-						let count = this.record.facadeCount + 1
-						uni.setStorageSync('recordFacadeCount', count);
-						console.log('这是', this.isStatusText);
+						let facadeCount = this.record.facadeCount + 1
+						uni.setStorageSync('recordFacadeCount', facadeCount);
 					} else {
 						this.isStatusText = '反面';
-						let count = this.record.reverseCount + 1
-						uni.setStorageSync('recordReverseCount', count);
-						console.log('这是', this.isStatusText);
+						let reverseCount = this.record.reverseCount + 1
+						uni.setStorageSync('recordReverseCount', reverseCount);
 					}
 					this.timerCoinRecord = setTimeout(() => {
 						this.getCoinRecord();
@@ -214,7 +202,6 @@
 		justify-content: center;
 	}
 
-	// $coin-diameter: 400rpx; // 直径
 	$coin-diameter: 200px; //直径
 	$coin-thickness: 16px; // 厚度
 	$turn-time: 1s; // 转动时间
@@ -270,6 +257,7 @@
 	.coin-back {
 		transform: translateZ(0);
 	}
+
 	.coin-img-filp {
 		transform: rotateY(180deg);
 	}
@@ -310,12 +298,11 @@
 		margin-bottom: 60rpx;
 		font-size: 14pt;
 	}
-	
+
 
 	.coin-record-text {
 		margin-bottom: 10rpx;
 	}
-
 
 	@keyframes flipSpin {
 		0% {

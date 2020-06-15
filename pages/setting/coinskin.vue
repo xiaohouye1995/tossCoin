@@ -17,23 +17,23 @@
 			</view>
 		</view>
 		<view class="footer" v-if="coinIndex !== -1">
-			<button v-if="lockStatus" class="footer-btn" type="primary" style="background: #fd746c;" @tap="setCoin()">立即使用</button>
-			<button v-if="!lockStatus" class="footer-btn" type="primary" style="background: #fd746c;" @tap="unlockCoin()">解锁并使用</button>
+			<button v-if="lockStatus" class="footer-btn" @tap="setCoin()">立即使用</button>
+			<button v-if="!lockStatus" class="footer-btn" @tap="unlockCoin()">解锁并使用</button>
 		</view>
 		<!-- 彩蛋输入框 -->
-		<uni-popup ref="popup" type="dialog">
+		<!-- <uni-popup ref="popup" type="dialog">
 		    <uni-popup-dialog type="info" mode="input" placeholder="输入彩蛋码" @close="closeDialog" @confirm="confirmDialog"></uni-popup-dialog>
-		</uni-popup>
+		</uni-popup> -->
 	</view>
 </template>
 
 <script>
-	import uniPopup from '@/components/uni-popup/uni-popup.vue'
-	import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue'
+	// import uniPopup from '@/components/uni-popup/uni-popup.vue'
+	// import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue'
 	import coinJson from '../../static/json/coin.json'
 	let rewardedVideoAd = null;
 	export default {
-		components: {uniPopup, uniPopupDialog},
+		// components: {uniPopup, uniPopupDialog},
 		data() {
 			return {
 				coins: [],
@@ -106,7 +106,12 @@
 			// 解锁硬币皮肤
 			unlockCoin() {
 				if (this.coinIndex === 520) {
-					this.$refs.popup.open()
+					// this.$refs.popup.open()
+					uni.showToast({
+						title: '抱歉，您尚未发现此彩蛋。',
+						icon: 'none',
+						duration: 2000
+					});
 					return
 				}
 				uni.showModal({

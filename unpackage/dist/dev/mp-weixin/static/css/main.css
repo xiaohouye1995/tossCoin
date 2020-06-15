@@ -25,11 +25,18 @@
 	color: #fff;
 	background: #fd746c;
 	border-radius: 6px;
-	border-color: #fd746c;
+	transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+	box-shadow: 0 2px 25px rgba(253, 116, 108, 0.5);
+}
+
+.footer-btn:active {
+	transform: scale(0.9);
+	background-color: darken(#fd746c, 5%);
+	box-shadow: 0 2px 25px rgba(253, 116, 108, 0.5);
 }
 
 .footer-btn:after {
-	border-radius: 12px;
+	border-radius: 6px;
 	border-color: #fd746c;
 }
 

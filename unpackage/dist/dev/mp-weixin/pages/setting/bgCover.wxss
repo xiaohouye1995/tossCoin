@@ -35,17 +35,14 @@
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
           flex-direction: column;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   width: 220rpx;
   margin-bottom: 30px;
   border-radius: 6px;
-  -webkit-box-shadow: 0 4px 9px 0 rgba(109, 107, 107, 0.5);
-          box-shadow: 0 4px 9px 0 rgba(109, 107, 107, 0.5);
+  box-shadow: 0 4px 9px 0 rgba(109, 107, 107, 0.5);
 }
 .selectActive {
-  -webkit-box-shadow: 0 0 8px #fd746c;
-          box-shadow: 0 0 8px #fd746c;
+  box-shadow: 0 0 8px #fd746c;
 }
 .bg-img {
   width: 100%;
