@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "硬币中心",
-  "usingComponents": {}
+  "usingComponents": {
+    "easy-loadimage": "/components/easy-loadimage/easy-loadimage"
+  }
 }

@@ -8,7 +8,15 @@
 				"value": "love",
 				"status": false,
 				"src": "https://tosscoin-1256354221.file.myqcloud.com/img/love_back.png"
-			}]
+			},
+			{
+				"id": 530,
+				"name": "民国银元",
+				"value": "minguo1911",
+				"status": false,
+				"src": "https://tosscoin-1256354221.file.myqcloud.com/img/minguo1911_back.png"
+			}
+			]
 		},
 		{
 			"name": "十二生肖系列",

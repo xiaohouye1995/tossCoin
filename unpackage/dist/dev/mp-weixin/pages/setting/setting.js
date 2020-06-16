@@ -186,6 +186,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var interstitialAd = null;var _default =
 {
@@ -229,6 +238,34 @@ var interstitialAd = null;var _default =
     toCoinBg: function toCoinBg() {
       uni.navigateTo({
         url: '/pages/setting/bgCover' });
+
+    },
+    toMiniProgram: function toMiniProgram() {
+      uni.navigateToMiniProgram({
+        appId: 'wx5f8f090664d3b630',
+        path: 'pages/index/index',
+        extraData: {
+          'data1': 'test' },
+
+        success: function success(res) {
+          // 打开成功
+          var unlockList = uni.getStorageSync('unlockList') || [];
+          if (unlockList.findIndex(function (item) {return item === 'minguo1911';}) === -1) {
+            uni.showModal({
+              title: '恭喜您！',
+              content: '民国银元彩蛋硬币获取成功，请前往硬币中心查看',
+              showCancel: false,
+              confirmColor: '#fd746c',
+              confirmText: '知道了',
+              success: function success(res) {
+                if (res.confirm) {
+                  unlockList.push('minguo1911');
+                  uni.setStorageSync('unlockList', unlockList);
+                }
+              } });
+
+          }
+        } });
 
     },
     // 清除记录

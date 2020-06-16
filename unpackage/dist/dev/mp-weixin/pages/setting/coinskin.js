@@ -92,7 +92,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components
+var components = {
+  easyLoadimage: function() {
+    return __webpack_require__.e(/*! import() | components/easy-loadimage/easy-loadimage */ "components/easy-loadimage/easy-loadimage").then(__webpack_require__.bind(null, /*! @/components/easy-loadimage/easy-loadimage.vue */ 67))
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -157,22 +161,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-var _coin = _interopRequireDefault(__webpack_require__(/*! ../../static/json/coin.json */ 33));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _createForOfIteratorHelper(o) {if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) {var i = 0;var F = function F() {};return { s: F, n: function n() {if (i >= o.length) return { done: true };return { done: false, value: o[i++] };}, e: function e(_e) {throw _e;}, f: F };}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}var it,normalCompletion = true,didErr = false,err;return { s: function s() {it = o[Symbol.iterator]();}, n: function n() {var step = it.next();normalCompletion = step.done;return step;}, e: function e(_e2) {didErr = true;err = _e2;}, f: function f() {try {if (!normalCompletion && it.return != null) it.return();} finally {if (didErr) throw err;}} };}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}
+var _coin = _interopRequireDefault(__webpack_require__(/*! ../../static/json/coin.json */ 33));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _createForOfIteratorHelper(o) {if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) {var i = 0;var F = function F() {};return { s: F, n: function n() {if (i >= o.length) return { done: true };return { done: false, value: o[i++] };}, e: function e(_e) {throw _e;}, f: F };}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}var it,normalCompletion = true,didErr = false,err;return { s: function s() {it = o[Symbol.iterator]();}, n: function n() {var step = it.next();normalCompletion = step.done;return step;}, e: function e(_e2) {didErr = true;err = _e2;}, f: function f() {try {if (!normalCompletion && it.return != null) it.return();} finally {if (didErr) throw err;}} };}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}var easyLoadimage = function easyLoadimage() {__webpack_require__.e(/*! require.ensure | components/easy-loadimage/easy-loadimage */ "components/easy-loadimage/easy-loadimage").then((function () {return resolve(__webpack_require__(/*! @/components/easy-loadimage/easy-loadimage.vue */ 67));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 var rewardedVideoAd = null;var _default =
 {
-  // components: {uniPopup, uniPopupDialog},
+  components: {
+    easyLoadimage: easyLoadimage },
+
   data: function data() {
     return {
       coins: [],
       coinName: '',
       coinIndex: -1,
-      lockStatus: false };
+      lockStatus: false,
+      scrollTop: 0 };
 
+  },
+  onPageScroll: function onPageScroll(_ref) {var scrollTop = _ref.scrollTop;
+    // 传入scrollTop值并触发所有easy-loadimage组件下的滚动监听事件
+    this.scrollTop = scrollTop;
   },
   onLoad: function onLoad() {
     this.getCoinList();
@@ -237,8 +243,7 @@ var rewardedVideoAd = null;var _default =
     },
     // 解锁硬币皮肤
     unlockCoin: function unlockCoin() {
-      if (this.coinIndex === 520) {
-        // this.$refs.popup.open()
+      if (this.coinIndex === 520 || this.coinIndex === 530) {
         uni.showToast({
           title: '抱歉，您尚未发现此彩蛋。',
           icon: 'none',
@@ -287,21 +292,6 @@ var rewardedVideoAd = null;var _default =
       this.getCoinList();
       this.getUseCoin();
       this.coinIndex = -1;
-    },
-    closeDialog: function closeDialog(done) {
-      done();
-    },
-    confirmDialog: function confirmDialog(done, value) {
-      if (value === 'cd52078x8') {
-        this.unlockCoinSucceeded();
-        done();
-      } else {
-        uni.showToast({
-          title: '彩蛋码错误',
-          icon: 'none',
-          duration: 2000 });
-
-      }
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

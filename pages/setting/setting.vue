@@ -43,6 +43,15 @@
 			<!-- #endif -->
 			<view class="panel-cell">
 				<view class="panel-cell-hd">
+					<text class="iconfont icon-tongqian" style="color: #F49E15;"></text>
+				</view>
+				<view class="panel-cell-bd" @tap="toMiniProgram()">
+					<text>古代银钱换算器</text>
+					<text class="iconfont icon-right1"></text>
+				</view>
+			</view>
+			<view class="panel-cell">
+				<view class="panel-cell-hd">
 					<text class="iconfont icon-cc-delete" style="color: #e64340;"></text>
 				</view>
 				<view class="panel-cell-bd" @tap="clearRecord()">
@@ -98,6 +107,34 @@
 				uni.navigateTo({
 					url: '/pages/setting/bgCover'
 				});
+			},
+			toMiniProgram () {
+				uni.navigateToMiniProgram({
+				  appId: 'wx5f8f090664d3b630',
+				  path: 'pages/index/index',
+				  extraData: {
+				    'data1': 'test'
+				  },
+				  success(res) {
+					// 打开成功
+					let unlockList = uni.getStorageSync('unlockList') || [];
+					if (unlockList.findIndex(item => item === 'minguo1911') === -1) {
+						uni.showModal({
+						    title: '恭喜您！',
+						    content: '民国银元彩蛋硬币获取成功，请前往硬币中心查看',
+							showCancel: false,
+							confirmColor: '#fd746c',
+							confirmText: '知道了',
+						    success: function (res) {
+						        if (res.confirm) {
+									unlockList.push('minguo1911');
+									uni.setStorageSync('unlockList', unlockList);
+						        }
+						    }
+						});
+					}	
+				  }
+				})
 			},
 			// 清除记录
 			clearRecord () {
