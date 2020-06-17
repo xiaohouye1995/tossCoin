@@ -3,7 +3,8 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "来抛硬币"
+				"navigationBarTitleText": "来抛硬币",
+				"navigationStyle":"custom"
 			}
 		},
 		{
@@ -27,7 +28,8 @@
 		{
 			"path": "pages/setting/bgCover",
 			"style": {
-				"navigationBarTitleText": "背景皮肤"
+				"navigationBarTitleText": "背景皮肤",
+				"navigationStyle":"custom"
 			}
 		},
 		{

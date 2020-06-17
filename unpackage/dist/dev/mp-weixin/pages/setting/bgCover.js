@@ -130,35 +130,33 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var cardSwiper = function cardSwiper() {__webpack_require__.e(/*! require.ensure | components/helang-cardSwiper/helang-cardSwiper */ "components/helang-cardSwiper/helang-cardSwiper").then((function () {return resolve(__webpack_require__(/*! @/components/helang-cardSwiper/helang-cardSwiper */ 67));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
+  components: {
+    cardSwiper: cardSwiper },
+
   data: function data() {
     return {
       bgCoverlist: [],
       bgCovername: '',
-      bgCoverIndex: -1 };
+      bgCoverId: '',
+      bar_Height: uni.getSystemInfoSync().statusBarHeight };
 
   },
   onLoad: function onLoad() {
@@ -170,31 +168,31 @@ var _default =
     getbgCoverList: function getbgCoverList() {
       var list = [{
         name: '烟雨江南',
-        src: 'bg_4' },
+        img: 'bg_4' },
 
       {
         name: '日系田园',
-        src: 'bg_5' },
+        img: 'bg_5' },
 
       {
         name: '璀璨星空',
-        src: 'bg_12' },
+        img: 'bg_12' },
 
       {
         name: '浪漫樱花',
-        src: 'bg_14' },
+        img: 'bg_14' },
 
       {
         name: '漫步云海',
-        src: 'bg_15' }];
+        img: 'bg_15' }];
 
 
       this.bgCoverlist = [];
       for (var _i = 0, _list = list; _i < _list.length; _i++) {var item = _list[_i];
         var data = {
           name: item.name,
-          id: item.src,
-          src: "https://tosscoin-1256354221.file.myqcloud.com/img/".concat(item.src, ".jpg") };
+          id: item.img,
+          img: "https://tosscoin-1256354221.file.myqcloud.com/img/".concat(item.img, ".jpg") };
 
         this.bgCoverlist.push(data);
       }
@@ -204,8 +202,7 @@ var _default =
       this.bgCovername = uni.getStorageSync('bgCoverImg') || 'bg_4';
     },
     // 选中硬币
-    selectbgCover: function selectbgCover(item, index) {
-      this.bgCoverIndex = index;
+    selectbgCover: function selectbgCover(item) {
       this.bgCoverId = item.id;
     },
     // 设置硬币皮肤
@@ -216,6 +213,11 @@ var _default =
         duration: 2000 });
 
       this.getUsebgCover();
+    },
+    goBack: function goBack() {
+      uni.navigateBack({
+        delta: 1 });
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

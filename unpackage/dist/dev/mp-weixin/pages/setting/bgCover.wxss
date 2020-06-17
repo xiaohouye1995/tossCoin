@@ -70,4 +70,21 @@
   color: #ccc;
   font-size: 13pt;
 }
+.title {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 44px;
+  z-index: 10;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.goBack {
+  margin-left: 10rpx;
+}
 

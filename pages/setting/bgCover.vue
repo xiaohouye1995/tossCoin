@@ -1,32 +1,30 @@
 <template>
 	<view class="container">
-		<view class="panel">
-			<view class="panel-title">
-				<text>默认皮肤</text>
-			</view>
-			<view class="cell">
-				<view class="coin-box" :class="{selectActive: bgCoverIndex === index}" v-for="(item, index) in bgCoverlist" :key="index" @tap="selectbgCover(item,index)">
-					<image class="bg-img" :src="item.src" mode="aspectFill"></image>
-					<view class="bg-text">
-						<view>{{item.name}}</view>
-						<view class="coin-spec" v-if="item.id === bgCovername">使用中</view>
-					</view>
-				</view>
+		<view class="title" :style="{ 'padding-top': bar_Height + 'px' }">
+			<view class='goBack' @tap="goBack()">
+				<text class="iconfont icon-left"></text>
 			</view>
 		</view>
-		<view class="footer" v-if="bgCoverIndex !== -1">
-			<button class="footer-btn" @tap="setbgCover()">立即使用</button>
+		<card-swiper :swiperList="bgCoverlist" imageKey="img" textKey="name" @swiperChange="selectbgCover"></card-swiper>
+		<view class="footer">
+			<button v-if="bgCovername !== bgCoverId" class="footer-btn" @tap="setbgCover()">立即使用</button>
+			<button v-if="bgCovername === bgCoverId" class="footer-btn">使用中</button>
 		</view>
 	</view>
 </template>
 
 <script>
+	import cardSwiper from "@/components/helang-cardSwiper/helang-cardSwiper"
 	export default {
+		components: {
+			cardSwiper
+		},
 		data() {
 			return {
 				bgCoverlist: [],
 				bgCovername: '',
-				bgCoverIndex: -1
+				bgCoverId: '',
+				bar_Height: uni.getSystemInfoSync().statusBarHeight
 			}
 		},
 		onLoad() {
@@ -38,31 +36,31 @@
 			getbgCoverList() {
 				let list = [{
 						name: '烟雨江南',
-						src: 'bg_4'
+						img: 'bg_4'
 					},
 					{
 						name: '日系田园',
-						src: 'bg_5'
+						img: 'bg_5'
 					},
 					{
 						name: '璀璨星空',
-						src: 'bg_12'
+						img: 'bg_12'
 					},
 					{
 						name: '浪漫樱花',
-						src: 'bg_14'
+						img: 'bg_14'
 					},
 					{
 						name: '漫步云海',
-						src: 'bg_15'
+						img: 'bg_15'
 					}
 				]
 				this.bgCoverlist = []
 				for (let item of list) {
 					let data = {
 						name: item.name,
-						id: item.src,
-						src: `https://tosscoin-1256354221.file.myqcloud.com/img/${item.src}.jpg`
+						id: item.img,
+						img: `https://tosscoin-1256354221.file.myqcloud.com/img/${item.img}.jpg`
 					}
 					this.bgCoverlist.push(data)
 				}
@@ -72,8 +70,7 @@
 				this.bgCovername = uni.getStorageSync('bgCoverImg') || 'bg_4'
 			},
 			// 选中硬币
-			selectbgCover(item, index) {
-				this.bgCoverIndex = index
+			selectbgCover(item) {
 				this.bgCoverId = item.id
 			},
 			// 设置硬币皮肤
@@ -84,19 +81,23 @@
 					duration: 2000
 				});
 				this.getUsebgCover()
+			},
+			goBack () {
+				uni.navigateBack({
+				    delta: 1
+				});
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	
 	$size: 220rpx;
-	
+
 	.container {
 		padding-bottom: 80px;
 	}
-	
+
 	.coin-box {
 		display: flex;
 		flex-direction: column;
@@ -106,18 +107,18 @@
 		border-radius: 6px;
 		box-shadow: 0 4px 9px 0 rgba(109, 107, 107, 0.5);
 	}
-	
+
 	.selectActive {
 		box-shadow: 0 0 8px #fd746c;
 	}
-	
+
 	.bg-img {
 		width: 100%;
 		height: $size * 1.1;
 		border-radius: 6px 6px 0 0;
 		margin-bottom: 12rpx;
 	}
-	
+
 	.bg-text {
 		display: flex;
 		flex-direction: column;
@@ -125,11 +126,25 @@
 		height: 60px;
 		text-align: center;
 		background: #fff;
-		border-radius:  0 0 6px 6px;
+		border-radius: 0 0 6px 6px;
 	}
 
 	.coin-spec {
 		color: #ccc;
 		font-size: 13pt;
+	}
+
+	.title{
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 44px;
+		z-index: 10;
+		display: flex;
+		align-items: center;
+	}
+	.goBack {
+		margin-left: 10rpx;
 	}
 </style>

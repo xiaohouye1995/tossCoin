@@ -104,11 +104,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/easy-loadimage/easy-loadimage":1};
+/******/ 		var cssChunks = {"components/easy-loadimage/easy-loadimage":1,"components/helang-cardSwiper/helang-cardSwiper":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/easy-loadimage/easy-loadimage":"components/easy-loadimage/easy-loadimage"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/easy-loadimage/easy-loadimage":"components/easy-loadimage/easy-loadimage","components/helang-cardSwiper/helang-cardSwiper":"components/helang-cardSwiper/helang-cardSwiper"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {
