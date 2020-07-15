@@ -26,7 +26,12 @@
 <script>
 	import easyLoadimage from '@/components/easy-loadimage/easy-loadimage.vue'
 	import coinJson from '../../static/json/coin.json'
+	// #ifdef MP-WEIXIN
 	let rewardedVideoAd = null;
+	// #endif
+	// #ifdef MP-TOUTIAO
+	let videoAd = null;
+	// #endif
 	export default {
 		components: {
 			easyLoadimage
@@ -37,10 +42,13 @@
 				coinName: '',
 				coinIndex: -1,
 				lockStatus: false,
-				scrollTop: 0
+				scrollTop: 0,
+				isAD: false
 			}
 		},
-		onPageScroll({scrollTop}) {
+		onPageScroll({
+			scrollTop
+		}) {
 			// 传入scrollTop值并触发所有easy-loadimage组件下的滚动监听事件
 			this.scrollTop = scrollTop;
 		},
@@ -49,7 +57,16 @@
 			this.getUseCoin()
 		},
 		onReady() {
-			if (wx.createRewardedVideoAd) {
+			// #ifdef MP-TOUTIAO
+			let ttInfo = tt.getSystemInfoSync();
+			this.isAD = ttInfo.appName === 'Douyin';
+			// #endif
+			// #ifdef MP-WEIXIN
+			this.isAD = wx.createRewardedVideoAd;
+			// #endif
+			console.log('isAD', this.isAD)
+			if (this.isAD) {
+				// #ifdef MP-WEIXIN
 				rewardedVideoAd = wx.createRewardedVideoAd({
 					adUnitId: 'adunit-b2c2a41e06c50390'
 				})
@@ -73,6 +90,25 @@
 						});
 					}
 				})
+				// #endif
+				// #ifdef MP-TOUTIAO
+				videoAd = tt.createRewardedVideoAd({
+					adUnitId: 'dhomos5hc271e67i07'
+				})
+				videoAd.onClose((res) => {
+					if (res.isEnded) {
+						// 给予奖励
+						this.unlockCoinSucceeded()
+					} else {
+						// 播放中途退出，不下发游戏奖励
+						uni.showToast({
+							title: '抱歉，还没看完视频',
+							icon: 'none',
+							duration: 2000
+						});
+					}
+				});
+				// #endif
 			}
 		},
 		methods: {
@@ -115,6 +151,7 @@
 					});
 					return
 				}
+				let self = this;
 				uni.showModal({
 					title: '',
 					content: '观看广告后即可解锁 \n 江湖走马，且行且恰饭',
@@ -123,19 +160,41 @@
 					confirmColor: '#fd746c',
 					success: function(res) {
 						if (res.confirm) {
-							rewardedVideoAd.show()
-								.catch(() => {
-									rewardedVideoAd.load()
-										.then(() => rewardedVideoAd.show())
-										.catch(err => {
-											console.log('激励视频 广告显示失败')
-											uni.showToast({
-												title: '恰饭失败，请稍后再试',
-												icon: 'none',
-												duration: 2000
-											});
-										})
-								})
+							if (self.isAD) {
+								// #ifdef MP-WEIXIN
+								rewardedVideoAd.show()
+									.catch(() => {
+										rewardedVideoAd.load()
+											.then(() => rewardedVideoAd.show())
+											.catch(err => {
+												console.log('激励视频 广告显示失败')
+												uni.showToast({
+													title: '恰饭失败，请稍后再试',
+													icon: 'none',
+													duration: 2000
+												});
+											})
+									})
+								// #endif
+								// #ifdef MP-TOUTIAO
+								videoAd
+									.show()
+									.then(() => {
+										console.log("广告显示成功");
+									})
+									.catch((err) => {
+										console.log("广告组件出现问题", err);
+										// 可以手动加载一次
+										videoAd.load().then(() => {
+											console.log("手动加载成功");
+											// 加载成功后需要再显示广告
+											return videoAd.show();
+										});
+									});
+								// #endif
+							} else {
+								self.unlockCoinSucceeded();
+							}
 						} else if (res.cancel) {
 							console.log('用户点击取消');
 						}

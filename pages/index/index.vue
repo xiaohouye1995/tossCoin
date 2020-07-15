@@ -82,6 +82,7 @@
 			getAudio() {
 				let name = uni.getStorageSync('coinAuidoID') || 'filpCoin1';
 				this.audioSrc = name === 'wu' ? null : `/static/audio/${name}.mp3`;
+				// this.audioSrc = name === 'wu' ? null : `https://tosscoin-1256354221.file.myqcloud.com/audio/${name}.mp3`;
 			},
 			// 获取硬币记录
 			getCoinRecord() {
@@ -122,7 +123,7 @@
 			},
 			// 抛硬币
 			tossCoin() {
-				// #ifdef MP-WEIXIN
+				// #ifndef MP-ALIPAY
 				if (this.audioSrc) {
 					this.loadAudio()
 				} else {

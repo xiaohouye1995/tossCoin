@@ -86,7 +86,8 @@
         "usingComponents" : true,
         "uniStatistics" : {
             "enable" : false
-        }
+        },
+        "appid" : "tte4a992147b938096"
     },
     "uniStatistics" : {
         "enable" : false

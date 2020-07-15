@@ -59,7 +59,7 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "来抛硬币",
-		// #ifdef MP-WEIXIN
+		// #ifndef MP-ALIPAY
 		"navigationBarBackgroundColor": "#fff",
 		// #endif
 		"backgroundColor": "#fff"
