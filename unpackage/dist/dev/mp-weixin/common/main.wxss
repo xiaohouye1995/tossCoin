@@ -88,7 +88,8 @@
 	position: fixed;
 	bottom: 0;
 	padding-top: 12px;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	border-top: 1px solid #F2F2F2;
 	background-color: #fff;
 }
@@ -97,21 +98,25 @@
 	margin: 0 auto;
 	color: #fff;
 	background: #fd746c;
-	border-radius: 6px;
-	-webkit-transition: box-shadow ease-in 0.25s, -webkit-transform ease-in 0.1s;
-	transition: box-shadow ease-in 0.25s, -webkit-transform ease-in 0.1s;
+	-webkit-border-radius: 6px;
+	        border-radius: 6px;
+	-webkit-transition: -webkit-transform ease-in 0.1s, -webkit-box-shadow ease-in 0.25s;
+	transition: -webkit-transform ease-in 0.1s, -webkit-box-shadow ease-in 0.25s;
 	transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
-	transition: transform ease-in 0.1s, box-shadow ease-in 0.25s, -webkit-transform ease-in 0.1s;
-	box-shadow: 0 2px 25px rgba(253, 116, 108, 0.5);
+	transition: transform ease-in 0.1s, box-shadow ease-in 0.25s, -webkit-transform ease-in 0.1s, -webkit-box-shadow ease-in 0.25s;
+	-webkit-box-shadow: 0 2px 25px rgba(253, 116, 108, 0.5);
+	        box-shadow: 0 2px 25px rgba(253, 116, 108, 0.5);
 }
 .footer-btn:active {
 	-webkit-transform: scale(0.9);
 	        transform: scale(0.9);
 	background-color: darken(#fd746c, 5%);
-	box-shadow: 0 2px 25px rgba(253, 116, 108, 0.5);
+	-webkit-box-shadow: 0 2px 25px rgba(253, 116, 108, 0.5);
+	        box-shadow: 0 2px 25px rgba(253, 116, 108, 0.5);
 }
 .footer-btn:after {
-	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	        border-radius: 6px;
 	border-color: #fd746c;
 }
 .panel {
@@ -119,7 +124,8 @@
 }
 .panel-title {
 	width: 100%;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	padding: 20rpx;
 	font-size: 16pt;
 }
@@ -153,7 +159,8 @@
 	-webkit-box-align: center;
 	-webkit-align-items: center;
 	        align-items: center;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 .panel-cell--center {
 	width: 100%;

@@ -60,7 +60,7 @@ var component = Object(_C_Users_YunQi_003_Desktop_HBuilderX_1_6_2_20190220_full_
   renderjs
 )
 
-component.options.__file = "E:/xiaohouye/tossCoin/App.vue"
+component.options.__file = "App.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),

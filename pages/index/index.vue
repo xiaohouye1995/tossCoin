@@ -1,6 +1,6 @@
 <template>
 	<view v-if="bgCoverImg" class="content" :style="{'background-image': `url(${bgCoverImg})`}">
-		<view class="coin" :class="{'coin-spin':isStatusText === '薛定谔的硬币','coin-facade': isStatusText === '正面','coin-reverse': isStatusText === '反面'}">
+		<view @tap="toCoinSkin()" class="coin" :class="{'coin-spin':isStatusText === '薛定谔的硬币','coin-facade': isStatusText === '正面','coin-reverse': isStatusText === '反面'}">
 			<view class="coin-front">
 				<image class="coin-img" :src="coinImgFront"></image>
 			</view>
@@ -120,6 +120,12 @@
 						}
 					});
 				}
+			},
+			// 前往硬币皮肤设置
+			toCoinSkin() {
+				uni.navigateTo({
+					url: '/pages/setting/coinskin'
+				});
 			},
 			// 抛硬币
 			tossCoin() {
