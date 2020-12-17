@@ -23,86 +23,86 @@
 			"guid": 2,
 			"list": [{
 					"id": 101,
-					"name": "2020鼠",
+					"name": "鼠",
 					"value": "2020shu",
 					"status": true,
 					"src": "https://tosscoin-1256354221.file.myqcloud.com/img/2020shu_back.png"
 				},
 				{
 					"id": 102,
-					"name": "2019猪",
+					"name": "猪",
 					"value": "2019zhu",
-					"status": true,
+					"status": false,
 					"src": "https://tosscoin-1256354221.file.myqcloud.com/img/2019zhu_back.png"
 				},
 				{
 					"id": 103,
-					"name": "2018狗",
+					"name": "狗",
 					"value": "2018gou",
-					"status": true,
+					"status": false,
 					"src": "https://tosscoin-1256354221.file.myqcloud.com/img/2018gou_back.png"
 				},
 				{
 					"id": 104,
-					"name": "2017鸡",
+					"name": "鸡",
 					"value": "2017ji",
-					"status": true,
+					"status": false,
 					"src": "https://tosscoin-1256354221.file.myqcloud.com/img/2017ji_back.png"
 				},
 				{
 					"id": 105,
-					"name": "2016猴",
+					"name": "猴",
 					"value": "2016hou",
-					"status": true,
+					"status": false,
 					"src": "https://tosscoin-1256354221.file.myqcloud.com/img/2016hou_back.png"
 				},
 				{
 					"id": 106,
-					"name": "2015羊",
+					"name": "羊",
 					"value": "2015yang",
-					"status": true,
+					"status": false,
 					"src": "https://tosscoin-1256354221.file.myqcloud.com/img/2015yang_back.png"
 				},
 				{
 					"id": 107,
-					"name": "2014马",
+					"name": "马",
 					"value": "2014ma",
-					"status": true,
+					"status": false,
 					"src": "https://tosscoin-1256354221.file.myqcloud.com/img/2014ma_back.png"
 				},
 				{
 					"id": 108,
-					"name": "2013蛇",
+					"name": "蛇",
 					"value": "2013she",
-					"status": true,
+					"status": false,
 					"src": "https://tosscoin-1256354221.file.myqcloud.com/img/2013she_back.png"
 				},
 				{
 					"id": 109,
-					"name": "2012龙",
+					"name": "龙",
 					"value": "2012long",
-					"status": true,
+					"status": false,
 					"src": "https://tosscoin-1256354221.file.myqcloud.com/img/2012long_back.png"
 				},
 				{
 					"id": 110,
-					"name": "2011兔",
+					"name": "兔",
 					"value": "2011tu",
-					"status": true,
+					"status": false,
 					"src": "https://tosscoin-1256354221.file.myqcloud.com/img/2011tu_back.png"
 				},
 				{
 					"id": 111,
-					"name": "2010虎",
+					"name": "虎",
 					"value": "2010hu",
-					"status": true,
+					"status": false,
 					"src": "https://tosscoin-1256354221.file.myqcloud.com/img/2010hu_back.png"
 				},
 				{
 					"id": 112,
-					"name": "2009牛",
+					"name": "牛",
 					"value": "2009niu",
-					"status": true,
+					"status": false,
 					"src": "https://tosscoin-1256354221.file.myqcloud.com/img/2009niu_back.png"
 				}
 			]

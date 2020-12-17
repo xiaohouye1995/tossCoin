@@ -904,7 +904,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"tossCoin","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -2686,11 +2686,13 @@ Dep.SharedObject.targetStack = [];
 function pushTarget (target) {
   Dep.SharedObject.targetStack.push(target);
   Dep.SharedObject.target = target;
+  Dep.target = target;
 }
 
 function popTarget () {
   Dep.SharedObject.targetStack.pop();
   Dep.SharedObject.target = Dep.SharedObject.targetStack[Dep.SharedObject.targetStack.length - 1];
+  Dep.target = Dep.SharedObject.target;
 }
 
 /*  */
@@ -7459,7 +7461,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"tossCoin","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7480,14 +7482,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"tossCoin","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"tossCoin","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7531,13 +7533,14 @@ function cloneWithData(vm) {
   }, ret);
 
   // vue-composition-api
-  var rawBindings = vm.__secret_vfa_state__ && vm.__secret_vfa_state__.rawBindings;
+  var compositionApiState = vm.__composition_api_state__ || vm.__secret_vfa_state__;
+  var rawBindings = compositionApiState && compositionApiState.rawBindings;
   if (rawBindings) {
     Object.keys(rawBindings).forEach(function (key) {
       ret[key] = vm[key];
     });
   }
-  
+
   //TODO 需要把无用数据处理掉，比如 list=>l0 则 list 需要移除，否则多传输一份数据
   Object.assign(ret, vm.$mp.data || {});
   if (
@@ -7572,7 +7575,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"tossCoin","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8017,7 +8020,7 @@ module.exports = g;
 /*! exports provided: data, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"data\":[{\"name\":\"彩蛋系列\",\"guid\":1,\"list\":[{\"id\":520,\"name\":\"520\",\"value\":\"love\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/love_back.png\"},{\"id\":530,\"name\":\"民国银元\",\"value\":\"minguo1911\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/minguo1911_back.png\"}]},{\"name\":\"十二生肖系列\",\"guid\":2,\"list\":[{\"id\":101,\"name\":\"2020鼠\",\"value\":\"2020shu\",\"status\":true,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2020shu_back.png\"},{\"id\":102,\"name\":\"2019猪\",\"value\":\"2019zhu\",\"status\":true,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2019zhu_back.png\"},{\"id\":103,\"name\":\"2018狗\",\"value\":\"2018gou\",\"status\":true,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2018gou_back.png\"},{\"id\":104,\"name\":\"2017鸡\",\"value\":\"2017ji\",\"status\":true,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2017ji_back.png\"},{\"id\":105,\"name\":\"2016猴\",\"value\":\"2016hou\",\"status\":true,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2016hou_back.png\"},{\"id\":106,\"name\":\"2015羊\",\"value\":\"2015yang\",\"status\":true,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2015yang_back.png\"},{\"id\":107,\"name\":\"2014马\",\"value\":\"2014ma\",\"status\":true,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2014ma_back.png\"},{\"id\":108,\"name\":\"2013蛇\",\"value\":\"2013she\",\"status\":true,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2013she_back.png\"},{\"id\":109,\"name\":\"2012龙\",\"value\":\"2012long\",\"status\":true,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2012long_back.png\"},{\"id\":110,\"name\":\"2011兔\",\"value\":\"2011tu\",\"status\":true,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2011tu_back.png\"},{\"id\":111,\"name\":\"2010虎\",\"value\":\"2010hu\",\"status\":true,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2010hu_back.png\"},{\"id\":112,\"name\":\"2009牛\",\"value\":\"2009niu\",\"status\":true,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2009niu_back.png\"}]},{\"name\":\"十二星座系列\",\"guid\":3,\"list\":[{\"id\":201,\"name\":\"白羊座\",\"value\":\"baiyang\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/baiyang_back.png\"},{\"id\":202,\"name\":\"金牛座\",\"value\":\"jinniu\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/jinniu_back.png\"},{\"id\":203,\"name\":\"双子座\",\"value\":\"shuangzi\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/shuangzi_back.png\"},{\"id\":204,\"name\":\"巨蟹座\",\"value\":\"juxie\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/juxie_back.png\"},{\"id\":205,\"name\":\"狮子座\",\"value\":\"shizi\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/shizi_back.png\"},{\"id\":206,\"name\":\"处女座\",\"value\":\"chunv\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/chunv_back.png\"},{\"id\":207,\"name\":\"天秤座\",\"value\":\"tianping\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/tianping_back.png\"},{\"id\":208,\"name\":\"天蝎座\",\"value\":\"tianxie\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/tianxie_back.png\"},{\"id\":209,\"name\":\"射手座\",\"value\":\"sheshou\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/sheshou_back.png\"},{\"id\":210,\"name\":\"摩羯座\",\"value\":\"mojie\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/mojie_back.png\"},{\"id\":211,\"name\":\"水瓶座\",\"value\":\"shuiping\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/shuiping_back.png\"},{\"id\":212,\"name\":\"双鱼座\",\"value\":\"shuangyu\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/shuangyu_back.png\"}]}]}");
+module.exports = JSON.parse("{\"data\":[{\"name\":\"彩蛋系列\",\"guid\":1,\"list\":[{\"id\":520,\"name\":\"520\",\"value\":\"love\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/love_back.png\"},{\"id\":530,\"name\":\"民国银元\",\"value\":\"minguo1911\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/minguo1911_back.png\"}]},{\"name\":\"十二生肖系列\",\"guid\":2,\"list\":[{\"id\":101,\"name\":\"鼠\",\"value\":\"2020shu\",\"status\":true,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2020shu_back.png\"},{\"id\":102,\"name\":\"猪\",\"value\":\"2019zhu\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2019zhu_back.png\"},{\"id\":103,\"name\":\"狗\",\"value\":\"2018gou\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2018gou_back.png\"},{\"id\":104,\"name\":\"鸡\",\"value\":\"2017ji\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2017ji_back.png\"},{\"id\":105,\"name\":\"猴\",\"value\":\"2016hou\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2016hou_back.png\"},{\"id\":106,\"name\":\"羊\",\"value\":\"2015yang\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2015yang_back.png\"},{\"id\":107,\"name\":\"马\",\"value\":\"2014ma\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2014ma_back.png\"},{\"id\":108,\"name\":\"蛇\",\"value\":\"2013she\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2013she_back.png\"},{\"id\":109,\"name\":\"龙\",\"value\":\"2012long\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2012long_back.png\"},{\"id\":110,\"name\":\"兔\",\"value\":\"2011tu\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2011tu_back.png\"},{\"id\":111,\"name\":\"虎\",\"value\":\"2010hu\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2010hu_back.png\"},{\"id\":112,\"name\":\"牛\",\"value\":\"2009niu\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/2009niu_back.png\"}]},{\"name\":\"十二星座系列\",\"guid\":3,\"list\":[{\"id\":201,\"name\":\"白羊座\",\"value\":\"baiyang\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/baiyang_back.png\"},{\"id\":202,\"name\":\"金牛座\",\"value\":\"jinniu\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/jinniu_back.png\"},{\"id\":203,\"name\":\"双子座\",\"value\":\"shuangzi\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/shuangzi_back.png\"},{\"id\":204,\"name\":\"巨蟹座\",\"value\":\"juxie\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/juxie_back.png\"},{\"id\":205,\"name\":\"狮子座\",\"value\":\"shizi\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/shizi_back.png\"},{\"id\":206,\"name\":\"处女座\",\"value\":\"chunv\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/chunv_back.png\"},{\"id\":207,\"name\":\"天秤座\",\"value\":\"tianping\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/tianping_back.png\"},{\"id\":208,\"name\":\"天蝎座\",\"value\":\"tianxie\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/tianxie_back.png\"},{\"id\":209,\"name\":\"射手座\",\"value\":\"sheshou\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/sheshou_back.png\"},{\"id\":210,\"name\":\"摩羯座\",\"value\":\"mojie\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/mojie_back.png\"},{\"id\":211,\"name\":\"水瓶座\",\"value\":\"shuiping\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/shuiping_back.png\"},{\"id\":212,\"name\":\"双鱼座\",\"value\":\"shuangyu\",\"status\":false,\"src\":\"https://tosscoin-1256354221.file.myqcloud.com/img/shuangyu_back.png\"}]}]}");
 
 /***/ }),
 

@@ -145,7 +145,7 @@
 			unlockCoin() {
 				if (this.coinIndex === 520 || this.coinIndex === 530) {
 					uni.showToast({
-						title: '抱歉，您尚未发现此彩蛋。',
+						title: '不要心急，您尚未发现此彩蛋。',
 						icon: 'none',
 						duration: 2000
 					});
@@ -154,9 +154,10 @@
 				let self = this;
 				uni.showModal({
 					title: '',
-					content: '观看广告后即可解锁 \n 江湖走马，且行且恰饭',
+					content: '观看广告后即可解锁。 \n 江湖走马，且行且恰饭',
 					confirmText: '支持一下',
-					cancelText: '不为所动',
+					cancelText: '下次一定',
+					showCancel: false,
 					confirmColor: '#fd746c',
 					success: function(res) {
 						if (res.confirm) {
