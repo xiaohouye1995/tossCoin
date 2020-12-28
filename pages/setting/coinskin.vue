@@ -143,7 +143,7 @@
 			},
 			// 解锁硬币皮肤
 			unlockCoin() {
-				if (this.coinIndex === 520 || this.coinIndex === 530) {
+				if (this.coinIndex > 500) {
 					uni.showToast({
 						title: '不要心急，您尚未发现此彩蛋。',
 						icon: 'none',
@@ -157,7 +157,7 @@
 					content: '观看广告后即可解锁。 \n 江湖走马，且行且恰饭',
 					confirmText: '支持一下',
 					cancelText: '下次一定',
-					showCancel: false,
+					// showCancel: false,
 					confirmColor: '#fd746c',
 					success: function(res) {
 						if (res.confirm) {

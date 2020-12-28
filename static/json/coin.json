@@ -15,6 +15,13 @@
 				"value": "minguo1911",
 				"status": false,
 				"src": "https://tosscoin-1256354221.file.myqcloud.com/img/minguo1911_back.png"
+			},
+			{
+				"id": 540,
+				"name": "西方龙",
+				"value": "dragon",
+				"status": false,
+				"src": "https://tosscoin-1256354221.file.myqcloud.com/img/dragon_back.png"
 			}
 			]
 		},
@@ -32,14 +39,14 @@
 					"id": 102,
 					"name": "猪",
 					"value": "2019zhu",
-					"status": false,
+					"status": true,
 					"src": "https://tosscoin-1256354221.file.myqcloud.com/img/2019zhu_back.png"
 				},
 				{
 					"id": 103,
 					"name": "狗",
 					"value": "2018gou",
-					"status": false,
+					"status": true,
 					"src": "https://tosscoin-1256354221.file.myqcloud.com/img/2018gou_back.png"
 				},
 				{

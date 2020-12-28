@@ -15,6 +15,13 @@
 				"value": "minguo1911",
 				"status": false,
 				"src": "https://tosscoin-1256354221.file.myqcloud.com/img/minguo1911_back.png"
+			},
+			{
+				"id": 540,
+				"name": "西方龙",
+				"value": "dragon",
+				"status": false,
+				"src": "https://tosscoin-1256354221.file.myqcloud.com/img/dragon_back.png"
 			}
 			]
 		},

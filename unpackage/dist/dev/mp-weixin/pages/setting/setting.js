@@ -198,6 +198,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var interstitialAd = null;var _default =
 {
@@ -246,9 +255,24 @@ var interstitialAd = null;var _default =
         url: '/pages/setting/bgCover' });
 
     },
-    toMiniProgram: function toMiniProgram() {
+    toMiniProgram: function toMiniProgram(val) {
+      var appId = '';
+      var text = '';
+      var name = '';
+      switch (val) {
+        case '民国':
+          appId = 'wx5f8f090664d3b630';
+          text = '民国银元';
+          name = 'minguo1911';
+          break;
+        case '贪吃龙':
+          appId = 'wx64765b37d8815453';
+          text = '西方龙';
+          name = 'dragon';
+          break;}
+
       uni.navigateToMiniProgram({
-        appId: 'wx5f8f090664d3b630',
+        appId: appId,
         path: 'pages/index/index',
         extraData: {
           'data1': 'test' },
@@ -256,16 +280,16 @@ var interstitialAd = null;var _default =
         success: function success(res) {
           // 打开成功
           var unlockList = uni.getStorageSync('unlockList') || [];
-          if (unlockList.findIndex(function (item) {return item === 'minguo1911';}) === -1) {
+          if (unlockList.findIndex(function (item) {return item === name;}) === -1) {
             uni.showModal({
               title: '恭喜您！',
-              content: '民国银元彩蛋硬币获取成功，请前往硬币中心查看',
+              content: "".concat(text, "\u5F69\u86CB\u786C\u5E01\u83B7\u53D6\u6210\u529F\uFF0C\u8BF7\u524D\u5F80\u786C\u5E01\u4E2D\u5FC3\u67E5\u770B"),
               showCancel: false,
               confirmColor: '#fd746c',
               confirmText: '知道了',
               success: function success(res) {
                 if (res.confirm) {
-                  unlockList.push('minguo1911');
+                  unlockList.push(name);
                   uni.setStorageSync('unlockList', unlockList);
                 }
               } });
