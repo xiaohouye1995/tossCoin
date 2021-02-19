@@ -43,8 +43,7 @@
 .icon-img {
   width: 26px;
   height: 26px;
-  -webkit-border-radius: 50%;
-          border-radius: 50%;
+  border-radius: 50%;
   vertical-align: text-top;
 }
 

@@ -92,9 +92,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components = {
-  easyLoadimage: function() {
-    return __webpack_require__.e(/*! import() | components/easy-loadimage/easy-loadimage */ "components/easy-loadimage/easy-loadimage").then(__webpack_require__.bind(null, /*! @/components/easy-loadimage/easy-loadimage.vue */ 60))
+var components
+try {
+  components = {
+    easyLoadimage: function() {
+      return __webpack_require__.e(/*! import() | components/easy-loadimage/easy-loadimage */ "components/easy-loadimage/easy-loadimage").then(__webpack_require__.bind(null, /*! @/components/easy-loadimage/easy-loadimage.vue */ 60))
+    }
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
   }
 }
 var render = function() {
@@ -279,7 +298,7 @@ var rewardedVideoAd = null;var _default =
     },
     // 解锁硬币皮肤
     unlockCoin: function unlockCoin() {
-      if (this.coinIndex === 520 || this.coinIndex === 530) {
+      if (this.coinIndex > 500) {
         uni.showToast({
           title: '不要心急，您尚未发现此彩蛋。',
           icon: 'none',
@@ -293,7 +312,7 @@ var rewardedVideoAd = null;var _default =
         content: '观看广告后即可解锁。 \n 江湖走马，且行且恰饭',
         confirmText: '支持一下',
         cancelText: '下次一定',
-        showCancel: false,
+        // showCancel: false,
         confirmColor: '#fd746c',
         success: function success(res) {
           if (res.confirm) {

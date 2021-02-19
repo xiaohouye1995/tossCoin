@@ -160,8 +160,11 @@
 				this.record.result = '量子力学中...';
 				this.isStatusText = '量子';
 				this.timerCoinFilp = setTimeout(() => {
-					let flipResult = Math.random();
-					if (flipResult <= 0.5) {
+					// let flipResult = Math.random();
+					let min = 1;
+					let max = 10;
+					var flipResult = Math.floor(Math.random() * (max - min + 1)) + min;
+					if (flipResult <= 5) {
 						this.isStatusText = '正面';
 						let facadeCount = this.record.facadeCount + 1
 						uni.setStorageSync('recordFacadeCount', facadeCount);

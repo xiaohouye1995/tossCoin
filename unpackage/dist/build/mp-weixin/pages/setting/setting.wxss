@@ -1,1 +1,1 @@
-.btn-feedback{margin:0;padding:0;background:none;width:100%;text-align:left;border:none;color:#353535;font-size:14pt}.btn-feedback:after{border:none}.icon-right1{font-size:17pt}.icon-img{width:26px;height:26px;-webkit-border-radius:50%;border-radius:50%;vertical-align:text-top}
+.btn-feedback{margin:0;padding:0;background:none;width:100%;text-align:left;border:none;color:#353535;font-size:14pt}.btn-feedback:after{border:none}.icon-right1{font-size:17pt}.icon-img{width:26px;height:26px;border-radius:50%;vertical-align:text-top}

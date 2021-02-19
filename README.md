@@ -4,16 +4,16 @@
 
 ## DEMO
 ### 演示
-![demo](https://github.com/zhouxiaoyu1994/tossCoin/blob/master/readme_img/1.gif)
+![demo](https://github.com/xiaohouye1995/tossCoin/blob/master/readme_img/1.gif)
 
 ### 微信小程序码
-![微信小程序码](https://github.com/zhouxiaoyu1994/tossCoin/blob/master/readme_img/wxQRcode.jpg)
+![微信小程序码](https://github.com/xiaohouye1995/tossCoin/blob/master/readme_img/wxQRcode.jpg)
 
 ### 支付宝小程序码
-![支付宝小程序码](https://github.com/zhouxiaoyu1994/tossCoin/blob/master/readme_img/zfbQRcode.jpg)
+![支付宝小程序码](https://github.com/xiaohouye1995/tossCoin/blob/master/readme_img/zfbQRcode.jpg)
 
 ## 运行平台
-微信小程序、支付宝小程序、H5、ios、安卓
+微信小程序、支付宝小程序、抖音小程序、H5、ios、安卓
 
 使用 uni-app 开发，除微信小程序、支付宝小程序外，其他端未测试
 
@@ -27,11 +27,14 @@
 
 ## 功能需求
 - [ ] 抛掷方式选择
+- [ ] 转uniCloud
+- [ ] 自定义硬币图片
+- [ ] 弹出框美化
+- [ ] 触摸震动
 - [x] 硬币浮光
 - [x] 硬币3D旋转
 - [x] 硬币阴影
 - [x] 硬币种类选择
-- [ ] 自定义硬币图片
 - [x] 音效
 - [x] 音效选择
 - [x] 背景皮肤
@@ -41,17 +44,13 @@
 - [x] 字次数，占比
 - [x] 人头次数，占比
 - [x] 清空数据
-- [ ] 报警监控
-- [ ] APP端
+- [x] 报警监控
 - [x] 我要吐槽-意见反馈
 - [x] 彩蛋 （等待你的发现~~）
-- [ ] 弹出框美化
 - [x] 转发分享
 - [x] 适配小程序pc（ipad）端
-- [ ] 触摸震动
 - [x] 支付宝版小程序
 - [x] 十二星座系列硬币
-- [ ] 转uniCloud
 - [x] 彩蛋硬币皮肤，在彩蛋页下放置彩蛋码，在硬币皮肤页输入彩蛋码，获得皮肤；
 - [x] 视频广告激励
 - [x] 插屏广告

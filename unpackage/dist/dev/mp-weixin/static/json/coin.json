@@ -39,14 +39,14 @@
 					"id": 102,
 					"name": "猪",
 					"value": "2019zhu",
-					"status": false,
+					"status": true,
 					"src": "https://tosscoin-1256354221.file.myqcloud.com/img/2019zhu_back.png"
 				},
 				{
 					"id": 103,
 					"name": "狗",
 					"value": "2018gou",
-					"status": false,
+					"status": true,
 					"src": "https://tosscoin-1256354221.file.myqcloud.com/img/2018gou_back.png"
 				},
 				{
