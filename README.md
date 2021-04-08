@@ -2,6 +2,8 @@
 
 抛硬币，并不是因为硬币能帮你决定什么，而是因为在硬币抛出的那一刻，答案便会出现在你心里。
 
+git分支测试
+
 ## DEMO
 ### 演示
 ![demo](https://github.com/xiaohouye1995/tossCoin/blob/master/readme_img/1.gif)
