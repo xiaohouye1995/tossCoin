@@ -109,7 +109,6 @@ image.origin-img.data-v-214bde04{
     opacity: 0.3;
 }
 image.origin-img.show-transition.data-v-214bde04{
-    -webkit-transition: opacity 1.2s;
     transition: opacity 1.2s;
     opacity: 1;
 }
@@ -149,7 +148,6 @@ image.origin-img.no-transition.data-v-214bde04{
 /* 骨架屏1 */
 .skeleton-1.data-v-214bde04{
     background-color: #e3e3e3;
-    background-image: -webkit-linear-gradient(350deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 80%);
     background-image: linear-gradient(100deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 80%);
     background-size: 100rpx 100%;
     background-repeat: repeat-y;
@@ -169,7 +167,6 @@ to {
 }
 /* 骨架屏2 */
 .skeleton-2.data-v-214bde04{
-    background-image: -webkit-linear-gradient(right, #fefefe 0%, #e6e6e6 50%,#fefefe 100%);
     background-image: linear-gradient(-90deg, #fefefe 0%, #e6e6e6 50%,#fefefe 100%);
     background-size: 400% 400%;
     background-position:0 0;

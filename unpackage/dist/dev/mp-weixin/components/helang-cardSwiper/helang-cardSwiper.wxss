@@ -57,7 +57,6 @@
   bottom: 0;
   left: 0;
   height: 65%;
-  background-image: -webkit-linear-gradient(top, transparent, #FFF);
   background-image: linear-gradient(to bottom, transparent, #FFF);
 }
 .top-swiper .bg .image > image {
@@ -93,7 +92,6 @@
   display: block;
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
-  -webkit-transition: -webkit-transform 0.3s ease-in-out 0s;
   transition: -webkit-transform 0.3s ease-in-out 0s;
   transition: transform 0.3s ease-in-out 0s;
   transition: transform 0.3s ease-in-out 0s, -webkit-transform 0.3s ease-in-out 0s;

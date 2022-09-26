@@ -1,57 +1,29 @@
 {
-  "description": "项目配置文件。",
-  "packOptions": {
-    "ignore": []
-  },
-  "setting": {
-    "urlCheck": false,
-    "es6": true,
-    "enhance": true,
-    "postcss": true,
-    "minified": true,
-    "newFeature": true,
-    "coverView": true,
-    "autoAudits": false,
-    "showShadowRootInWxmlPanel": true,
-    "scopeDataCheck": false,
-    "checkInvalidKey": true,
-    "checkSiteMap": true,
-    "uploadWithSourceMap": true,
-    "useMultiFrameRuntime": false,
-    "useApiHook": true,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
+    "description": "项目配置文件。",
+    "packOptions": {
+        "ignore": [],
+        "include": []
     },
-    "useIsolateContext": true,
-    "useCompilerModule": true,
-    "userConfirmedUseCompilerModuleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": []
-  },
-  "compileType": "miniprogram",
-  "libVersion": "",
-  "appid": "wx4bae1d4717cdd885",
-  "projectname": "tossCoin",
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
-  "condition": {
-    "search": {
-      "current": -1,
-      "list": []
+    "setting": {
+        "urlCheck": false,
+        "es6": true,
+        "postcss": true,
+        "minified": true,
+        "newFeature": true,
+        "bigPackageSizeSupport": true,
+        "babelSetting": {
+            "ignore": [],
+            "disablePlugins": [],
+            "outputPath": ""
+        }
     },
-    "conversation": {
-      "current": -1,
-      "list": []
-    },
-    "game": {
-      "current": -1,
-      "list": []
-    },
-    "miniprogram": {
-      "current": -1,
-      "list": []
+    "compileType": "miniprogram",
+    "libVersion": "2.26.1",
+    "appid": "wx4bae1d4717cdd885",
+    "projectname": "tossCoin",
+    "condition": {},
+    "editorSetting": {
+        "tabIndent": "insertSpaces",
+        "tabSize": 4
     }
-  }
 }

@@ -35,8 +35,9 @@
 				<view class="panel-cell-hd">
 					<text class="iconfont icon-java"></text>
 				</view>
-				<view class="panel-cell-bd">
-					<button open-type='contact' class="btn-feedback">我要吐槽</button>
+				<view class="panel-cell-bd" @tap="toPreviewImage('https://ancientcurrencyconverter-1256354221.file.myqcloud.com/img/%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg')">
+					<!-- <button open-type='contact' class="btn-feedback">我要吐槽</button> -->
+					<button class="btn-feedback">联系作者</button>
 					<text class="iconfont icon-right1"></text>
 				</view>
 			</view>
@@ -55,6 +56,15 @@
 				</view>
 				<view class="panel-cell-bd" @tap="toMiniProgram('贪吃龙')">
 					<text>疯狂贪吃龙</text>
+					<text class="iconfont icon-right1"></text>
+				</view>
+			</view>
+			<view class="panel-cell">
+				<view class="panel-cell-hd">
+					<image class="icon-img" src="https://tosscoin-1256354221.file.myqcloud.com/img/%E9%A4%90%E9%A5%AE%E7%BA%A2%E9%BB%91%E6%A6%9C.png" mode=""></image>
+				</view>
+				<view class="panel-cell-bd" @tap="toMiniProgram('餐饮红黑榜')">
+					<text>餐饮红黑榜</text>
 					<text class="iconfont icon-right1"></text>
 				</view>
 			</view>
@@ -138,14 +148,22 @@
 					  text = '西方龙';
 					  name = 'dragon';
 					  break;
+					case '餐饮红黑榜':
+					  appId = 'wxb4a323eb1606df0d';
+					  text = '红黑榜';
+					  name = 'dragon';
+					  break;
 				 }
 				uni.navigateToMiniProgram({
 					appId: appId,
-					path: 'pages/index/index',
+					path: val === '餐饮红黑榜' ? 'pages/home/index' : 'pages/index/index',
 					extraData: {
 						'data1': 'test'
 					},
 					success(res) {
+						if (val === '餐饮红黑榜') {
+							return
+						}
 						// 打开成功
 						let unlockList = uni.getStorageSync('unlockList') || [];
 						if (unlockList.findIndex(item => item === name) === -1) {
@@ -187,6 +205,21 @@
 							});
 						} else if (res.cancel) {
 							console.log('用户点击取消');
+						}
+					}
+				});
+			},
+			toPreviewImage(url) {
+				uni.previewImage({
+					current: url,
+					urls: [url],
+					longPressActions: {
+						itemList: ['发送给朋友', '保存图片', '收藏'],
+						success: function(data) {
+							console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
+						},
+						fail: function(err) {
+							console.log(err.errMsg);
 						}
 					}
 				});
